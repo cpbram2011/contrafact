@@ -5,3 +5,18 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+User.destroy_all
+
+
+usernames = ['coolguy57','radchad99','cannedCoffee']
+emails = ['no@thanks.com','jazzrulez68@gmail.com','starbucks@caribou.com']
+passwords = ['asdfjkl','password','abcd1234']
+
+users = 3.times.map {|i| User.create!({
+    username: usernames[i],
+    email: emails[i],
+    password: passwords[i]
+})}
+
