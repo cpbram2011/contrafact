@@ -17,6 +17,8 @@ export default class Welcome extends React.Component {
         return (
             <>
             <Link to="/login">Login</Link>
+            &nbsp;
+            
             <Link to="/signup">Sign Up</Link>
             </>
             )

@@ -14,13 +14,29 @@
  *= require_self
  */
 
-
-
-#welcome-bar {
-    background-color: rgb(0, 156, 156);
-    border: 1px solid black;
-    display: flex;
-    
-
+body{
+    background-color:rgb(177, 177, 177);
 }
 
+#welcome-bar {
+    background-color: rgb(44, 44, 44);
+    position: absolute;
+    
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+}
+
+#session-buttons a {
+    padding-left: 2cm;
+}
+
+#welcome-bar a {
+    color: rgb(177, 177, 177);
+    text-decoration: none;
+}
+
+#welcome-bar a:hover {
+    color: white;
+}
