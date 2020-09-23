@@ -26,14 +26,14 @@ export default class SessionForm extends React.Component {
 
     render() {
         return (
-            <div>
+            <div  id='session-form'>
                 <h3>{this.props.formType}</h3>
                 <br/>
-                <ul>
+                <ul id='errors'>
                     {this.props.errors.map((error) => (
                     <li>{error}</li>
                     ))} 
-                    {/* doesnt work ^^^ */}
+                    
                 </ul>
                 <br/>
                 <form onSubmit={this.handleSubmit}>

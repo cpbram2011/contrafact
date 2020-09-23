@@ -20,17 +20,33 @@ body{
 
 #welcome-bar {
     background-color: rgb(44, 44, 44);
-    position: absolute;
-    
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     width: 100%;
-    display: flex;
+    height: 50px;
+    display: flex;  
     align-items: flex-end;
     justify-content: space-around;
 }
 
-#session-buttons a {
-    padding-left: 2cm;
+#welcome-bar h1 {
+    display: inline;
 }
+
+#session-buttons {
+    display: flex;
+    align-items: flex-end;
+}
+
+#session-buttons * {
+    margin-bottom: 1px;
+    margin-right: 15px;
+    display: inline-block;
+    
+}
+
 
 #welcome-bar a {
     color: rgb(177, 177, 177);
@@ -39,4 +55,24 @@ body{
 
 #welcome-bar a:hover {
     color: white;
+}
+#session-form {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#session-form form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+#session-form button {
+    margin: auto;
+}
+
+#errors {
+    margin: auto;
 }

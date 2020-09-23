@@ -11,7 +11,7 @@ export default () => (
     <div>
         <header id='welcome-bar'>
             <Link to='/' id='contrafact'><h1>Contrafact</h1></Link>
-            <div id='session-buttons'>
+            <div >
                 <WelcomeContainer />
             </div>
 
