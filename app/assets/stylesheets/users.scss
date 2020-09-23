@@ -8,6 +8,19 @@ $primary-color: green;
 
 body{
   font: 100% $font-stack;
-  color: $primary-color;
 }
 
+#splash {
+    text-align: end;
+    margin-top: 150px;
+    margin-left: 400px;
+    margin-right: 150px;
+    display: inline-block;
+    
+    width: 800px;
+}
+
+#discover {
+    margin-top: 150px;
+
+}
