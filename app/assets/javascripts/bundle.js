@@ -288,6 +288,9 @@ var mDTP = function mDTP(dispatch) {
     action: function action(user) {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__["login"])(user));
     },
+    guest: function guest(_guest) {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__["login"])(_guest));
+    },
     clearErrors: function clearErrors() {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__["receiveSessionErrors"])([]));
     }
@@ -353,6 +356,7 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
       email: ''
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.continueAsGuest = _this.continueAsGuest.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -375,6 +379,15 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
     value: function handleSubmit(e) {
       e.preventDefault();
       this.props.action(this.state);
+    }
+  }, {
+    key: "continueAsGuest",
+    value: function continueAsGuest(e) {
+      e.preventDefault();
+      this.props.guest({
+        username: 'Stranger',
+        password: 'stranger'
+      });
     }
   }, {
     key: "render",
@@ -402,7 +415,9 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
         onChange: this.update('password')
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.handleSubmit
-      }, "Submit")));
+      }, "Submit")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.continueAsGuest
+      }, "Continue as Guest"));
     }
   }]);
 
@@ -444,6 +459,9 @@ var mDTP = function mDTP(dispatch) {
   return {
     action: function action(user) {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["signup"])(user));
+    },
+    guest: function guest(_guest) {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["login"])(_guest));
     },
     clearErrors: function clearErrors() {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["receiveSessionErrors"])([]));

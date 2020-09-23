@@ -9,6 +9,7 @@ export default class SessionForm extends React.Component {
             email: ''
         };
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.continueAsGuest = this.continueAsGuest.bind(this);
     }
 
     componentWillUnmount () {
@@ -27,8 +28,18 @@ export default class SessionForm extends React.Component {
         this.props.action(this.state)
     }
 
+    continueAsGuest (e) {
+        e.preventDefault();
+        
+        this.props.guest ({
+            username: 'Stranger',
+            password: 'stranger',
+        });
+    }
+
 
     render() {
+        
         return (
             <div  id='session-form'>
                 
@@ -72,6 +83,9 @@ export default class SessionForm extends React.Component {
                     <button onClick={this.handleSubmit}>Submit</button>
 
                 </form>
+
+                    <button onClick={this.continueAsGuest}>Continue as Guest</button>
+                
             </div>
         )
     }

@@ -10,11 +10,11 @@
 User.destroy_all
 
 
-usernames = ['coolguy57','radchad99','cannedCoffee']
-emails = ['no@thanks.com','jazzrulez68@gmail.com','starbucks@caribou.com']
-passwords = ['asdfjkl','password','abcd1234']
+usernames = ['coolguy57','radchad99','cannedCoffee','Stranger']
+emails = ['no@thanks.com','jazzrulez68@gmail.com','starbucks@caribou.com','strange']
+passwords = ['asdfjkl','password','abcd1234','stranger']
 
-users = 3.times.map {|i| User.create!({
+users = 4.times.map {|i| User.create!({
     username: usernames[i],
     email: emails[i],
     password: passwords[i]

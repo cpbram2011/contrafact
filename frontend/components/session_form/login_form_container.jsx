@@ -11,8 +11,8 @@ const mSTP = state => ({
 
 const mDTP = dispatch => ({
     action: user => dispatch(login(user)),
+    guest: guest => dispatch(login(guest)),
     clearErrors: () => dispatch(receiveSessionErrors([]))
-
 });
 
 export default connect(mSTP, mDTP)(SessionForm)
