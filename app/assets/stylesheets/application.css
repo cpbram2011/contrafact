@@ -17,7 +17,11 @@
 body{
     background-color:rgb(177, 177, 177);
 }
+*{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 
+
+}
 #welcome-bar {
     background-color: rgb(44, 44, 44);
     position: fixed;
@@ -75,4 +79,6 @@ body{
 
 #errors {
     margin: auto;
+    color: rgb(145, 0, 0);
+    list-style: none;
 }
