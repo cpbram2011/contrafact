@@ -11,6 +11,10 @@ export default class SessionForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    componentWillUnmount () {
+        this.props.clearErrors();
+    }
+
 
     update (field) {
         return e => (
@@ -27,6 +31,7 @@ export default class SessionForm extends React.Component {
     render() {
         return (
             <div  id='session-form'>
+                
                 <h3>{this.props.formType}</h3>
                 <br/>
                 <ul id='errors'>
@@ -40,6 +45,7 @@ export default class SessionForm extends React.Component {
                     <label>Username:
                         <input type="text"
                         value={this.state.username}
+                        placeholder=''
                         onChange={this.update('username')}
                         />
                     </label>
