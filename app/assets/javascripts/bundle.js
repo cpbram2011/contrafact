@@ -130,18 +130,18 @@ var signup = function signup(user) {
   return function (dispatch) {
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__["signup"](user).then(function (user) {
       return dispatch(loginUser(user));
-    }), function (err) {
+    }, function (err) {
       return dispatch(receiveSessionErrors(err.responseJSON));
-    };
+    });
   };
 };
 var login = function login(user) {
   return function (dispatch) {
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__["login"](user).then(function (user) {
       return dispatch(loginUser(user));
-    }), function (err) {
+    }, function (err) {
       return dispatch(receiveSessionErrors(err.responseJSON));
-    };
+    });
   };
 };
 var logout = function logout() {
@@ -556,6 +556,7 @@ document.addEventListener("DOMContentLoaded", function () {
     store = Object(_store_store__WEBPACK_IMPORTED_MODULE_2__["default"])();
   }
 
+  window.store = store;
   react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_root__WEBPACK_IMPORTED_MODULE_3__["default"], {
     store: store
   }), root);
@@ -643,11 +644,11 @@ __webpack_require__.r(__webpack_exports__);
   Object.freeze(state);
 
   switch (action.type) {
-    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SESSION_ERRORS"]:
-      return action.errors;
-
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["LOGIN_USER"]:
       return [];
+
+    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SESSION_ERRORS"]:
+      return action.errors;
 
     default:
       return state;
