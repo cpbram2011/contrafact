@@ -10,7 +10,9 @@ export default () => (
             <li>Friday Nights</li>
             <li>Saturday Nights</li>
             <li>Sunday Nights</li>
+           
             <li>Tuesday Nights</li>
+
         </ul>
     </div>
 

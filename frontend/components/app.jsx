@@ -13,9 +13,13 @@ import { AuthRoute, ProtectedRoute } from '../util/route_util';
 export default () => (
     <div>
         <header id='welcome-bar'>
-            <Link to='/' id='contrafact'><h1>Contrafact</h1></Link>
+            <Link to='/' id='contrafact'>
 
+            <img  src='https://www.iconfinder.com/data/icons/electronic-device-glyph-1/64/electronic_devices_7-512.png' />
+                
+            </Link>
             <div >
+                
                 <WelcomeContainer />
             </div>
 

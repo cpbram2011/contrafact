@@ -22,6 +22,9 @@ body{
 
 
 }
+
+
+
 #welcome-bar {
     background-color: rgb(44, 44, 44);
     position: fixed;
@@ -82,4 +85,21 @@ body{
     margin: auto;
     color: rgb(145, 0, 0);
     list-style: none;
+}
+
+#contrafact {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    width: 55px;
+    transition: ease-in-out;
+    transition-timing-function: ease-in-out;
+
+}
+
+#contrafact:hover {
+    opacity: 0.2;
+
 }
