@@ -101,5 +101,6 @@ body{
 
 #contrafact:hover {
     opacity: 0.2;
+    background-color: red;
 
 }
