@@ -88,19 +88,21 @@ body{
 }
 
 #contrafact {
-    
+    transform: rotate(270deg);
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 20px;
-    width: 55px;
+    
+    width: 50px;
     transition: ease-in-out;
     transition-timing-function: ease-in-out;
-
+    opacity: 0.4;
+    background-color: red;
+    
 }
 
 #contrafact:hover {
-    opacity: 0.2;
-    background-color: red;
+    background-color: rgb(255, 67, 67);
 
 }

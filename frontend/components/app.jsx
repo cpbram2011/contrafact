@@ -29,8 +29,8 @@ export default () => (
 
         <Switch>
             <ProtectedRoute path='/home' component={DiscoverContainer}/>
-            {/* <AuthRoute exact path="/login" component={LogInFormContainer} />
-            <AuthRoute exact path="/signup" component={SignUpFormContainer} /> */}
+            <AuthRoute exact path="/login" component={LogInFormContainer} />
+            <AuthRoute exact path="/signup" component={SignUpFormContainer} />
             
         </Switch>
             <AuthRoute exact path='/' component={SplashContainer}/>
