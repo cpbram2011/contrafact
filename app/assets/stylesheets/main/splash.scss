@@ -1,0 +1,116 @@
+
+.splash-1 {
+    background-color: white;
+    width: 1300px;
+    margin: 0px auto;
+    position: relative;
+
+}
+
+.splash-1 img {
+    margin: 0px auto;
+    width: 1300px;
+    position: absolute;
+    z-index: 1;
+}
+
+.splash-text-1a {
+    width: 1300px;
+    position: absolute;
+    margin: (50px 0px 50px 0px);
+    z-index: 2;
+    text-align: center;
+}
+
+.splash-text-1b {
+    width: 1300px;
+    position: absolute;
+    margin: (100px 0px 50px 0px);
+    z-index: 2;
+    text-align: center;
+}
+
+
+
+.splash-2 {
+    background-color: white;
+    position: relative;
+    display: flex;
+    width: 1300px;
+    height: 1000px;
+    margin: 0px auto;
+    flex-direction: column;
+    
+
+}
+.splash-2-text-parent {
+    margin-top: 100%;
+
+}
+.splash-2 img {
+    margin-top: 900px;
+    
+    width: 1300px;
+    position: absolute;
+    z-index: 1;
+    background-color: rgb(242, 242, 242);
+    padding: (100px 50px 0 100px);
+
+}
+
+.splash-text-2a {
+    width: 1300px;
+    position: absolute;
+    padding-right: 50px;
+    z-index: 2;
+    text-align: right;
+
+}
+
+.splash-text-2b {
+    width: 1300px;
+    position: absolute;
+    padding-right: 50px;
+    margin-top: 50px;
+    z-index: 2;
+    text-align: right;
+}
+
+.splash-3 {
+    margin: 700px auto 0;
+    padding-top: 100px;
+    width: 1300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    height: 400px;
+    padding-bottom: 50px;
+}
+
+#splash-signup {
+    height: 40px;
+    width: 200px;
+    background-color: rgb(145, 0, 0);
+    border: none;
+    color: rgb(214, 214, 214);
+}
+
+#splash-login:hover {
+    color: white;
+}
+#splash-signup:hover {
+    color: white;
+}
+
+.splash-login-parent p {
+    font-size: smaller;
+
+}
+.splash-login-parent {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 300px;
+    
+}

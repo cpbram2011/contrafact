@@ -24,3 +24,10 @@ export const logout = () => {
     });
 };
 
+export const fetchUsername = (username) => {
+    
+    return $.ajax({
+        url: '/api/users/find',
+        data: {username}
+    });
+};

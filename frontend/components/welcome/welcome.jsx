@@ -8,7 +8,7 @@ export default class Welcome extends React.Component {
         if (this.props.currentUser){
             return(
                 <div id='session-buttons'>
-                <h2>{`Welcome, ${this.props.currentUser.username}`}</h2>
+                <h2 id='username'>{`Welcome, ${this.props.currentUser.username}`}</h2>
                 <button onClick={this.props.logout}>Logout</button>
                 </div>
             )

@@ -1,4 +1,5 @@
 import React from 'react';
+import {fetchUsername} from '../../util/session_api_util'
 
 export default class SessionForm extends React.Component {
     constructor(props){
@@ -6,7 +7,9 @@ export default class SessionForm extends React.Component {
         this.state = {
             username: '',
             password: '',
-            email: ''
+            email: '',
+            validUser: false,
+            nameCheck: false
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.continueAsGuest = this.continueAsGuest.bind(this);
@@ -24,8 +27,32 @@ export default class SessionForm extends React.Component {
     }
 
     handleSubmit (e) {
+        
         e.preventDefault();
-        this.props.action(this.state).then(this.props.closeModal);
+
+        if (!this.state.validUser) {
+            fetchUsername(this.state.username).then(result => {
+                
+                if (this.props.formType === "Log In" ) {
+                    this.setState({validUser: result})
+                } else {
+                    console.log('username available? ' + !result)
+                    this.setState({validUser: !result})
+                    
+                }
+                if (!this.state.validUser) {
+                    this.setState({nameCheck: true});
+                    console.log('nameCheck: ' + this.state.nameCheck)
+                } else {
+                    this.setState({nameCheck: false});
+                }
+            });
+            
+        } else {
+            
+            this.props.action(this.state).then(this.props.closeModal);
+        }
+
     }
 
     continueAsGuest (e) {
@@ -39,14 +66,19 @@ export default class SessionForm extends React.Component {
 
 
     render() {
-        
         return (
             <div  className='session-form'>
                 <h3>{this.props.formType}</h3>
                 <br/>
                 
                 <ul className='errors'>
-                
+                    { this.state.nameCheck ? (
+                        (this.props.formType === "Log In") ? (
+                            <li>Username not found</li>
+                            ) : (
+                            <li>Username already exists</li>
+                        )) : (<></>
+                    )}
                     {this.props.errors.map((error) => (
                         <li>{error}</li>
                         ))} 
@@ -77,14 +109,19 @@ export default class SessionForm extends React.Component {
                             </>
                             ) : <><br/></>
                         }
-                    
-                        <input type="password"
-                        size='38'
-                        value={this.state.password}
-                        placeholder='Password'
+                        { this.state.validUser ? (
 
-                        onChange={this.update('password')}
-                        />
+                            <input type="password"
+                            size='38'
+                            value={this.state.password}
+                            placeholder='Password'
+                            
+                            onChange={this.update('password')}
+                            />
+                            ) : (
+                                <></>
+                            )
+                        }
                         <br/>
                 </form>
                     

@@ -18,5 +18,7 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
   end
 
+  get '/api/users/find', to: 'api/users#find'
+
   root to: 'static_pages#root'
 end

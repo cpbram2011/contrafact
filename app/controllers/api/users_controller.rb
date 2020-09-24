@@ -10,6 +10,17 @@ class Api::UsersController < ApplicationController
         end
     end
 
+    def find
+        
+        @user = User.find_username(params[:username])
+        if @user
+            render json: true
+        else
+            render json: false
+        end
+            
+    end
+
     private
 
     def user_params

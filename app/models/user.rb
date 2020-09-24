@@ -25,6 +25,11 @@ class User < ApplicationRecord
         user = User.find_by(username: username)
         return user if user && user.is_password?(pass)
     end
+    
+    def self.find_username(username)
+        user = User.find_by(username: username)
+        return user if user 
+    end
 
     def password=(pass)
         @password = pass

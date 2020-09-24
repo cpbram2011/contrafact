@@ -8,22 +8,6 @@ body{
 
 }
 
-#splash-image {
-    width: 100%;
-    margin: center;
-}
-
-
-#splash {
-    text-align: center;
-    margin-top: 150px;
-    margin-left: 400px;
-    margin-right: 150px;
-    display: inline-block;
-    
-    width: 1000;
-}
-
 #discover {
     margin-top: 150px;
 
@@ -31,6 +15,7 @@ body{
 .nav-bar {
     background-color: rgb(44, 44, 44);
     position: fixed;
+    z-index: 10;
     top: 0;
     left: 0;
     right: 0;
@@ -157,5 +142,10 @@ body{
     text-align: center;
     
     
+    
+}
+
+#username {
+    color: white;
     
 }
