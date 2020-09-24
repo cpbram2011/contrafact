@@ -14,7 +14,7 @@ const mDTP = dispatch => ({
     guest: guest => dispatch(login(guest)),
     clearErrors: () => dispatch(receiveSessionErrors([])),
     otherForm: (
-        <button onClick={() => dispatch(openModal('signup'))}>
+        <button onClick={() => dispatch(openModal('login'))}>
           Signup
         </button>
       ),

@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 
 
 export default class Welcome extends React.Component {
-
     render () {
         if (this.props.currentUser){
             return(
@@ -16,10 +15,12 @@ export default class Welcome extends React.Component {
         } else
         return (
             <div id='session-buttons'>
-            <Link to="/login">Login</Link>
+            {/* <Link to="/login">Login</Link>
             &nbsp;
             
-            <Link to="/signup">Sign Up</Link>
+        <Link to="/signup">Sign Up</Link>  */}
+            <button onClick={() =>this.props.openModal('login')}>Log In</button>
+            <button onClick={() =>this.props.openModal('signup')}>Sign Up</button>
             </div>
             )
     }

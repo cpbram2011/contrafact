@@ -25,7 +25,7 @@ export default class SessionForm extends React.Component {
 
     handleSubmit (e) {
         e.preventDefault();
-        this.props.action(this.state)
+        this.props.action(this.state).then(this.props.closeModal);
     }
 
     continueAsGuest (e) {
@@ -34,60 +34,74 @@ export default class SessionForm extends React.Component {
         this.props.guest ({
             username: 'Stranger',
             password: 'stranger',
-        });
+        }).then(this.props.closeModal);
     }
 
 
     render() {
         
         return (
-            <div  id='session-form'>
-                
+            <div  className='session-form'>
                 <h3>{this.props.formType}</h3>
                 <br/>
-                <ul id='errors'>
+                
+                <ul className='errors'>
+                
                     {this.props.errors.map((error) => (
-                    <li>{error}</li>
-                    ))} 
+                        <li>{error}</li>
+                        ))} 
                     
                 </ul>
-                <br/>
-                <form onSubmit={this.handleSubmit}>
-                    <label>Username:
+                
+                <form className='input-form' onSubmit={this.handleSubmit}>
+                    
                         <input type="text"
+                        size='38'
                         value={this.state.username}
-                        placeholder=''
+                        placeholder='Username'
                         onChange={this.update('username')}
                         />
-                    </label>
+                    
                     
                     { this.props.needEmail ?
-                       (    <> 
+                       (    
+                           <>
                             <br/>
-                            <label>Email:
                             <input type="text"
+                            size='38'
                             value={this.state.email}
+                            placeholder='Email'
                             onChange={this.update('email')}
                             />
-                            </label>
-                            <br/> 
-                            </>) : <br/>
-                    }
-                    <label>Password:
+                            <br/>
+                            </>
+                            ) : <><br/></>
+                        }
+                    
                         <input type="password"
+                        size='38'
                         value={this.state.password}
+                        placeholder='Password'
+
                         onChange={this.update('password')}
                         />
-                    </label>
-                    <br/>
-                    <button onClick={this.handleSubmit}>Submit</button>
-
+                        <br/>
                 </form>
+                    
 
-                    <button onClick={this.continueAsGuest}>Continue as Guest</button>
+                    
+                    
+
+                    <button onClick={this.handleSubmit}>Submit</button>
+                    
+                    <br/>
+                        <p id='or'><span>or</span></p>
+                    <br/>
+                    <button id='guest-btn' onClick={this.continueAsGuest}>Continue as Guest</button>
+                    
                 
             </div>
         )
     }
-
+    
 }

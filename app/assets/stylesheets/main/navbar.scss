@@ -1,0 +1,96 @@
+
+body{
+    background-color:rgb(177, 177, 177);
+}
+*{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+
+}
+
+#splash-image {
+    width: 100%;
+    margin: center;
+}
+
+
+#splash {
+    text-align: center;
+    margin-top: 150px;
+    margin-left: 400px;
+    margin-right: 150px;
+    display: inline-block;
+    
+    width: 1000;
+}
+
+#discover {
+    margin-top: 150px;
+
+}
+#welcome-bar {
+    background-color: rgb(44, 44, 44);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    min-width: 900px;
+    height: 50px;
+    display: flex;  
+    align-items: flex-end;
+    justify-content: space-around;
+}
+
+#welcome-bar h1 {
+    display: inline;
+}
+
+#session-buttons {
+    display: flex;
+    align-items: flex-end;
+}
+
+#session-buttons * {
+    margin-bottom: 1px;
+    margin-right: 15px;
+    display: inline-block;
+    
+}
+
+
+#welcome-bar a {
+    color: rgb(177, 177, 177);
+    text-decoration: none;
+}
+
+#welcome-bar a:hover {
+    color: white;
+}
+
+
+.errors {
+    margin: auto;
+    color: rgb(145, 0, 0);
+    list-style: none;
+}
+
+#contrafact {
+    transform: rotate(270deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    
+    width: 50px;
+    transition: ease-in-out;
+    transition-timing-function: ease-in-out;
+    opacity: 0.4;
+    background-color: red;
+    
+}
+
+#contrafact:hover {
+    background-color: rgb(255, 67, 67);
+
+}
