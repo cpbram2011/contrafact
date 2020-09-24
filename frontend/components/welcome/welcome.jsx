@@ -15,12 +15,9 @@ export default class Welcome extends React.Component {
         } else
         return (
             <div id='session-buttons'>
-            {/* <Link to="/login">Login</Link>
-            &nbsp;
             
-        <Link to="/signup">Sign Up</Link>  */}
-            <button onClick={() =>this.props.openModal('login')}>Log In</button>
-            <button onClick={() =>this.props.openModal('signup')}>Sign Up</button>
+            <button onClick={() =>this.props.openModal('login')} id='login'>Log In</button>
+            <button onClick={() =>this.props.openModal('signup')} id='signup'>Sign Up</button>
             </div>
             )
     }

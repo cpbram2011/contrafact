@@ -92,7 +92,7 @@ export default class SessionForm extends React.Component {
                     
                     
 
-                    <button onClick={this.handleSubmit}>Submit</button>
+                    <button onClick={this.handleSubmit}>Continue</button>
                     
                     <br/>
                         <p id='or'><span>or</span></p>

@@ -14,16 +14,27 @@ import { AuthRoute, ProtectedRoute } from '../util/route_util';
 export default () => (
     <div>
         <Modal />
-        <header id='welcome-bar'>
+        <header className='nav-bar'>
             <Link to='/' id='contrafact'>
-
             <img  src='https://www.iconfinder.com/data/icons/electronic-device-glyph-1/64/electronic_devices_7-512.png' />
-                
             </Link>
-            <div >
-                
-                <WelcomeContainer />
+            <div className='nav-links'>
+                <Link>Home</Link>
+                <Link>Stream</Link>
+                <Link>Library</Link>
+            
             </div>
+            <div className='search-bar'>
+                <input type="text"
+                className='search-text'
+                size='40'
+                placeholder='Search'
+                />
+                <img src="https://a-v2.sndcdn.com/assets/images/search-dbfe5cbb.svg" alt=""/>
+            </div>
+
+            <WelcomeContainer />
+           
 
         </header>
 

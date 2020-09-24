@@ -28,7 +28,7 @@ body{
     margin-top: 150px;
 
 }
-#welcome-bar {
+.nav-bar {
     background-color: rgb(44, 44, 44);
     position: fixed;
     top: 0;
@@ -36,13 +36,14 @@ body{
     right: 0;
     width: 100%;
     min-width: 900px;
-    height: 50px;
+    height: 40px;
     display: flex;  
     align-items: flex-end;
     justify-content: space-around;
+    padding-bottom: 5px;
 }
 
-#welcome-bar h1 {
+.nav-bar h1 {
     display: inline;
 }
 
@@ -55,16 +56,37 @@ body{
     margin-bottom: 1px;
     margin-right: 15px;
     display: inline-block;
+    border-radius: 3px;
+    font-size: small;
+    height: 25px;
+    cursor:pointer;
     
 }
 
+#session-buttons *:hover {
+    border: 2px solid white;
+    font-weight: bolder;
 
-#welcome-bar a {
+}
+
+#login {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: 1px solid white;
+    overflow: hidden;
+    outline:none;
+    color: white;
+
+}
+
+
+
+.nav-bar a {
     color: rgb(177, 177, 177);
     text-decoration: none;
 }
 
-#welcome-bar a:hover {
+.nav-bar a:hover {
     color: white;
 }
 
@@ -77,12 +99,11 @@ body{
 
 #contrafact {
     transform: rotate(270deg);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
     
-    width: 50px;
+
+    margin-bottom: -5px;
+    
+    width: 40px;
     transition: ease-in-out;
     transition-timing-function: ease-in-out;
     opacity: 0.4;
@@ -93,4 +114,43 @@ body{
 #contrafact:hover {
     background-color: rgb(255, 67, 67);
 
+}
+
+.search-bar {
+    display: flex;
+    background-color: white;
+    padding-top: 1px;
+    border-radius: 3px;
+    
+
+}
+
+.search-text {
+    border: none;
+}
+
+.search-bar img {
+    padding:(2px 3px 2px 3px);
+    margin: (2px 1px 2px 1px);
+    cursor:pointer;
+}
+
+.nav-links {
+    display: flex;
+    width: 300px;
+    justify-content: space-around;
+    border-left: 1px solid black;
+}
+
+.nav-links * {
+    padding-top: 50px;
+    
+    border-right: 1px solid black;
+    
+    display: inline-block;
+    width: 100px ;
+    text-align: center;
+    
+    
+    
 }
