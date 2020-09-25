@@ -18,6 +18,13 @@ export default (props) => (
         <p className='splash-text-2b'>Visit Contrafact on your favorite mobile device</p>
         </div>
     </div>
+    <div className="splash-25">
+        <img id='splash-image-25' src="https://a-v2.sndcdn.com/assets/images/hp_creator_image@2x-2200a5f9.jpg" alt=""/>
+        <div className='splash-25-text-parent'>
+        <h1 className='splash-text-25a'>Conect with fellow music lovers</h1>
+        <p className='splash-text-25b'>Contrafact is the best way to find others who share your musical palette. Make friends and find more music you love!</p>
+        </div>
+    </div>
 
     <div className="splash-3">
 

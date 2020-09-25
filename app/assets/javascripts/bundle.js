@@ -868,6 +868,18 @@ __webpack_require__.r(__webpack_exports__);
   }, "Coming May 2021"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "splash-text-2b"
   }, "Visit Contrafact on your favorite mobile device"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "splash-25"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    id: "splash-image-25",
+    src: "https://a-v2.sndcdn.com/assets/images/hp_creator_image@2x-2200a5f9.jpg",
+    alt: ""
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "splash-25-text-parent"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    className: "splash-text-25a"
+  }, "Conect with fellow music lovers"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "splash-text-25b"
+  }, "Contrafact is the best way to find others who share your musical palette. Make friends and find more music you love!"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "splash-3"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
     className: "splash-text-3a"

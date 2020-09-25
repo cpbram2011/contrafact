@@ -9,11 +9,11 @@ export default class Welcome extends React.Component {
         return (
 
             <div className='session-bar'>
-
+                
                 <Link to='/' id='contrafact'>
                 <img  src='https://www.iconfinder.com/data/icons/electronic-device-glyph-1/64/electronic_devices_7-512.png' />
                 </Link>
-                
+                                
 
                 <div className='session-buttons'>
                     <button onClick={() =>this.props.openModal('login')} id='login'>Log In</button>
