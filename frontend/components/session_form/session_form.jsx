@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {fetchUsername} from '../../util/session_api_util'
 
 export default class SessionForm extends React.Component {
@@ -36,13 +37,11 @@ export default class SessionForm extends React.Component {
                 if (this.props.formType === "Log In" ) {
                     this.setState({validUser: result})
                 } else {
-                    console.log('username available? ' + !result)
-                    this.setState({validUser: !result})
                     
+                    this.setState({validUser: !result})
                 }
                 if (!this.state.validUser) {
                     this.setState({nameCheck: true});
-                    console.log('nameCheck: ' + this.state.nameCheck)
                 } else {
                     this.setState({nameCheck: false});
                 }

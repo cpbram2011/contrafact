@@ -8,8 +8,8 @@
 
 .session-bar {
     display: flex;
+    position: relative;
     margin: 0 auto;
-    position: absolute;
     width: 1300px;
     justify-content: space-between;
     z-index: 5;
@@ -48,24 +48,17 @@
 
 
 .splash-1 {
-    background-color: white;
+    background-image: url(https://streamko.com/wp-content/uploads/2016/08/Club-Music-Party-People-HD-Wallpaper.jpg);
+    background-size: 1330px;
     width: 1300px;
-    height: 900px;
-    margin: 0px auto;
-    position: relative;
+    height: 800px;
+    margin: 0 auto;
+   
 
-}
-
-.splash-1 img {
-    margin: 0px auto;
-    width: 1300px;
-    position: absolute;
-    z-index: 1;
 }
 
 .splash-text-1a {
     width: 1300px;
-    position: absolute;
     margin: (50px 0px 50px 0px);
     z-index: 2;
     text-align: center;
@@ -73,7 +66,6 @@
 
 .splash-text-1b {
     width: 1300px;
-    position: absolute;
     margin: (100px 0px 50px 0px);
     z-index: 2;
     text-align: center;

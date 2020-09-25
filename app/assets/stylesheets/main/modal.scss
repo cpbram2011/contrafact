@@ -7,6 +7,7 @@
     background: rgba(230, 230, 230, 0.7);
     z-index: 10;
 }
+
   
 .modal-child {
 position: absolute;
@@ -18,7 +19,11 @@ border-radius: 5px;
 padding: (0px 100px 0px 100px);
 width: 500px;
 height: 500px;
+animation: example 5s linear 2s infinite alternate;
 }
+
+
+
 
 .session-form {
     height: 250px;
@@ -66,3 +71,19 @@ span {
 #guest-btn {
     
 }
+
+@keyframes modalAnimation {
+    0% {top: -600px;}
+    100% {top: 50%;}
+    // 0% {opacity: 0%;}
+    // 100% {opacity: 100%;}
+    
+}
+
+@keyframes example {
+    0%   {background-color: red;}
+    25%  {background-color: yellow;}
+    50%  {background-color: blue;}
+    100% {background-color: green;}
+  }
+

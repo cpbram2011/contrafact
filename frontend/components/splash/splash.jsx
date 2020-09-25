@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-export default (props) => (
+import WelcomeContainer from '../welcome/welcome_container'
+export default (props) => {
+    return (
 
     <div className="splash">
-
     <div className="splash-1">
-        <img id='splash-image' src="https://streamko.com/wp-content/uploads/2016/08/Club-Music-Party-People-HD-Wallpaper.jpg" alt=""/>
+        <WelcomeContainer />
         <h1 className='splash-text-1a'>Never stop discovering</h1>
         <p className='splash-text-1b'>Save your favorite songs, build and follow playlists. All for free.</p>
     </div>
@@ -46,4 +46,4 @@ export default (props) => (
 
     </div>
 
-)   
+)   }
