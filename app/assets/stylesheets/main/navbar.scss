@@ -48,28 +48,6 @@ body{
     
 }
 
-#login {
-    background-color: Transparent;
-    background-repeat:no-repeat;
-    border: 1px solid white;
-    overflow: hidden;
-    outline:none;
-    color: rgb(214, 214, 214);
-
-}
-
-#login:hover {
-    color: white;
-}
-#signup:hover {
-    color: white;
-}
-
-#signup {
-    background-color: rgb(145, 0, 0);
-    border: none;
-    color: rgb(214, 214, 214);
-}
 
 .nav-bar a {
     color: rgb(177, 177, 177);
@@ -147,5 +125,5 @@ body{
 
 #username {
     color: white;
-    
+
 }

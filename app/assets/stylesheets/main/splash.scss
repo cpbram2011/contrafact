@@ -1,7 +1,56 @@
+.session-bar #contrafact {
+    margin-left: 130px;
+    opacity: 100%;
+    background-color: rgb(160, 0, 0);
+    width: 60px;
+}
+
+
+.session-bar {
+    display: flex;
+    margin: 0 auto;
+    position: absolute;
+    width: 1300px;
+    justify-content: space-between;
+    z-index: 5;
+}
+
+.session-buttons {
+    display: flex;
+    width: 200px;
+    justify-content: space-around;
+    padding-top: 5px;
+    height: 35px;
+    
+
+}
+
+#login {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: 1px solid black;
+    overflow: hidden;
+    outline:none;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+
+}
+
+
+#signup {
+    background-color: rgb(145, 0, 0);
+    border: none;
+    color: rgb(214, 214, 214);
+    cursor: pointer;
+}
+
+
+
 
 .splash-1 {
     background-color: white;
     width: 1300px;
+    height: 900px;
     margin: 0px auto;
     position: relative;
 
@@ -33,34 +82,37 @@
 
 
 .splash-2 {
-    background-color: white;
-    position: relative;
+    background-color: rgb(242, 242, 242);
+    
     display: flex;
+
     width: 1300px;
-    height: 1000px;
+    height: 522px;
     margin: 0px auto;
-    flex-direction: column;
+    
     
 
 }
 .splash-2-text-parent {
-    margin-top: 100%;
-
+    display: block;
+    width: 600px;
+    
+    z-index: 3;
 }
 .splash-2 img {
-    margin-top: 900px;
+  
     
-    width: 1300px;
-    position: absolute;
-    z-index: 1;
-    background-color: rgb(242, 242, 242);
+    width: 800px;
+    // height: 100px;
+    // position: absolute;
+    z-index: 3;
     padding: (100px 50px 0 100px);
 
 }
 
 .splash-text-2a {
-    width: 1300px;
-    position: absolute;
+    
+    margin-top: 40px;
     padding-right: 50px;
     z-index: 2;
     text-align: right;
@@ -68,16 +120,15 @@
 }
 
 .splash-text-2b {
-    width: 1300px;
-    position: absolute;
+    
     padding-right: 50px;
-    margin-top: 50px;
+    margin-top: 10px;
     z-index: 2;
     text-align: right;
 }
 
 .splash-3 {
-    margin: 700px auto 0;
+    margin: 0 auto ;
     padding-top: 100px;
     width: 1300px;
     display: flex;
@@ -88,12 +139,22 @@
     padding-bottom: 50px;
 }
 
+
+
 #splash-signup {
     height: 40px;
     width: 200px;
     background-color: rgb(145, 0, 0);
     border: none;
     color: rgb(214, 214, 214);
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+#splash-login {
+    cursor: pointer;
+    border: 0.5px solid black;
+    border-radius: 3px;
 }
 
 #splash-login:hover {

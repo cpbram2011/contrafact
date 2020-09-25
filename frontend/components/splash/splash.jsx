@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default () => (
+export default (props) => (
 
     <div className="splash">
 
@@ -26,12 +26,12 @@ export default () => (
         <p className='splash-text-3b'>Register now for all the features you love and more.</p>
         <br/>
         <br/>
-        <button onClick={() =>this.props.openModal('signup')} id='splash-signup'>Sign Up</button>
+        <button onClick={() => props.openModal('signup')} id='splash-signup'>Sign Up</button>
 
         <br/>
         <div class='splash-login-parent'>
         <p>Already have an account?</p>
-        <button onClick={() =>this.props.openModal('login')} id='splash-login'>Log In</button>
+        <button onClick={() => props.openModal('login')} id='splash-login'>Log In</button>
         </div>
     </div>
 

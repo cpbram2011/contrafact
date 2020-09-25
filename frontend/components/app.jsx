@@ -5,44 +5,31 @@ import Modal from './modal/modal';
 import SignUpFormContainer from './session_form/signup_form_container';
 import LogInFormContainer from './session_form/login_form_container';
 import WelcomeContainer from './welcome/welcome_container';
-import SplashContainer from './splash/splash'
+import SplashContainer from './splash/splash-container'
 import DiscoverContainer from './discover/discover'
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
-
+import NavBarContainer from './navbar/navbar_container'
 
 
 export default () => (
     <div>
         <Modal />
-        <header className='nav-bar'>
-            <Link to='/' id='contrafact'>
-            <img  src='https://www.iconfinder.com/data/icons/electronic-device-glyph-1/64/electronic_devices_7-512.png' />
-            </Link>
-            <div className='nav-links'>
-                <Link>Home</Link>
-                <Link>Stream</Link>
-                <Link>Library</Link>
+        <header className='bar'>
             
-            </div>
-            <div className='search-bar'>
-                <input type="text"
-                className='search-text'
-                size='40'
-                placeholder='Search'
-                />
-                <img src="https://a-v2.sndcdn.com/assets/images/search-dbfe5cbb.svg" alt=""/>
-            </div>
+           
 
-            <WelcomeContainer />
+            
+            <AuthRoute path='/' component={WelcomeContainer} />
+            <ProtectedRoute path='/home' component={NavBarContainer}/>
            
 
         </header>
 
         <Switch>
             <ProtectedRoute path='/home' component={DiscoverContainer}/>
+            <AuthRoute exact path='/' component={SplashContainer}/>
             
         </Switch>
-            <AuthRoute exact path='/' component={SplashContainer}/>
             
     </div>
 )
