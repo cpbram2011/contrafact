@@ -8,6 +8,7 @@ export default (state = [], action) => {
         case LOGIN_USER:
             return [];
         case RECEIVE_SESSION_ERRORS: 
+        
             return action.errors;
     
         default:
