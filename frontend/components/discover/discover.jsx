@@ -14,6 +14,17 @@ export default () => (
             <li>Tuesday Nights</li>
 
         </ul>
+
+        <div className='truth-parent'>
+            <h1 className='truth'>
+                Joey is the best boyfren
+                <br/>
+                :)
+
+
+
+            </h1>
+        </div>
     </div>
 
 

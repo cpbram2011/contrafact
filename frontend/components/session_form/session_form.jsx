@@ -83,7 +83,7 @@ export default class SessionForm extends React.Component {
                         ))} 
                     
                 </ul>
-                
+
                 <form className='input-form' onSubmit={this.handleSubmit}>
                     
                         <input type="text"
