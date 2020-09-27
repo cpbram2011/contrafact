@@ -32,6 +32,7 @@ export default class SessionForm extends React.Component {
         e.preventDefault();
 
         if (!this.state.validUser) {
+            
             fetchUsername(this.state.username).then(result => {
                 
                 if (this.props.formType === "Log In" ) {
