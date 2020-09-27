@@ -21,10 +21,5 @@ users = 4.times.map {|i| User.create!({
 })}
 
 
-song = Song.create(title: 'Afro Blue', artist: 'Robert Glasper')
-track_url = 0
-song.track.attach(io: track_url, filename: 'song.mp3')
-
-
 
 
