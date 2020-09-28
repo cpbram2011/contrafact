@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {login, receiveSessionErrors} from '../../actions/session_actions';
-import SessionForm from './session_form'
+import SessionForm from './login_form'
 import { openModal, closeModal} from '../../actions/modal_actions'
 
 const mSTP = state => ({

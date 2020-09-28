@@ -30,6 +30,11 @@ class User < ApplicationRecord
         user = User.find_by(username: username)
         return user if user 
     end
+    
+    def self.find_email(email)
+        user = User.find_by(email: email)
+        return user if user 
+    end
 
     def password=(pass)
         @password = pass
