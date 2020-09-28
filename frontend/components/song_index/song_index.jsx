@@ -19,7 +19,7 @@ export default class SongIndex extends React.Component {
                 
                 
                 {this.props.songs.map(x => {
-                    debugger;
+                    
                     return (
                         
                             <div className={`song-item-${x.id}`}>
