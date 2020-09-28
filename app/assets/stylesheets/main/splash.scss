@@ -70,7 +70,46 @@
     text-align: center;
 }
 
+.splash-search-parent {
+    height: 100px;
+    width: 1300px;
+    display: flex;
+    margin: 0 auto;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+}
 
+
+.splash-search-child {
+    height: 45px;
+    width: 500px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+#splash-search {
+    outline: none;
+    padding-left: 10px;
+    height: 45px;
+    border: none;
+    border-radius: (6px 0px 0px 6px);
+    background-color: #F2F2F2;
+    
+}
+
+
+
+#splash-search-icon {
+    height: 45px;
+    width: 45px;
+    padding: 12px;
+    border-radius: (0px 6px 6px 0);
+    background-color: #F2F2F2;
+}
 
 .splash-2 {
     background-color: rgb(242, 242, 242);
@@ -80,7 +119,6 @@
     width: 1300px;
     height: 522px;
     margin: 0px auto;
-    
     
 
 }

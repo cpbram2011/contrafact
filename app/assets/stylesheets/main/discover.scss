@@ -1,19 +1,19 @@
 
-.truth-parent {
-    margin: 0 auto;
-    text-align: center;
-    color: green;
-    
-    animation: example 5s linear 1s infinite alternate forwards;
+
+[class^="song-item"] {
+  background-color: rgba($color: #ffffff, $alpha: 0.4);
+  display: flex;
+  padding-bottom: 5px;
+  border-bottom: 1px solid black;
 }
 
-@keyframes example {
-    0%   {background-color:red; left:0px; top:0px;}
-    25%  {background-color:yellow; left:200px; top:0px;}
-    50%  {background-color:blue; left:200px; top:200px;}
-    75%  {background-color:green; left:0px; top:200px;}
-    100% {background-color:white; left:0px; top:0px;}
-  }
+.cover-art {
+  width: 150px;
+}
 
-.truth-parent *{
-  }
+.song-details {
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

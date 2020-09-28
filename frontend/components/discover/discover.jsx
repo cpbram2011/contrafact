@@ -1,32 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import SongIndexContainer from '../song_index/song_index_container'
 
 
-
-export default () => (
+export default () => {
+ 
+    
+    return (
     <div id='discover'>
-        <h1>List of Songs</h1>
-        <ul>
-            <li>Friday Nights</li>
-            <li>Saturday Nights</li>
-            <li>Sunday Nights</li>
-           
-            <li>Tuesday Nights</li>
+        
 
-        </ul>
-
-        <div className='truth-parent'>
-            <h1 className='truth'>
-                Joey is the best boyfren
-                <br/>
-                :)
-
-
-
-            </h1>
-        </div>
+        <SongIndexContainer />
     </div>
 
 
-);
+)};
 
