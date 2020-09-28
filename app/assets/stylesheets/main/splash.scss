@@ -17,14 +17,20 @@
 
 .session-buttons {
     display: flex;
-    width: 200px;
+    width: 300px;
+    align-items: center;
     justify-content: space-around;
     padding-top: 5px;
     height: 35px;
     
-
 }
 
+
+#for-creators {
+    color: white;
+    font-size: smaller;
+    cursor: pointer;
+}
 #login {
     background-color: Transparent;
     background-repeat:no-repeat;

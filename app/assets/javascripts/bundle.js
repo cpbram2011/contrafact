@@ -1294,7 +1294,9 @@ var Welcome = /*#__PURE__*/function (_React$Component) {
           return _this.props.openModal('signup');
         },
         id: "signup"
-      }, "Create accout")));
+      }, "Create accout"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        id: "for-creators"
+      }, "For Creators")));
     }
   }]);
 
