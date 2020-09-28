@@ -51,7 +51,7 @@
     background-image: url(https://streamko.com/wp-content/uploads/2016/08/Club-Music-Party-People-HD-Wallpaper.jpg);
     background-size: 1330px;
     width: 1300px;
-    height: 800px;
+    height: 450px;
     margin: 0 auto;
    
 
@@ -70,8 +70,65 @@
     text-align: center;
 }
 
+.splash-search-parent {
+    height: 100px;
+    width: 1300px;
+    display: flex;
+    margin: 0 auto;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+}
 
 
+.splash-search-child {
+    height: 45px;
+    width: 500px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+   
+}
+
+#splash-search {
+    outline: none;
+    padding-left: 10px;
+    height: 45px;
+    border: none;
+    border-radius: (6px 0px 0px 6px);
+    background-color: #F2F2F2;
+    
+}
+
+
+
+#splash-search-icon {
+    height: 45px;
+    width: 45px;
+    padding: 12px;
+    border-radius: (0px 6px 6px 0);
+    background-color: #F2F2F2;
+    cursor: pointer;
+}
+
+#splash-search-icon:hover {
+    background-color: #dadada;
+
+}
+.splash-search-child-2 {
+    margin-left: 20px;
+}
+
+.upload {
+    background-color: rgb(145, 0, 0);
+    border: none;
+    color: rgb(214, 214, 214);
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 5px 15px 5px 15px;
+}
 .splash-2 {
     background-color: rgb(242, 242, 242);
     
@@ -80,7 +137,6 @@
     width: 1300px;
     height: 522px;
     margin: 0px auto;
-    
     
 
 }
@@ -129,6 +185,7 @@
 
 #splash-image-25 {
     width: 1300px;
+    height: 450px;
     margin: 0px auto;
     position: absolute;
 
@@ -177,12 +234,15 @@
 
 #splash-login {
     cursor: pointer;
-    border: 0.5px solid black;
-    border-radius: 3px;
+    padding: 3px 10px 3px 10px;
+    border: 1px solid rgb(155, 155, 155);
+    background-color: white;
+    border-radius: 4px;
 }
 
 #splash-login:hover {
     color: rgb(61, 61, 61);
+    border: 1px solid rgb(100, 100, 100);
 }
 #splash-signup:hover {
     color: white;

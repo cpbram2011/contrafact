@@ -1,20 +1,43 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import WelcomeContainer from '../welcome/welcome_container'
+
 export default (props) => {
     return (
 
     <div className="splash">
+        
     <div className="splash-1">
         <WelcomeContainer />
         <h1 className='splash-text-1a'>Never stop discovering</h1>
         <p className='splash-text-1b'>Save your favorite songs, build and follow playlists. All for free.</p>
     </div>
     
+    <div className='splash-search-parent'>
+        <div className="splash-search-child">
+
+        <input type="text"
+        size='40'
+        placeholder='Search for artists, bands, tracks'
+        id='splash-search'/>
+        
+        <img id='splash-search-icon' src="https://a-v2.sndcdn.com/assets/images/search-dbfe5cbb.svg" alt=""/>
+    
+
+
+        </div>
+            <p>or</p>
+        <div className="splash-search-child-2">
+            <button className='upload'>
+                Upload your own
+            </button>
+        </div>
+    </div>
+    
     <div className="splash-2">
         <img id='splash-image-2' src="https://a-v2.sndcdn.com/assets/images/never_stop_listening@2x-ae7903ca.jpg" alt=""/>
         <div className='splash-2-text-parent'>
-        <h1 className='splash-text-2a'>Coming May 2021</h1>
+        <h1 className='splash-text-2a'>Coming someday</h1>
         <p className='splash-text-2b'>Visit Contrafact on your favorite mobile device</p>
         </div>
     </div>

@@ -2,7 +2,6 @@ import React from 'react';
 import {Route, Switch, Link } from 'react-router-dom';
 
 import Modal from './modal/modal';
-import WelcomeContainer from './welcome/welcome_container';
 import SplashContainer from './splash/splash-container'
 import DiscoverContainer from './discover/discover'
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
@@ -13,8 +12,6 @@ export default () => (
     <div>
         <Modal />
         <header className='bar'>
-            
-           
             
             <ProtectedRoute path='/home' component={NavBarContainer}/>
            

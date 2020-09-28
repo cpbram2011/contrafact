@@ -22,6 +22,63 @@
  @import "./main/discover.scss";
 
  
+.footer{
+    background-color: white;
+    width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+.flinks {
+    border-top: 1px solid grey;
+    
+    width: 1120px;
+    height: 100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
 
 
+     button {
+         margin-top: 15px;
+         
+
+     }
+ }
+ .linkedin {
+     background-image: url("https://pbs.twimg.com/profile_images/1082424539492073477/exU8rYn8_400x400.jpg");
+     width: 50px;
+
+     height: 50px;
+     background-size: cover;
+     border: 2px solid rgb(179, 179, 179);
+     border-radius: 5px;
+     
+    }
+    
+.linkedin:hover {
+        animation: wiggle 2s linear 0s infinite both;
+        
+    } 
  
+ .futils {
+     padding-top: 15px;
+     display: flex;
+     width: 300px;
+     justify-content: space-between;
+     color: grey;
+     cursor: pointer;
+
+     :hover{
+         color: rgb(75, 75, 75);
+     }
+ }
+
+ @keyframes wiggle {
+    0% { transform: rotate(0deg); }
+   5% { transform: rotate(-5deg); }
+   10% { transform: rotate(5deg); }
+   15% { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
+}
