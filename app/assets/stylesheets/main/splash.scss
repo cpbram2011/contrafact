@@ -51,7 +51,7 @@
     background-image: url(https://streamko.com/wp-content/uploads/2016/08/Club-Music-Party-People-HD-Wallpaper.jpg);
     background-size: 1330px;
     width: 1300px;
-    height: 800px;
+    height: 450px;
     margin: 0 auto;
    
 
@@ -88,6 +88,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-right: 20px;
    
 }
 
@@ -109,8 +110,25 @@
     padding: 12px;
     border-radius: (0px 6px 6px 0);
     background-color: #F2F2F2;
+    cursor: pointer;
 }
 
+#splash-search-icon:hover {
+    background-color: #dadada;
+
+}
+.splash-search-child-2 {
+    margin-left: 20px;
+}
+
+.upload {
+    background-color: rgb(145, 0, 0);
+    border: none;
+    color: rgb(214, 214, 214);
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 5px 15px 5px 15px;
+}
 .splash-2 {
     background-color: rgb(242, 242, 242);
     
@@ -167,6 +185,7 @@
 
 #splash-image-25 {
     width: 1300px;
+    height: 450px;
     margin: 0px auto;
     position: absolute;
 

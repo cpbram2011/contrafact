@@ -24,6 +24,12 @@ export default (props) => {
 
 
         </div>
+            <p>or</p>
+        <div className="splash-search-child-2">
+            <button className='upload'>
+                Upload your own
+            </button>
+        </div>
     </div>
     
     <div className="splash-2">
