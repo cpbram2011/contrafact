@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import WelcomeContainer from '../welcome/welcome_container'
+
 export default (props) => {
     return (
 
     <div className="splash">
+        
     <div className="splash-1">
         <WelcomeContainer />
         <h1 className='splash-text-1a'>Never stop discovering</h1>

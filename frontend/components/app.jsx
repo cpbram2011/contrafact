@@ -13,8 +13,6 @@ export default () => (
         <Modal />
         <header className='bar'>
             
-           
-            
             <ProtectedRoute path='/home' component={NavBarContainer}/>
            
 
