@@ -9,9 +9,9 @@ export const receiveSongs = songs => ({
     songs
 });
 
-export const receiveCurrentSong = song => ({
+export const receiveCurrentSong = songId=> ({
     type: RECEIVE_CURRENT_SONG,
-    song
+    songId
 });
 
 export const requestSongs = () => dispatch => (

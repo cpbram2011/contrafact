@@ -239,10 +239,10 @@ var receiveSongs = function receiveSongs(songs) {
     songs: songs
   };
 };
-var receiveCurrentSong = function receiveCurrentSong(song) {
+var receiveCurrentSong = function receiveCurrentSong(songId) {
   return {
     type: RECEIVE_CURRENT_SONG,
-    song: song
+    songId: songId
   };
 };
 var requestSongs = function requestSongs() {
@@ -582,8 +582,7 @@ var Play = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      isPlaying: false,
-      currentSong: false
+      isPlaying: false
     };
     _this.reff = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef();
     _this.pause = _this.pause.bind(_assertThisInitialized(_this));
@@ -591,17 +590,6 @@ var Play = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(Play, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      var _this2 = this;
-
-      Object(_util_song_api_util__WEBPACK_IMPORTED_MODULE_1__["fetchSong"])().then(function (song) {
-        _this2.setState({
-          currentSong: song
-        });
-      });
-    }
-  }, {
     key: "pause",
     value: function pause() {
       if (this.state.isPlaying) {
@@ -619,17 +607,16 @@ var Play = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this2 = this;
 
-      debugger; // console.log(song.track)
-
+      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "player"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("audio", {
         id: "audio",
-        src: this.state.currentSong ? this.state.currentSong.track : '',
+        src: Boolean(this.props.currentSong) ? this.props.songs[this.props.currentSong].track : '',
         ref: function ref(input) {
-          _this3.reff = input;
+          _this2.reff = input;
         }
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.pause
@@ -660,7 +647,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var mSTP = function mSTP(state) {
   return {
-    song: state.session.currentSong
+    currentSong: state.session.currentSong,
+    songs: state.entities.songs
   };
 };
 
@@ -1200,7 +1188,8 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
     key: "updateCurrentSong",
     value: function updateCurrentSong(e) {
       debugger;
-      this.props.requestCurrentSong(e.target.id);
+      console.log(e.target.id);
+      this.props.receiveCurrentSong(e.target.id);
     }
   }, {
     key: "render",
@@ -1260,8 +1249,8 @@ var mDTP = function mDTP(dispatch) {
     requestSongs: function requestSongs() {
       return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_2__["requestSongs"])());
     },
-    requestCurrentSong: function requestCurrentSong(id) {
-      return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_2__["requestCurrentSong"])(id));
+    receiveCurrentSong: function receiveCurrentSong(id) {
+      return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_2__["receiveCurrentSong"])(id));
     }
   };
 };
@@ -1766,7 +1755,7 @@ __webpack_require__.r(__webpack_exports__);
 
     case _actions_song_actions__WEBPACK_IMPORTED_MODULE_2__["RECEIVE_CURRENT_SONG"]:
       return Object.assign({}, state, {
-        currentSong: action.song
+        currentSong: action.songId
       });
 
     default:
@@ -1794,6 +1783,7 @@ __webpack_require__.r(__webpack_exports__);
 
   switch (action.type) {
     case _actions_song_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SONGS"]:
+      debugger;
       return action.songs;
 
     default:

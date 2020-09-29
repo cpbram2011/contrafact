@@ -12,7 +12,7 @@ export default (state = {id: null}, action) => {
             return {id: null};
         case RECEIVE_CURRENT_SONG:
             
-            return Object.assign({}, state, {currentSong: action.song});
+            return Object.assign({}, state, {currentSong: action.songId});
         
         default:
             return state;

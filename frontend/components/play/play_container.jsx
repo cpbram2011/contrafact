@@ -4,7 +4,8 @@ import Play from './play';
 
 
 const mSTP = state => ({
-    song: state.session.currentSong
+    currentSong: state.session.currentSong,
+    songs: state.entities.songs
 })
 
 export default connect(mSTP, null)(Play)

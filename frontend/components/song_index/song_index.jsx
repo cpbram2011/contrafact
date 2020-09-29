@@ -15,7 +15,8 @@ export default class SongIndex extends React.Component {
     
     updateCurrentSong (e) {
        debugger;
-        this.props.requestCurrentSong(e.target.id)
+       console.log(e.target.id)
+        this.props.receiveCurrentSong(e.target.id)
         
     }
 
