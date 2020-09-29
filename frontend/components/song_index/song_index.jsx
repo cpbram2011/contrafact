@@ -4,6 +4,7 @@ export default class SongIndex extends React.Component {
 
     constructor(props){
         super(props)
+        this.updateCurrentSong = this.updateCurrentSong.bind(this)
     }
 
 
@@ -12,26 +13,37 @@ export default class SongIndex extends React.Component {
         
     }
     
+    updateCurrentSong (e) {
+       debugger;
+        this.props.requestCurrentSong(e.target.id)
+        
+    }
+
     render () {
         return (
             <div className='song-index'>
                 <h1>All Songs</h1>
                 
                 
-                {this.props.songs.map(x => {
+                {this.props.songs.map(song => {
                     
                     return (
                         
-                            <div className={`song-item-${x.id}`}>
+                        <div key={`song-item-${song.id}`}
+                        
+                        >
 
                                 
-                                <img className="cover-art" src={x.cover} alt=""/>
+                                <img className="cover-art" src={song.cover} 
+                                onClick={this.updateCurrentSong}
+                                id={song.id}
+                                alt=""/>
                                 <div className="song-details">
 
-                                <p>{x.title}</p>
-                                <p>{x.artist}</p>
+                                <p>{song.title}</p>
+                                <p>{song.artist}</p>
                                 <p></p>
-                                <audio controls src={x.track}></audio>
+
                                 </div>
                                 
                             </div>

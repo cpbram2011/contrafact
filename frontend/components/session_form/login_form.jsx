@@ -35,12 +35,8 @@ export default class SessionForm extends React.Component {
             
             fetchUsername(this.state.username).then(result => {
                 
-                if (this.props.formType === "Log In" ) {
-                    this.setState({validUser: result})
-                } else {
-                    
-                    this.setState({validUser: !result})
-                }
+                this.setState({validUser: result})
+                
                 if (!this.state.validUser) {
                     this.setState({nameCheck: true});
                 } else {

@@ -7,7 +7,7 @@ class Api::SongsController < ApplicationController
 
     def show
         @song = Song.first
-        debugger;
+        
     end
 
 
