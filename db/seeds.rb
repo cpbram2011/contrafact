@@ -46,6 +46,11 @@ s4_track_url = open("https://contrafact-seeds.s3.us-east-2.amazonaws.com/Snarky+
 s4.cover.attach(io: s4_cover, filename: "s4-cover.jpg")
 s4.track.attach(io: s4_track_url, filename: 's4.mp3')
 
+s5 = Song.create(title: 'In Waves', artist: 'House of Waters')
+s5_cover = open("https://contrafact-seeds.s3.us-east-2.amazonaws.com/houseofwaters.jpg")
+s5_track_url = open("https://contrafact-seeds.s3.us-east-2.amazonaws.com/House+Of+Waters++-+In+Waves+(128+kbps).mp3")
+s5.cover.attach(io: s5_cover, filename: "s5-cover.jpg")
+s5.track.attach(io: s5_track_url, filename: 's5.mp3')
 
 
 
