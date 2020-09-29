@@ -22,7 +22,7 @@
     justify-content: space-around;
     padding-top: 5px;
     height: 35px;
-    
+    margin: 15px;
 }
 
 
@@ -30,6 +30,7 @@
     color: white;
     font-size: smaller;
     cursor: pointer;
+ 
 }
 #login {
     background-color: Transparent;
@@ -41,12 +42,14 @@
     color: rgb(0, 0, 0);
     cursor: pointer;
 
+    padding: 1px 11px;
 }
 
 
 #signup {
     background-color: rgb(145, 0, 0);
     border: none;
+    padding: 2px 12px;
     border-radius: 4px;
     color: rgb(214, 214, 214);
     cursor: pointer;
