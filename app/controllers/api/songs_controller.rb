@@ -6,7 +6,8 @@ class Api::SongsController < ApplicationController
     
 
     def show
-        @song = Song.find([:id])
+        @song = Song.first
+        debugger;
     end
 
 

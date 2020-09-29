@@ -6,7 +6,7 @@ import SplashContainer from './splash/splash-container'
 import DiscoverContainer from './discover/discover'
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import NavBarContainer from './navbar/navbar_container'
-
+import Play from './play/play';
 
 export default () => (
     <div>
@@ -23,6 +23,6 @@ export default () => (
             <AuthRoute exact path='/' component={SplashContainer}/>
             
         </Switch>
-            
+        <Play />
     </div>
 )
