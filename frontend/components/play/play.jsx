@@ -1,6 +1,5 @@
 
 import React from 'react';
-import {fetchSong} from '../../util/song_api_util';
 
 import { FaPlay, FaPause } from 'react-icons/fa';
 
@@ -10,13 +9,18 @@ export default class Play extends React.Component {
         super(props);
         this.state = {
             isPlaying: false,
-            
         }
         this.reff = React.createRef();
         this.pause = this.pause.bind(this)
     }
 
 
+    componentDidUpdate (prevProps) {
+        if (prevProps.currentSong !== this.props.currentSong) {
+            this.reff.play()
+            this.setState({isPlaying: true})
+        }
+    }
 
     pause () {
         if (this.state.isPlaying) {
@@ -31,16 +35,26 @@ export default class Play extends React.Component {
     
     
     render () {
-        debugger;
+        let load;
+        if (this.props.currentSong) {
+            load = this.props.songs[this.props.currentSong]
+        } else {
+            load = {title: '', artist: '', track: ''}
+        }
+
+
         return (
             <div className="player">
                 
+                <button className='play-pause' onClick={this.pause}>{this.state.isPlaying ? <FaPause/> : <FaPlay/>}</button>
+                
                 <audio 
                 id="audio"
-                src={Boolean(this.props.currentSong) ? this.props.songs[this.props.currentSong].track : ''}
+                src={load.track}
                 ref={(input) => {this.reff = input}}
                 ></audio>
-                <button onClick={this.pause}>{this.state.isPlaying ? <FaPause/> : <FaPlay/>}</button>
+               <p>{load.title}</p>-
+                <p>{load.artist}</p>
             </div>
         )
     }

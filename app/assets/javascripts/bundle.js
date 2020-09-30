@@ -280,6 +280,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _util_route_util__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../util/route_util */ "./frontend/util/route_util.jsx");
 /* harmony import */ var _navbar_navbar_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./navbar/navbar_container */ "./frontend/components/navbar/navbar_container.jsx");
 /* harmony import */ var _play_play_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./play/play_container */ "./frontend/components/play/play_container.jsx");
+/* harmony import */ var _footer_footer__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./footer/footer */ "./frontend/components/footer/footer.jsx");
+
 
 
 
@@ -301,7 +303,7 @@ __webpack_require__.r(__webpack_exports__);
     exact: true,
     path: "/",
     component: _splash_splash_container__WEBPACK_IMPORTED_MODULE_3__["default"]
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_play_play_container__WEBPACK_IMPORTED_MODULE_7__["default"], null));
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_footer_footer__WEBPACK_IMPORTED_MODULE_8__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_play_play_container__WEBPACK_IMPORTED_MODULE_7__["default"], null));
 });
 
 /***/ }),
@@ -326,6 +328,36 @@ __webpack_require__.r(__webpack_exports__);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "discover"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_song_index_song_index_container__WEBPACK_IMPORTED_MODULE_2__["default"], null));
+});
+
+/***/ }),
+
+/***/ "./frontend/components/footer/footer.jsx":
+/*!***********************************************!*\
+  !*** ./frontend/components/footer/footer.jsx ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    "class": "footer"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    "class": "flinks"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    "class": "futils"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "About"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Language"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Services"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Help"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Legal")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    "class": "fbtns"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    "class": "linkedin"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    "class": "github"
+  }))));
 });
 
 /***/ }),
@@ -542,8 +574,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Play; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _util_song_api_util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../util/song_api_util */ "./frontend/util/song_api_util.js");
-/* harmony import */ var react_icons_fa__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-icons/fa */ "./node_modules/react-icons/fa/index.esm.js");
+/* harmony import */ var react_icons_fa__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-icons/fa */ "./node_modules/react-icons/fa/index.esm.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -569,7 +600,6 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-
 var Play = /*#__PURE__*/function (_React$Component) {
   _inherits(Play, _React$Component);
 
@@ -590,6 +620,16 @@ var Play = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(Play, [{
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (prevProps.currentSong !== this.props.currentSong) {
+        this.reff.play();
+        this.setState({
+          isPlaying: true
+        });
+      }
+    }
+  }, {
     key: "pause",
     value: function pause() {
       if (this.state.isPlaying) {
@@ -609,18 +649,30 @@ var Play = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      debugger;
+      var load;
+
+      if (this.props.currentSong) {
+        load = this.props.songs[this.props.currentSong];
+      } else {
+        load = {
+          title: '',
+          artist: '',
+          track: ''
+        };
+      }
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "player"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("audio", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "play-pause",
+        onClick: this.pause
+      }, this.state.isPlaying ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_1__["FaPause"], null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_1__["FaPlay"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("audio", {
         id: "audio",
-        src: Boolean(this.props.currentSong) ? this.props.songs[this.props.currentSong].track : '',
+        src: load.track,
         ref: function ref(input) {
           _this2.reff = input;
         }
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        onClick: this.pause
-      }, this.state.isPlaying ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_2__["FaPause"], null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_2__["FaPlay"], null)));
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, load.title), "-", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, load.artist));
     }
   }]);
 
@@ -648,7 +700,7 @@ __webpack_require__.r(__webpack_exports__);
 var mSTP = function mSTP(state) {
   return {
     currentSong: state.session.currentSong,
-    songs: state.entities.songs
+    songs: Object.assign({}, state.entities.songs)
   };
 };
 
@@ -1140,6 +1192,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SongIndex; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_icons_fa__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-icons/fa */ "./node_modules/react-icons/fa/index.esm.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1161,6 +1214,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -1187,8 +1241,6 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "updateCurrentSong",
     value: function updateCurrentSong(e) {
-      debugger;
-      console.log(e.target.id);
       this.props.receiveCurrentSong(e.target.id);
     }
   }, {
@@ -1198,18 +1250,26 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "song-index"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "All Songs"), this.props.songs.map(function (song) {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "All Songs"), this.props.songs.map(function (song, i) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "song-item-".concat(song.id),
           key: "song-item-".concat(song.id)
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "d-cover",
+          onClick: _this2.updateCurrentSong
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_1__["FaPlayCircle"], {
+          className: "play-circle",
+          onClick: _this2.updateCurrentSong
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           className: "cover-art",
           src: song.cover,
-          onClick: _this2.updateCurrentSong,
           id: song.id,
           alt: ""
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "song-details"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, song.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, song.artist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null)));
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, i + 1), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "title"
+        }, song.title), "-", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "artist"
+        }, song.artist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null));
       }));
     }
   }]);
@@ -1244,7 +1304,6 @@ var mSTP = function mSTP(state) {
 };
 
 var mDTP = function mDTP(dispatch) {
-  debugger;
   return {
     requestSongs: function requestSongs() {
       return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_2__["requestSongs"])());
@@ -1783,7 +1842,6 @@ __webpack_require__.r(__webpack_exports__);
 
   switch (action.type) {
     case _actions_song_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SONGS"]:
-      debugger;
       return action.songs;
 
     default:

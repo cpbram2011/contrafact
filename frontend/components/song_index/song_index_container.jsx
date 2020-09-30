@@ -7,7 +7,6 @@ const mSTP = state => ({
 });
 
 const mDTP = dispatch => {
-    debugger;
     return ({
 
     requestSongs: () => dispatch(requestSongs()),

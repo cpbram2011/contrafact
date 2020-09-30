@@ -7,7 +7,7 @@ import DiscoverContainer from './discover/discover'
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import NavBarContainer from './navbar/navbar_container'
 import PlayContainer from './play/play_container';
-
+import Footer from './footer/footer';
 export default () => (
     <div>
         <Modal />
@@ -23,7 +23,7 @@ export default () => (
             <AuthRoute exact path='/' component={SplashContainer}/>
             
         </Switch>
+        <Footer/>
         <PlayContainer />
-        
     </div>
 )
