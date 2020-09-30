@@ -51,3 +51,35 @@
 .d-cover:hover .play-circle {
     opacity: 1;
 }
+
+
+.vol-slider {
+    width: 100px;
+    display: inline;
+    animation-name: slide;
+    animation-duration: 1s;
+}
+
+
+
+
+.vol-slider-hidden {
+    width: 0;
+    animation-name: revslide;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+   
+    
+}
+
+@keyframes slide {
+    0% {width: 0; opacity: 0;}
+    100% {width: 100px; opacity: 1;}
+    
+}
+@keyframes revslide {
+    0% {width: 100px; opacity: 1;}
+   
+    100% {width: 0px; opacity: 0;}
+  
+}

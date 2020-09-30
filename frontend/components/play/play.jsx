@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-import { FaPlay, FaPause } from 'react-icons/fa';
+import { FaPlay, FaPause, FaVolumeUp } from 'react-icons/fa';
 
 export default class Play extends React.Component {
 
@@ -9,6 +9,7 @@ export default class Play extends React.Component {
         super(props);
         this.state = {
             isPlaying: false,
+            volumeShow: false
         }
         this.reff = React.createRef();
         this.pause = this.pause.bind(this)
@@ -19,6 +20,7 @@ export default class Play extends React.Component {
         if (prevProps.currentSong !== this.props.currentSong) {
             this.reff.play()
             this.setState({isPlaying: true})
+            this.volumeShow = this.volumeShow.bind(this)
         }
     }
 
@@ -32,6 +34,16 @@ export default class Play extends React.Component {
         }
 
     }
+
+    volumeShow () {
+            
+        return e => {
+            
+            
+            this.setState({volumeShow: !this.state.volumeShow})
+            
+        }
+    }
     
     
     render () {
@@ -42,7 +54,7 @@ export default class Play extends React.Component {
             load = {title: '', artist: '', track: ''}
         }
 
-
+        
         return (
             <div className="player">
                 
@@ -55,7 +67,20 @@ export default class Play extends React.Component {
                 ></audio>
                <p>{load.title}</p>-
                 <p>{load.artist}</p>
+
+                <div className="volume-parent">
+                <FaVolumeUp 
+                onMouseEnter={this.volumeShow()}
+                />
+                <input className={this.state.volumeShow ? 'vol-slider' : 'vol-slider-hidden'} type="range" min="1" max="100" value="50" ></input>
+                
+
+
+                </div>
             </div>
         )
     }
 }
+
+
+

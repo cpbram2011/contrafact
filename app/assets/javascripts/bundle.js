@@ -612,7 +612,8 @@ var Play = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      isPlaying: false
+      isPlaying: false,
+      volumeShow: false
     };
     _this.reff = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef();
     _this.pause = _this.pause.bind(_assertThisInitialized(_this));
@@ -627,6 +628,7 @@ var Play = /*#__PURE__*/function (_React$Component) {
         this.setState({
           isPlaying: true
         });
+        this.volumeShow = this.volumeShow.bind(this);
       }
     }
   }, {
@@ -645,9 +647,20 @@ var Play = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
+    key: "volumeShow",
+    value: function volumeShow() {
+      var _this2 = this;
+
+      return function (e) {
+        _this2.setState({
+          volumeShow: !_this2.state.volumeShow
+        });
+      };
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
       var load;
 
@@ -670,9 +683,19 @@ var Play = /*#__PURE__*/function (_React$Component) {
         id: "audio",
         src: load.track,
         ref: function ref(input) {
-          _this2.reff = input;
+          _this3.reff = input;
         }
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, load.title), "-", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, load.artist));
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, load.title), "-", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, load.artist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "volume-parent"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_1__["FaVolumeUp"], {
+        onMouseEnter: this.volumeShow()
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: this.state.volumeShow ? 'vol-slider' : 'vol-slider-hidden',
+        type: "range",
+        min: "1",
+        max: "100",
+        value: "50"
+      })));
     }
   }]);
 
