@@ -37,7 +37,7 @@ export default (props) => {
     <div className="splash-2">
         <img id='splash-image-2' src="https://a-v2.sndcdn.com/assets/images/never_stop_listening@2x-ae7903ca.jpg" alt=""/>
         <div className='splash-2-text-parent'>
-        <h1 className='splash-text-2a'>Coming someday</h1>
+        <h1 className='splash-text-2a'>Coming Summer 2021</h1>
         <p className='splash-text-2b'>Visit Contrafact on your favorite mobile device</p>
         </div>
     </div>

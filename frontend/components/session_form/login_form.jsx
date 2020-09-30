@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {fetchUsername} from '../../util/session_api_util'
+import {fetchEmail} from '../../util/session_api_util'
 
 export default class SessionForm extends React.Component {
     constructor(props){
@@ -9,7 +9,7 @@ export default class SessionForm extends React.Component {
             username: '',
             password: '',
             email: '',
-            validUser: false,
+            validEmail: false,
             nameCheck: false
         };
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -31,13 +31,13 @@ export default class SessionForm extends React.Component {
         
         e.preventDefault();
 
-        if (!this.state.validUser) {
+        if (!this.state.validEmail) {
             
-            fetchUsername(this.state.username).then(result => {
+            fetchEmail(this.state.email).then(result => {
                 
-                this.setState({validUser: result})
+                this.setState({validEmail: result})
                 
-                if (!this.state.validUser) {
+                if (!this.state.validEmail) {
                     this.setState({nameCheck: true});
                 } else {
                     this.setState({nameCheck: false});
@@ -56,7 +56,8 @@ export default class SessionForm extends React.Component {
         
         this.props.guest ({
             username: 'Stranger',
-            password: 'stranger',
+            email: 'strange',
+            password: 'stranger'
         }).then(this.props.closeModal);
     }
 
@@ -73,27 +74,12 @@ export default class SessionForm extends React.Component {
                     
                         <input type="text"
                         size='38'
-                        value={this.state.username}
-                        placeholder='Username'
-                        onChange={this.update('username')}
+                        value={this.state.email}
+                        placeholder='email'
+                        onChange={this.update('email')}
                         />
                     
-                    
-                    { this.props.needEmail ?
-                       (    
-                           <>
-                            <br/>
-                            <input type="text"
-                            size='38'
-                            value={this.state.email}
-                            placeholder='Email'
-                            onChange={this.update('email')}
-                            />
-                            <br/>
-                            </>
-                            ) : <><br/></>
-                        }
-                        { this.state.validUser ? (
+                        { this.state.validEmail ? (
 
                             <input type="password"
                             size='38'
@@ -110,13 +96,8 @@ export default class SessionForm extends React.Component {
                 </form>
                     
                 <ul className='errors'>
-                    { this.state.nameCheck ? (
-                        (this.props.formType === "Log In") ? (
-                            <li>Username not found</li>
-                            ) : (
-                            <li>Username already exists</li>
-                        )) : (<></>
-                    )}
+                    { (this.state.nameCheck) ? <li>Username not found</li> : null }
+                        
                     {this.props.errors.map((error) => (
                         <li>{error}</li>
                         ))} 

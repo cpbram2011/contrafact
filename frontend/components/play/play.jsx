@@ -9,7 +9,8 @@ export default class Play extends React.Component {
         super(props);
         this.state = {
             isPlaying: false,
-            volumeShow: false
+            volumeShow: false,
+            currentSongTitle: 'this thing' //this.props.curren
         }
         this.reff = React.createRef();
         this.pause = this.pause.bind(this)

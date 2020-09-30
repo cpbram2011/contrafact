@@ -26,7 +26,7 @@ export default class SongIndex extends React.Component {
                 
                 
                 {this.props.songs.map((song, i )=> {
-                    
+                    //megan
                     return (
                         
                         <div className={`song-item-${song.id}`} key={`song-item-${song.id}`}>      
@@ -52,7 +52,9 @@ export default class SongIndex extends React.Component {
                          
                     )
                 })}
-                
+                <button onClick={() =>this.props.openModal('form')} id='form'>upload
+                </button>
+
             </div>
         )
     }

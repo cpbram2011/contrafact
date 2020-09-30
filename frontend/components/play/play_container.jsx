@@ -4,9 +4,11 @@ import Play from './play';
 
 
 const mSTP = state => {
+    // const song = state.en
     return({
-    currentSong: state.session.currentSong,
-    songs: Object.assign({}, state.entities.songs)
+    currentSong: state.session.currentSong, // 53
+                //: 
+    songs: Object.assign({}, state.entities.songs)  //
     
 })}
 

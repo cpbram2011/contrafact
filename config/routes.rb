@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: "json"} do
     resources :users, only: [:create]
     resource :session, only: [:create, :destroy]
-    resources :songs, only: [:index, :show]
+    resources :songs, only: [:index, :show, :create]
   end
 
   get '/api/users/findusername', to: 'api/users#findusername'

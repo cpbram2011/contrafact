@@ -8,8 +8,7 @@ const mSTP = state => ({
 })
 
 const mDTP = dispatch => ({
-    logout: () => dispatch(logout()),
-    openModal: modal => dispatch(openModal(modal))
+    logout: () => dispatch(logout())
 
 });
 

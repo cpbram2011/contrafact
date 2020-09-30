@@ -11,13 +11,14 @@
     position: relative;
     margin: 0 auto;
     width: 1300px;
+    align-items: flex-start;
     justify-content: space-between;
     z-index: 5;
 }
 
 .session-buttons {
     display: flex;
-    width: 300px;
+    width: 350px;
     align-items: center;
     justify-content: space-around;
     padding-top: 5px;

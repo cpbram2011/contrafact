@@ -16,7 +16,7 @@ export default class Welcome extends React.Component {
 
                 <div className='session-buttons'>
                     <button onClick={() =>this.props.openModal('login')} id='login'>Sign In</button>
-                    <button onClick={() =>this.props.openModal('signup')} id='signup'>Create accout</button>
+                    <button onClick={() =>this.props.openModal('signup')} id='signup'>Create account</button>
                     <p id='for-creators'>For Creators</p>
                 </div>
 
