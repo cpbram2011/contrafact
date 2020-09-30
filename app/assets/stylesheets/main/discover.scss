@@ -9,13 +9,23 @@
 
 [class^="song-item"] {
   background-color: rgba($color: #ffffff, $alpha: 0.4);
+  height: 52px;
   display: flex;
-  padding-bottom: 5px;
-  border-bottom: 1px solid black;
+  align-items: center;
+  padding: 5px 0;
+  border-bottom: 1px solid rgb(226, 226, 226);
+  
+  p {
+    padding: 0 10px;
+  }
+  
 }
 
 .cover-art {
-  width: 150px;
+  margin: auto 0;
+  width: 40px;
+  cursor: pointer;
+
 }
 
 .song-details {
