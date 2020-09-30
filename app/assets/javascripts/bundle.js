@@ -675,7 +675,7 @@ var Play = /*#__PURE__*/function (_React$Component) {
       }
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "player"
+        className: "player".concat(this.props.currentSong ? '' : '-hidden')
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "play-pause",
         onClick: this.pause

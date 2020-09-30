@@ -9,6 +9,11 @@
     height: 40px;
     position: fixed;
     bottom: 0;
+    animation: rise 0.7s linear 0s 1 forwards;
+}
+
+.player-hidden {
+    display: none;
 }
 
 #audio {
@@ -18,6 +23,9 @@
 
 .play-pause {
     margin-right: 20px;
+    background: none;
+    border: none;
+    padding: 0;
 }
 
 .title {
@@ -52,6 +60,9 @@
     opacity: 1;
 }
 
+.volume-parent {
+    margin-left: 20px;
+}
 
 .vol-slider {
     width: 100px;
@@ -77,9 +88,21 @@
     100% {width: 100px; opacity: 1;}
     
 }
+
 @keyframes revslide {
     0% {width: 100px; opacity: 1;}
-   
+    
     100% {width: 0px; opacity: 0;}
-  
+    
+}
+
+@keyframes rise {
+    0% {bottom: -150px; opacity: 0;}
+    100% {bottom: 0; opacity: 1;}
+    
+}
+@keyframes fall {
+    0% {bottom: 0; opacity: 1;}
+    100% {bottom: -50px; opacity: 0;}
+    
 }

@@ -56,7 +56,7 @@ export default class Play extends React.Component {
 
         
         return (
-            <div className="player">
+            <div className={`player${this.props.currentSong ? '' : '-hidden'}`}>
                 
                 <button className='play-pause' onClick={this.pause}>{this.state.isPlaying ? <FaPause/> : <FaPlay/>}</button>
                 
