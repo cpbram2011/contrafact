@@ -489,7 +489,8 @@ var Form = /*#__PURE__*/function (_React$Component) {
         placeholder: "Artist"
       }, "onChange", this.update('artist'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "file",
-        onChange: this.updateMp3(this)
+        onChange: this.updateMp3(this),
+        accept: "audio/mpeg"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.handleSubmit
       }, "Submit"));
@@ -757,7 +758,9 @@ var Play = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       isPlaying: false,
+      volume: 50,
       volumeShow: false,
+      currentTime: 0,
       currentSongTitle: 'this thing' //this.props.curren
 
     };
@@ -769,12 +772,25 @@ var Play = /*#__PURE__*/function (_React$Component) {
   _createClass(Play, [{
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
+      var _this2 = this;
+
       if (prevProps.currentSong !== this.props.currentSong) {
         this.reff.play();
         this.setState({
           isPlaying: true
         });
         this.volumeShow = this.volumeShow.bind(this);
+        setInterval(function () {
+          var newTime = _this2.reff.currentTime / _this2.reff.duration;
+
+          _this2.setState({
+            currentTime: newTime
+          });
+
+          console.log(_this2.state.currentTime);
+          var progressbar = document.getElementById("progress-bar");
+          progressbar.value = _this2.state.currentTime * 100;
+        }, 500);
       }
     }
   }, {
@@ -795,18 +811,41 @@ var Play = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "volumeShow",
     value: function volumeShow() {
-      var _this2 = this;
+      var _this3 = this;
 
       return function (e) {
-        _this2.setState({
-          volumeShow: !_this2.state.volumeShow
+        _this3.setState({
+          volumeShow: !_this3.state.volumeShow
         });
+      };
+    }
+  }, {
+    key: "volumeSlide",
+    value: function volumeSlide() {
+      var _this4 = this;
+
+      return function (e) {
+        _this4.reff.volume = e.target.value / 100;
+
+        _this4.setState({
+          volume: e.target.value
+        });
+      };
+    }
+  }, {
+    key: "scrub",
+    value: function scrub() {
+      var _this5 = this;
+
+      return function (e) {
+        var newTime = e.target.value / 100;
+        _this5.reff.currentTime = newTime * _this5.reff.duration;
       };
     }
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this6 = this;
 
       var load;
 
@@ -829,18 +868,29 @@ var Play = /*#__PURE__*/function (_React$Component) {
         id: "audio",
         src: load.track,
         ref: function ref(input) {
-          _this3.reff = input;
+          _this6.reff = input;
         }
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, load.title), "-", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, load.artist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, load.title), "-", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, load.artist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        id: "progress-bar",
+        type: "range",
+        step: "1",
+        min: "1",
+        max: "100" // value={this.state.currentTime * 100} //TODO value = progress, currentVal = scrub
+        ,
+        onClick: this.scrub()
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "volume-parent"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_1__["FaVolumeUp"], {
+        id: "vol-icon",
         onMouseEnter: this.volumeShow()
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: this.state.volumeShow ? 'vol-slider' : 'vol-slider-hidden',
         type: "range",
+        step: "1",
         min: "1",
-        max: "100",
-        value: "50"
+        max: "1000",
+        defaultValue: this.state.volume,
+        onChange: this.volumeSlide()
       })));
     }
   }]);
@@ -1244,6 +1294,7 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
       e.preventDefault();
       this.props.guest({
         username: 'Stranger',
+        email: 'strange',
         password: 'stranger'
       }).then(this.props.closeModal);
     }

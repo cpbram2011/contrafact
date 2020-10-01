@@ -79,6 +79,7 @@ export default class Form extends React.Component {
 
                 <input type="file"
                 onChange={this.updateMp3(this)}
+                accept="audio/mpeg"
                 />
 
                 <button onClick={this.handleSubmit}>Submit</button>
