@@ -8,10 +8,7 @@ body{
 
 }
 
-#discover {
-    margin-top: 150px;
 
-}
 .nav-bar {
     background-color: rgb(44, 44, 44);
     position: fixed;
@@ -46,6 +43,11 @@ body{
     height: 25px;
     cursor:pointer;
     
+}
+
+#session-buttons button {
+    color: rgb(182, 182, 182);
+    margin-bottom: 3px;
 }
 
 

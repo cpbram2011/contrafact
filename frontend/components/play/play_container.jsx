@@ -1,7 +1,7 @@
 
 import {connect} from 'react-redux'
 import Play from './play';
-
+import {receiveCurrentSong} from '../../actions/song_actions'
 
 const mSTP = state => {
     // const song = state.en
@@ -12,4 +12,8 @@ const mSTP = state => {
     
 })}
 
-export default connect(mSTP, null)(Play)
+const mDTP = dispatch => ({
+    receiveCurrentSong: (id) => dispatch(receiveCurrentSong(id))
+})
+
+export default connect(mSTP, mDTP)(Play)

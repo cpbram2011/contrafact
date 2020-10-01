@@ -281,6 +281,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _navbar_navbar_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./navbar/navbar_container */ "./frontend/components/navbar/navbar_container.jsx");
 /* harmony import */ var _play_play_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./play/play_container */ "./frontend/components/play/play_container.jsx");
 /* harmony import */ var _footer_footer__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./footer/footer */ "./frontend/components/footer/footer.jsx");
+/* harmony import */ var _library_library__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./library/library */ "./frontend/components/library/library.jsx");
+
 
 
 
@@ -294,8 +296,11 @@ __webpack_require__.r(__webpack_exports__);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modal_modal__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
     className: "bar"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_5__["ProtectedRoute"], {
-    path: "/home",
+    path: "/",
     component: _navbar_navbar_container__WEBPACK_IMPORTED_MODULE_6__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_5__["ProtectedRoute"], {
+    path: "/library",
+    component: _library_library__WEBPACK_IMPORTED_MODULE_9__["default"]
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_5__["ProtectedRoute"], {
     path: "/home",
     component: _discover_discover__WEBPACK_IMPORTED_MODULE_4__["default"]
@@ -456,18 +461,16 @@ var Form = /*#__PURE__*/function (_React$Component) {
         formData.append('song[track]', this.state.track);
       }
 
-      formData.append('song[cover]', this.state.cover);
-      $.ajax({
-        url: 'api/songs',
-        method: "POST",
-        data: formData,
-        contentType: false,
-        processData: false
-      }).then(function (x) {
-        return console.log(x);
-      }, function (x) {
-        return console.log(x);
-      });
+      formData.append('song[cover]', this.state.cover); // $.ajax({
+      //     url: 'api/songs',
+      //     method: "POST",
+      //     data: formData,
+      //     contentType: false,
+      //     processData: false
+      // }).then(
+      //     x => console.log(x),
+      //     x => console.log(x)
+      // );
     }
   }, {
     key: "render",
@@ -498,6 +501,26 @@ var Form = /*#__PURE__*/function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 
+
+/***/ }),
+
+/***/ "./frontend/components/library/library.jsx":
+/*!*************************************************!*\
+  !*** ./frontend/components/library/library.jsx ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "library"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "There's nothing here!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Explore and save stuff you like!"));
+});
 
 /***/ }),
 
@@ -641,7 +664,11 @@ var NavBar = /*#__PURE__*/function (_React$Component) {
         src: "https://www.iconfinder.com/data/icons/electronic-device-glyph-1/64/electronic_devices_7-512.png"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "nav-links"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], null, "Home"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], null, "Stream"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], null, "Library")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/home"
+      }, "Home"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], null, "Stream"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/library"
+      }, "Library")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "search-bar"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
@@ -763,6 +790,7 @@ var Play = /*#__PURE__*/function (_React$Component) {
     };
     _this.reff = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef();
     _this.pause = _this.pause.bind(_assertThisInitialized(_this));
+    _this.nextSong = _this.nextSong.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -775,16 +803,19 @@ var Play = /*#__PURE__*/function (_React$Component) {
         this.reff.play();
         this.setState({
           isPlaying: true
-        });
-        this.volumeShow = this.volumeShow.bind(this);
+        }); // document.getElementById("vol-slider").value = 100
+
         setInterval(function () {
           var newTime = _this2.reff.currentTime / _this2.reff.duration;
+
+          if (newTime > .98) {
+            _this2.nextSong();
+          }
 
           _this2.setState({
             currentTime: newTime
           });
 
-          console.log(_this2.state.currentTime);
           var progressbar = document.getElementById("progress-bar");
           progressbar.value = _this2.state.currentTime * 100;
         }, 500);
@@ -840,6 +871,26 @@ var Play = /*#__PURE__*/function (_React$Component) {
       };
     }
   }, {
+    key: "nextSong",
+    value: function nextSong(e) {
+      var queue = Object.values(this.props.songs);
+      var current = this.props.currentSong;
+      var nextTrack = queue.find(function (song) {
+        return song.id > current;
+      }) || queue[0];
+      this.props.receiveCurrentSong(nextTrack.id);
+    }
+  }, {
+    key: "prevSong",
+    value: function prevSong(e) {
+      var queue = Object.values(this.props.songs).reverse();
+      var current = this.props.currentSong;
+      var nextTrack = queue.find(function (song) {
+        return song.id < current;
+      }) || queue[0];
+      this.props.receiveCurrentSong(nextTrack.id);
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this6 = this;
@@ -859,9 +910,13 @@ var Play = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "player".concat(this.props.currentSong ? '' : '-hidden')
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.prevSong.bind(this)
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_1__["FaChevronLeft"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "play-pause",
         onClick: this.pause
-      }, this.state.isPlaying ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_1__["FaPause"], null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_1__["FaPlay"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("audio", {
+      }, this.state.isPlaying ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_1__["FaPause"], null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_1__["FaPlay"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.nextSong.bind(this)
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_1__["FaChevronRight"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("audio", {
         id: "audio",
         src: load.track,
         ref: function ref(input) {
@@ -872,8 +927,7 @@ var Play = /*#__PURE__*/function (_React$Component) {
         type: "range",
         step: "1",
         min: "1",
-        max: "100" // value={this.state.currentTime * 100} //TODO value = progress, currentVal = scrub
-        ,
+        max: "100",
         onClick: this.scrub()
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "volume-parent"
@@ -881,11 +935,12 @@ var Play = /*#__PURE__*/function (_React$Component) {
         id: "vol-icon",
         onMouseEnter: this.volumeShow()
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        id: "vol-slider",
         className: this.state.volumeShow ? 'vol-slider' : 'vol-slider-hidden',
         type: "range",
         step: "1",
         min: "1",
-        max: "1000",
+        max: "100",
         defaultValue: this.state.volume,
         onChange: this.volumeSlide()
       })));
@@ -910,6 +965,8 @@ var Play = /*#__PURE__*/function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _play__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./play */ "./frontend/components/play/play.jsx");
+/* harmony import */ var _actions_song_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/song_actions */ "./frontend/actions/song_actions.js");
+
 
 
 
@@ -924,7 +981,15 @@ var mSTP = function mSTP(state) {
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, null)(_play__WEBPACK_IMPORTED_MODULE_1__["default"]));
+var mDTP = function mDTP(dispatch) {
+  return {
+    receiveCurrentSong: function receiveCurrentSong(id) {
+      return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_2__["receiveCurrentSong"])(id));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_play__WEBPACK_IMPORTED_MODULE_1__["default"]));
 
 /***/ }),
 
@@ -1486,12 +1551,7 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
         }, song.title), "-", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
           className: "artist"
         }, song.artist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null));
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        onClick: function onClick() {
-          return _this2.props.openModal('form');
-        },
-        id: "form"
-      }, "upload"));
+      }));
     }
   }]);
 

@@ -45,16 +45,16 @@ export default class Form extends React.Component {
         formData.append('song[cover]', this.state.cover)
         
 
-        $.ajax({
-            url: 'api/songs',
-            method: "POST",
-            data: formData,
-            contentType: false,
-            processData: false
-        }).then(
-            x => console.log(x),
-            x => console.log(x)
-        );
+        // $.ajax({
+        //     url: 'api/songs',
+        //     method: "POST",
+        //     data: formData,
+        //     contentType: false,
+        //     processData: false
+        // }).then(
+        //     x => console.log(x),
+        //     x => console.log(x)
+        // );
     }
 
 

@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-import { FaPlay, FaPause, FaVolumeUp } from 'react-icons/fa';
+import { FaPlay, FaPause, FaVolumeUp, FaChevronRight, FaChevronLeft } from 'react-icons/fa';
 
 export default class Play extends React.Component {
 
@@ -16,6 +16,7 @@ export default class Play extends React.Component {
         }
         this.reff = React.createRef();
         this.pause = this.pause.bind(this)
+        this.nextSong = this.nextSong.bind(this)
     }
 
 
@@ -23,18 +24,17 @@ export default class Play extends React.Component {
         if (prevProps.currentSong !== this.props.currentSong) {
             this.reff.play()
             this.setState({isPlaying: true})
-            this.volumeShow = this.volumeShow.bind(this)
+            // document.getElementById("vol-slider").value = 100
             setInterval(() => {
                 let newTime = (this.reff.currentTime / this.reff.duration)
+                if (newTime > .98) {
+                    this.nextSong()
+                }
                 this.setState({currentTime: newTime})
-                console.log(this.state.currentTime)
                 const progressbar = document.getElementById("progress-bar")
                 progressbar.value = this.state.currentTime * 100
                 }, 500);
-        
-                
-        
-                
+
         }
     }
 
@@ -75,6 +75,23 @@ export default class Play extends React.Component {
         }
     }
 
+    nextSong (e) {
+        let queue = Object.values(this.props.songs)
+        let current = this.props.currentSong
+        let nextTrack = queue.find(song => song.id > current) || queue[0];
+
+
+        this.props.receiveCurrentSong(nextTrack.id)
+    }
+    
+    prevSong (e) {
+        let queue = Object.values(this.props.songs).reverse()
+        let current = this.props.currentSong
+        let nextTrack = queue.find(song => song.id < current) || queue[0];
+
+        this.props.receiveCurrentSong(nextTrack.id)
+    }
+
 
     
     render () {
@@ -89,8 +106,9 @@ export default class Play extends React.Component {
         return (
             <div className={`player${this.props.currentSong ? '' : '-hidden'}`}>
                 
+                <button onClick={this.prevSong.bind(this)}><FaChevronLeft /></button>
                 <button className='play-pause' onClick={this.pause}>{this.state.isPlaying ? <FaPause/> : <FaPlay/>}</button>
-                
+                <button onClick={this.nextSong.bind(this)}><FaChevronRight /></button>
                 <audio 
                 id="audio"
                 src={load.track}
@@ -104,7 +122,6 @@ export default class Play extends React.Component {
                 step='1' 
                 min="1" 
                 max="100" 
-                // value={this.state.currentTime * 100} //TODO value = progress, currentVal = scrub
                 onClick={this.scrub()}
                 ></input>
 
@@ -112,11 +129,13 @@ export default class Play extends React.Component {
                 <FaVolumeUp id='vol-icon'
                 onMouseEnter={this.volumeShow()}
                 />
-                <input className={this.state.volumeShow ? 'vol-slider' : 'vol-slider-hidden'} 
+                <input 
+                id='vol-slider'
+                className={this.state.volumeShow ? 'vol-slider' : 'vol-slider-hidden'} 
                 type="range" 
                 step='1' 
                 min="1" 
-                max="1000" 
+                max="100" 
                 defaultValue={this.state.volume}
                 onChange={this.volumeSlide()}
                 ></input>

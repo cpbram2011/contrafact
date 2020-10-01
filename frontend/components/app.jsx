@@ -8,12 +8,15 @@ import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import NavBarContainer from './navbar/navbar_container'
 import PlayContainer from './play/play_container';
 import Footer from './footer/footer';
+import Library from './library/library'
+
 export default () => (
     <div>
         <Modal />
         <header className='bar'>
             
-            <ProtectedRoute path='/home' component={NavBarContainer}/>
+            <ProtectedRoute path='/' component={NavBarContainer}/>
+            <ProtectedRoute path='/library' component={Library}/>
            
 
         </header>

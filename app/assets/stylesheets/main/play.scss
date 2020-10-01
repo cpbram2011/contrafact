@@ -4,7 +4,7 @@
     background-color: rgb(239,239,239);
     display: flex;
     padding-left: 20px;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     height: 40px;
     position: fixed;
@@ -21,7 +21,7 @@
     width: 100px;
 }
 
-.play-pause {
+button {
     margin-right: 20px;
     background: none;
     border: none;
@@ -83,12 +83,11 @@
     position: absolute;
     bottom: 30px;
     animation-name: slide;
-    animation-duration: 1s;
+    animation-duration: 0.6s;
     background-color: rgba($color: white, $alpha: 0.5);
     padding: 2px;
     -webkit-appearance: slider-vertical;
 }
-
 
 
 .vol-slider-hidden {
@@ -97,7 +96,7 @@
     
     -webkit-appearance: slider-vertical;
     animation-name: revslide;
-    animation-duration: 1s;
+    animation-duration: 0.6s;
     animation-fill-mode: forwards;
    
     
@@ -107,7 +106,28 @@
 #progress-bar {
     width: 500px;
     margin-left: 15px;
+    -webkit-appearance: none; 
+    appearance: none;
+    background: #bdbcbc; 
+    outline: none; /* Remove outline */
+    
 }
+
+
+
+#progress-bar::-webkit-slider-thumb {
+
+    -webkit-appearance: none;
+    appearance: none;
+    width: 10px;
+    height: 4px;
+    border-radius: 50%; 
+    background:rgb(128,26,26);
+    cursor: pointer;
+  }
+
+  
+
 
 
 @keyframes slide {

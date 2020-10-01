@@ -14,7 +14,6 @@ export default class SongIndex extends React.Component {
     }
     
     updateCurrentSong (e) {
-       
         this.props.receiveCurrentSong(e.target.id)
         
     }
@@ -52,8 +51,8 @@ export default class SongIndex extends React.Component {
                          
                     )
                 })}
-                <button onClick={() =>this.props.openModal('form')} id='form'>upload
-                </button>
+                {/* <button onClick={() =>this.props.openModal('form')} id='form'>upload
+                </button> */}
 
             </div>
         )
