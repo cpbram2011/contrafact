@@ -11,11 +11,7 @@ class Api::SongsController < ApplicationController
 
     def create
         @song = Song.new(song_params)
-        debugger;
-        if @song.cover == ''
-            debugger;
-            @song.cover = open("https://contrafact-seeds.s3.us-east-2.amazonaws.com/cover_plaeholder.png")
-        end
+        
         debugger;
         if @song.save
             render json: {message: "noice"}

@@ -32,6 +32,7 @@ export default class Play extends React.Component {
                 progressbar.value = this.state.currentTime * 100
                 }, 500);
         
+                
         
                 
         }

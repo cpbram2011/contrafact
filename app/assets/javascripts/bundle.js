@@ -415,7 +415,7 @@ var Form = /*#__PURE__*/function (_React$Component) {
       title: '',
       artist: '',
       track: null,
-      cover: ''
+      cover: new File(['cover'], "https://contrafact-seeds.s3.us-east-2.amazonaws.com/cover_plaeholder.png")
     };
     _this.updateMp3 = _this.updateMp3.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
@@ -456,10 +456,7 @@ var Form = /*#__PURE__*/function (_React$Component) {
         formData.append('song[track]', this.state.track);
       }
 
-      if (this.state.cover) {
-        formData.append('song[cover]', this.state.cover);
-      }
-
+      formData.append('song[cover]', this.state.cover);
       $.ajax({
         url: 'api/songs',
         method: "POST",
@@ -1470,7 +1467,6 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "song-index"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "All Songs"), this.props.songs.map(function (song, i) {
-        //megan
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "song-item-".concat(song.id),
           key: "song-item-".concat(song.id)

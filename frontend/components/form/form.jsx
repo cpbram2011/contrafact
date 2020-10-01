@@ -9,7 +9,7 @@ export default class Form extends React.Component {
             title: '',
             artist: '',
             track: null,
-            cover: ''
+            cover: new File(['cover'], "https://contrafact-seeds.s3.us-east-2.amazonaws.com/cover_plaeholder.png")
         }
 
         this.updateMp3 = this.updateMp3.bind(this)
@@ -41,9 +41,9 @@ export default class Form extends React.Component {
         if (this.state.track) {
             formData.append('song[track]', this.state.track)
         } 
-        if (this.state.cover) {
-            formData.append('song[cover]', this.state.cover)
-        }
+        
+        formData.append('song[cover]', this.state.cover)
+        
 
         $.ajax({
             url: 'api/songs',

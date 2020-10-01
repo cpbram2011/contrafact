@@ -2,6 +2,7 @@ import {connect} from 'react-redux';
 import SongIndex from './song_index';
 import {requestSongs, receiveCurrentSong} from '../../actions/song_actions';
 import {openModal} from '../../actions/modal_actions';
+
 const mSTP = state => ({
     songs: Object.values(state.entities.songs)
 });
