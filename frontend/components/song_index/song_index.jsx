@@ -45,7 +45,7 @@ export default class SongIndex extends React.Component {
                                 alt=""/>
                             </div>
 
-                            <p>{index}</p>
+                            <p>{index + 1}</p>
                             <p className="title">{song.title}</p>-
                             <p className="artist">{song.artist}</p>
                             <p></p> 
