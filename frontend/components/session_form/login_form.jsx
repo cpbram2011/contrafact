@@ -96,7 +96,7 @@ export default class SessionForm extends React.Component {
                 </form>
                     
                 <ul className='errors'>
-                    { (this.state.nameCheck) ? <li>Username not found</li> : null }
+                    { (this.state.nameCheck) ? <li>Email not found</li> : null }
                         
                     {this.props.errors.map((error) => (
                         <li>{error}</li>
