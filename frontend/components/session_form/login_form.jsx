@@ -75,7 +75,7 @@ export default class SessionForm extends React.Component {
                         <input type="text"
                         size='38'
                         value={this.state.email}
-                        placeholder='email'
+                        placeholder='Email'
                         onChange={this.update('email')}
                         />
                     

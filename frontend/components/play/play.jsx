@@ -24,7 +24,6 @@ export default class Play extends React.Component {
         if (prevProps.currentSong !== this.props.currentSong) {
             this.reff.play()
             this.setState({isPlaying: true})
-            // document.getElementById("vol-slider").value = 100
             setInterval(() => {
                 let newTime = (this.reff.currentTime / this.reff.duration)
                 if (newTime > .98) {
@@ -32,7 +31,7 @@ export default class Play extends React.Component {
                 }
                 this.setState({currentTime: newTime})
                 const progressbar = document.getElementById("progress-bar")
-                progressbar.value = this.state.currentTime * 100
+                progressbar.value = this.state.currentTime * 1000
                 }, 500);
 
         }
@@ -69,7 +68,7 @@ export default class Play extends React.Component {
 
     scrub () {
         return e => {
-            let newTime = e.target.value / 100
+            let newTime = e.target.value / 1000
             
             this.reff.currentTime = newTime * this.reff.duration
         }
@@ -114,14 +113,15 @@ export default class Play extends React.Component {
                 src={load.track}
                 ref={(input) => {this.reff = input}}
                 ></audio>
-               <p>{load.title}</p>-
+               <p>{load.title}</p>
+                <p>-</p>
                 <p>{load.artist}</p>
                 
                 <input id='progress-bar'
                 type="range" 
                 step='1' 
                 min="1" 
-                max="100" 
+                max="1000" 
                 onClick={this.scrub()}
                 ></input>
 
@@ -141,9 +141,6 @@ export default class Play extends React.Component {
                 ></input>
                 </div>
                 
-                
-
-
             </div>
         )
     }

@@ -803,8 +803,7 @@ var Play = /*#__PURE__*/function (_React$Component) {
         this.reff.play();
         this.setState({
           isPlaying: true
-        }); // document.getElementById("vol-slider").value = 100
-
+        });
         setInterval(function () {
           var newTime = _this2.reff.currentTime / _this2.reff.duration;
 
@@ -817,7 +816,7 @@ var Play = /*#__PURE__*/function (_React$Component) {
           });
 
           var progressbar = document.getElementById("progress-bar");
-          progressbar.value = _this2.state.currentTime * 100;
+          progressbar.value = _this2.state.currentTime * 1000;
         }, 500);
       }
     }
@@ -866,7 +865,7 @@ var Play = /*#__PURE__*/function (_React$Component) {
       var _this5 = this;
 
       return function (e) {
-        var newTime = e.target.value / 100;
+        var newTime = e.target.value / 1000;
         _this5.reff.currentTime = newTime * _this5.reff.duration;
       };
     }
@@ -922,12 +921,12 @@ var Play = /*#__PURE__*/function (_React$Component) {
         ref: function ref(input) {
           _this6.reff = input;
         }
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, load.title), "-", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, load.artist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, load.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "-"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, load.artist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         id: "progress-bar",
         type: "range",
         step: "1",
         min: "1",
-        max: "100",
+        max: "1000",
         onClick: this.scrub()
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "volume-parent"
@@ -1146,7 +1145,7 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
         type: "text",
         size: "38",
         value: this.state.email,
-        placeholder: "email",
+        placeholder: "Email",
         onChange: this.update('email')
       }), this.state.validEmail ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "password",

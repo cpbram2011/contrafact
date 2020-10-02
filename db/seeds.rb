@@ -57,6 +57,28 @@ s5.cover.attach(io: s5_cover, filename: "s5-cover.jpg")
 s5.track.attach(io: s5_track_url, filename: 's5.mp3')
 s5.save!
 
+s6 = Song.new(title: 'I can\'t Play Piano Pt. 1', artist: 'Jon Benjamin')
+s6_cover = open("https://contrafact-seeds.s3.us-east-2.amazonaws.com/71nzenHunKL._SS500_.jpg")
+s6_track_url = open("https://contrafact-seeds.s3.us-east-2.amazonaws.com/I+Can't+Play+Piano%2C+Pt.+1.mp3")
+s6.cover.attach(io: s6_cover, filename: "s6-cover.jpg")
+s6.track.attach(io: s6_track_url, filename: 's6.mp3')
+s6.save!
+
+
+s7 = Song.new(title: 'Turiya and Ramakrishna', artist: 'Alice Coltrane')
+s7_cover = open("https://contrafact-seeds.s3.us-east-2.amazonaws.com/R-424029-1339396725-5887.jpeg.jpg")
+s7_track_url = open("https://contrafact-seeds.s3.us-east-2.amazonaws.com/Alice+Coltrane+-+Turiya+And+Ramakrishna.mp3")
+s7.cover.attach(io: s7_cover, filename: "s7-cover.jpg")
+s7.track.attach(io: s7_track_url, filename: 's7.mp3')
+s7.save!
+
+s8 = Song.new(title: 'Sassyassed Sassafrass', artist: 'Brad Mehldau')
+s8_cover = open("https://contrafact-seeds.s3.us-east-2.amazonaws.com/71gYzeaPyVL._SL1425_.jpg")
+s8_track_url = open("https://contrafact-seeds.s3.us-east-2.amazonaws.com/Sassyassed+Sassafrass.mp3")
+s8.cover.attach(io: s8_cover, filename: "s8-cover.jpg")
+s8.track.attach(io: s8_track_url, filename: 's8.mp3')
+s8.save!
+
 
 
 
