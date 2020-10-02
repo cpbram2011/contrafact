@@ -28,9 +28,8 @@ export default class NavBar extends React.Component {
                     <img src="https://a-v2.sndcdn.com/assets/images/search-dbfe5cbb.svg" alt=""/>
                 </div>
                     <div id='session-buttons'>
-                    
                     <h2 id='username'>{`Welcome, ${this.props.currentUser.username}`}</h2>
-                    <button onClick={this.props.logout}>Logout</button>
+                    <button id='logout' onClick={this.props.logout}>Logout</button>
                     </div>
                     
             </div>

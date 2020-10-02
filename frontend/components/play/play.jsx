@@ -113,9 +113,11 @@ export default class Play extends React.Component {
                 src={load.track}
                 ref={(input) => {this.reff = input}}
                 ></audio>
+                <div className='playing-song'>                   
                <p>{load.title}</p>
                 <p>-</p>
                 <p>{load.artist}</p>
+                </div>
                 
                 <input id='progress-bar'
                 type="range" 

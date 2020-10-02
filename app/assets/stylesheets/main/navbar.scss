@@ -30,19 +30,12 @@ body{
 }
 
 #session-buttons {
-    display: flex;
-    align-items: flex-end;
+    display: block;
+    z-index: 1;
 }
 
-#session-buttons * {
-    margin-bottom: 1px;
-    margin-right: 15px;
-    display: inline-block;
-    border-radius: 3px;
-    font-size: small;
-    height: 25px;
-    cursor:pointer;
-    
+#username:hover #session-buttons {
+    display: block;
 }
 
 #session-buttons button {
@@ -128,5 +121,12 @@ body{
 
 #username {
     color: white;
-
+    margin-bottom: 1px;
+    margin-right: 15px;
+    display: inline-block;
+    border-radius: 3px;
+    font-size: small;
+    height: 25px;
+    cursor:pointer;
+    
 }

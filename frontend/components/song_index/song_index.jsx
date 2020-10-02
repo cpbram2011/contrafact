@@ -1,9 +1,10 @@
 import React from 'react';
-import { FaPlayCircle } from 'react-icons/fa';
-export default class SongIndex extends React.Component {
+import { FaPlayCircle, FaHeart } from 'react-icons/fa';
 
+export default class SongIndex extends React.Component {
     constructor(props){
         super(props)
+        
         this.updateCurrentSong = this.updateCurrentSong.bind(this)
     }
 
@@ -24,12 +25,15 @@ export default class SongIndex extends React.Component {
                 <h1>All Songs</h1>
                 
                 
-                {this.props.songs.map((song, i )=> {
+                {this.props.songs.map((song, index )=> {
+                    let like = true
                     
                     return (
                         
                         <div className={`song-item-${song.id}`} key={`song-item-${song.id}`}>      
-                        
+                            <div className='item-left'>
+
+                            
                             <div className="d-cover"
                                 onClick={this.updateCurrentSong}
                             >
@@ -41,12 +45,16 @@ export default class SongIndex extends React.Component {
                                 alt=""/>
                             </div>
 
-                            <p>{i+1}</p>
+                            <p>{index}</p>
                             <p className="title">{song.title}</p>-
                             <p className="artist">{song.artist}</p>
                             <p></p> 
+                            </div> 
+                            <div 
+                            className={ true ? 'like' : 'like-hidden'}
+                            ></div>
 
-                                
+                            
                         </div>
                          
                     )
