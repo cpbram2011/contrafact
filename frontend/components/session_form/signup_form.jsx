@@ -46,7 +46,6 @@ export default class SessionForm extends React.Component {
                     this.setState({emailCheck: true})
                 }
                 this.setState({blankEmail: false})
-                
             });
         }
         } else {

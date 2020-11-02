@@ -11,7 +11,7 @@ const mDTP = dispatch => {
     return ({
 
     requestSongs: () => dispatch(requestSongs()),
-    openModal: (modal) => dispatch(openModal(modal))
+    openModal: (modal) => dispatch(openModal(modal)),
 })}
 
 export default connect(mSTP, mDTP)(SplashIndex);

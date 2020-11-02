@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import WelcomeContainer from '../welcome/welcome_container'
+import SplashIndexContainer from '../song_index/splash_index_container'
+
 
 export default (props) => {
     return (
@@ -33,6 +35,8 @@ export default (props) => {
             </button>
         </div>
     </div>
+
+    <SplashIndexContainer />
     
     <div className="splash-2">
         <img id='splash-image-2' src="https://a-v2.sndcdn.com/assets/images/never_stop_listening@2x-ae7903ca.jpg" alt=""/>
