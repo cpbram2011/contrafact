@@ -326,13 +326,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _song_index_song_index_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../song_index/song_index_container */ "./frontend/components/song_index/song_index_container.jsx");
+/* harmony import */ var _song_index_splash_index_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../song_index/splash_index_container */ "./frontend/components/song_index/splash_index_container.jsx");
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "discover"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_song_index_song_index_container__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_song_index_splash_index_container__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "sidebar"
   }));
 });
@@ -1595,6 +1597,9 @@ var mSTP = function mSTP(state) {
 
 var mDTP = function mDTP(dispatch) {
   return {
+    receiveCurrentSong: function receiveCurrentSong(song) {
+      return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_1__["receiveCurrentSong"])(song));
+    },
     requestSongs: function requestSongs() {
       return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_1__["requestSongs"])());
     },
@@ -1666,10 +1671,16 @@ var SplashIndex = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "splash-index"
       }, this.props.songs.map(function (song) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "song-tile-".concat(song.id)
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           src: song.cover,
           className: "cover-tile"
-        });
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "tile-title"
+        }, song.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "tile-artist"
+        }, song.artist));
       }));
     }
   }]);

@@ -9,7 +9,7 @@ const mSTP = state => ({
 
 const mDTP = dispatch => {
     return ({
-
+    receiveCurrentSong: (song) => dispatch(receiveCurrentSong(song)),
     requestSongs: () => dispatch(requestSongs()),
     openModal: (modal) => dispatch(openModal(modal))
 })}
