@@ -8,9 +8,9 @@ export default () => {
     
     return (
     <div id='discover'>
-        
 
         <SongIndexContainer />
+        <div className="sidebar"></div>
     </div>
 
 

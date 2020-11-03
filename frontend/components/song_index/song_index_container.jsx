@@ -1,8 +1,8 @@
 import {connect} from 'react-redux';
-import SplashIndex from './splash_index';
+// import SplashIndex from './splash_index';
 import {requestSongs, receiveCurrentSong} from '../../actions/song_actions';
 import {openModal} from '../../actions/modal_actions';
-
+import SongIndex from './song_index'
 const mSTP = state => ({
     songs: Object.values(state.entities.songs)
 });
@@ -14,4 +14,4 @@ const mDTP = dispatch => {
     openModal: (modal) => dispatch(openModal(modal))
 })}
 
-export default connect(mSTP, mDTP)(SplashIndex);
+export default connect(mSTP, mDTP)(SongIndex);
