@@ -271,30 +271,3 @@
     width: 300px;
     
 }
-
-.splash-index {
-    margin: 0 auto;
-    display: flex;
-    overflow: scroll;
-    width: 950px;
-    height: 220px;
-
-}
-
-[class *= 'song-tile']{
-    display: block;
-    width: 125px;
-    margin-right: 15px;
-}
-
-.tile-title {
-    font-size: 15px;
-}
-
-.tile-artist {
-    font-size: 12px;
-}
-.cover-tile {
-    height: 120px;
-    width: 120px;
-}

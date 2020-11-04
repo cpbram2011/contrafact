@@ -5,8 +5,10 @@
   background-color: white;
   margin: 0 auto;
   margin-top: 50px;
+  padding: 50px 30px;
   display: grid;
   grid-template-columns: 70% 30%;
+  grid-template-rows: 5% 25% 5% 25% 30%;
 }
 
 
@@ -58,4 +60,52 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+[class^='tile-text'] {
+  height: 100px;
+  h2 {
+    font-weight: lighter;
+  }
+  h3 {
+    color: #999999;
+    font-weight: lighter;
+  }
+}
+
+
+
+.splash-index {
+  margin: 0 auto;
+  display: flex;
+  overflow-x: scroll;
+  width: 925px;
+  height: 220px;
+  grid-row: 2;
+
+}
+
+[class *= 'song-tile']{
+  display: block;
+  width: 125px;
+  margin: 10px 5px ;
+  flex-shrink: 0;
+}
+
+.tile-title {
+  font-size: 15px;
+}
+
+.tile-artist {
+  font-size: 12px;
+}
+.cover-tile {
+  height: 120px;
+  width: 120px;
+
+  
+}
+
+.cover-tile:hover {
+  opacity: 0.6;
 }
