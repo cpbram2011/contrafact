@@ -1660,10 +1660,14 @@ var SplashIndex = /*#__PURE__*/function (_React$Component) {
 
   var _super = _createSuper(SplashIndex);
 
-  function SplashIndex() {
+  function SplashIndex(props) {
+    var _this;
+
     _classCallCheck(this, SplashIndex);
 
-    return _super.apply(this, arguments);
+    _this = _super.call(this, props);
+    _this.updateCurrentSong = _this.updateCurrentSong.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(SplashIndex, [{
@@ -1672,9 +1676,14 @@ var SplashIndex = /*#__PURE__*/function (_React$Component) {
       this.props.requestSongs();
     }
   }, {
+    key: "updateCurrentSong",
+    value: function updateCurrentSong(target) {
+      this.props.receiveCurrentSong(target);
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this = this;
+      var _this2 = this;
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "splash-index"
@@ -1682,13 +1691,15 @@ var SplashIndex = /*#__PURE__*/function (_React$Component) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "song-tile-".concat(song.id)
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "splash-cover"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          className: "splash-cover",
+          onClick: function onClick() {
+            return _this2.updateCurrentSong(song.id);
+          }
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_1__["FaPlayCircle"], {
+          className: "splash-play-circle"
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           src: song.cover,
           className: "cover-tile"
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_1__["FaPlayCircle"], {
-          className: "splash-play-circle",
-          onClick: _this.updateCurrentSong
         })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
           className: "tile-title"
         }, song.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
@@ -1731,6 +1742,9 @@ var mSTP = function mSTP(state) {
 
 var mDTP = function mDTP(dispatch) {
   return {
+    receiveCurrentSong: function receiveCurrentSong(song) {
+      return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_2__["receiveCurrentSong"])(song));
+    },
     requestSongs: function requestSongs() {
       return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_2__["requestSongs"])());
     },

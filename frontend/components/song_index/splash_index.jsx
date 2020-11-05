@@ -3,11 +3,22 @@ import { FaPlayCircle, FaHeart } from 'react-icons/fa';
 
 
 export default class SplashIndex extends React.Component {
+    constructor(props){
+        super(props)
+        
+        this.updateCurrentSong = this.updateCurrentSong.bind(this)
+    }
 
 
     componentDidMount () {
         this.props.requestSongs()
     }
+    
+    updateCurrentSong (target) {
+        this.props.receiveCurrentSong(target)
+        
+    }
+
     render () {
         return (
             <div className='splash-index'>
@@ -17,12 +28,16 @@ export default class SplashIndex extends React.Component {
                     return (
 
                     <div className={`song-tile-${song.id}`}>
-                    <div className="splash-cover">
+                    <div className="splash-cover"
+                    onClick={() => this.updateCurrentSong(song.id)}
+                    
+                    >
 
-                    <img src={song.cover} className={`cover-tile`}/>
                     <FaPlayCircle className="splash-play-circle"
-                            onClick={this.updateCurrentSong}
-                            />
+                        
+                        />
+                    <img src={song.cover} className={`cover-tile`}
+                        />
                     </div>
                     <p className='tile-title'>{song.title}</p>
                     <p className='tile-artist'>{song.artist}</p>
