@@ -35,8 +35,6 @@ export default (props) => {
             </button>
         </div>
     </div>
-
-    <SplashIndexContainer />
     
     <div className="splash-2">
         <img id='splash-image-2' src="https://a-v2.sndcdn.com/assets/images/never_stop_listening@2x-ae7903ca.jpg" alt=""/>
