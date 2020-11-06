@@ -3,7 +3,8 @@ import {requestUsers} from '../../actions/user_actions';
 import Sidebar from './sidebar';
 
 const mSTP = state => ({
-    users: Object.values(state.entities.users)
+    users: Object.values(state.entities.users),
+    currentUser: state.session.id
 });
 
 

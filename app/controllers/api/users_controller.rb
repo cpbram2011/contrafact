@@ -22,7 +22,10 @@ class Api::UsersController < ApplicationController
     end
 
     def index 
-        @users = User.limit(3)
+        # @users = User.limit(3)
+        
+        @users = User.where.not(id: current_user.id).limit(3)
+        
         render :index    
     end
 

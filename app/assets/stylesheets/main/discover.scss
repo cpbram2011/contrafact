@@ -44,8 +44,12 @@
   height: 1000px;
   width: 300px;
   justify-self: flex-end;
-  background-color: red;
   grid-column-start: 2;
+
+  li {
+    list-style: none;
+    border-top: 1px solid grey;
+  }
 }
 
 .cover-art {

@@ -6,10 +6,9 @@ export default (state = {}, action) => {
     switch (action.type) {
         case LOGIN_USER:
             return Object.assign({}, state, {[action.user.id]: action.user});
-            case RECEIVE_USERS:             
-            return Object.assign({}, state, action.users);
+        case RECEIVE_USERS:             
+        return Object.assign({}, state, action.users);
         default:
-            console.log('HERE')
             return state;
     }
 };
