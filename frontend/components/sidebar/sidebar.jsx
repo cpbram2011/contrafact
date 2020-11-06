@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaUserFriends } from 'react-icons/fa';
 
 export default class Sidebar extends React.Component {
     
@@ -7,7 +8,6 @@ export default class Sidebar extends React.Component {
     }
 
     render () {
-        
         const usersList = this.props.users.map( user => {
             if (user.id === this.props.currentUser) return null;
             return (
@@ -20,7 +20,8 @@ export default class Sidebar extends React.Component {
         })
         return (
             <div className="sidebar">
-                <h1>SIDEBAR</h1>
+                <FaUserFriends />
+            <h3>Who to follow</h3>
                 {usersList}
             </div>
         )
