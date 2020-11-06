@@ -14,9 +14,8 @@ export default () => {
         <div className="tile-text-1">
         <h2>More of what you like</h2>
         <h3>Suggestions based on what you've liked or played</h3>
-        </div>
         <SplashIndexContainer />
-
+        </div>
         <div className="tile-text-2">
         <h2>Contrafact Charts</h2>
         <h3>The most played tracks on Contrafact this week</h3>
