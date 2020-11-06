@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import SongIndexContainer from '../song_index/song_index_container'
 import SplashIndexContainer from '../song_index/splash_index_container'
+import Sidebar from '../sidebar/sidebar_container';
+
 
 export default () => {
  
@@ -20,7 +22,7 @@ export default () => {
         <h3>The most played tracks on Contrafact this week</h3>
         <SongIndexContainer />
         </div>
-        <div className="sidebar"></div>
+        <Sidebar />
     </div>
 
 

@@ -21,6 +21,11 @@ class Api::UsersController < ApplicationController
             
     end
 
+    def index 
+        @users = User.limit(3)
+        render :index    
+    end
+
     def findemail
         @user = User.find_email(params[:email])
         

@@ -26,6 +26,7 @@ Rails.application.routes.draw do
 
   get '/api/users/findusername', to: 'api/users#findusername'
   get '/api/users/findemail', to: 'api/users#findemail'
+  get '/api/users', to: 'api/users#index'
 
   root to: 'static_pages#root'
 end
