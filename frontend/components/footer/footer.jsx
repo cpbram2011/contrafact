@@ -3,19 +3,19 @@ import React from 'react';
 
 
 export default () => (
-    <div class='footer'>
-    <ul class='flinks'>
-      <div class='futils'>
+    <div className='footer'>
+    <ul className='flinks'>
+      <div className='futils'>
       <li>About</li>
       <li>Language</li>
       <li>Services</li>
       <li>Help</li>
       <li>Legal</li>
       </div>
-      <div class='fbtns'>
-      <button class='linkedin'>
+      <div className='fbtns'>
+      <button className='linkedin'>
       </button>
-      <button class='github'>
+      <button className='github'>
       </button>
       </div>
 

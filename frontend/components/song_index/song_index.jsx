@@ -22,7 +22,6 @@ export default class SongIndex extends React.Component {
     render () {
         return (
             <div className='song-index'>
-                <h1>All Songs</h1>
                 
                 
                 {this.props.songs.map((song, index )=> {
