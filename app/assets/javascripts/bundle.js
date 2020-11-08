@@ -218,25 +218,35 @@ var logout = function logout() {
 /*!******************************************!*\
   !*** ./frontend/actions/song_actions.js ***!
   \******************************************/
-/*! exports provided: RECEIVE_SONGS, RECEIVE_CURRENT_SONG, receiveSongs, receiveCurrentSong, requestSongs, requestCurrentSong */
+/*! exports provided: RECEIVE_SONGS, RECEIVE_SONG, RECEIVE_CURRENT_SONG, receiveSongs, receiveSong, receiveCurrentSong, requestSongs, requestCurrentSong, createSong */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_SONGS", function() { return RECEIVE_SONGS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_SONG", function() { return RECEIVE_SONG; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_CURRENT_SONG", function() { return RECEIVE_CURRENT_SONG; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveSongs", function() { return receiveSongs; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveSong", function() { return receiveSong; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveCurrentSong", function() { return receiveCurrentSong; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "requestSongs", function() { return requestSongs; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "requestCurrentSong", function() { return requestCurrentSong; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createSong", function() { return createSong; });
 /* harmony import */ var _util_song_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/song_api_util */ "./frontend/util/song_api_util.js");
 
 var RECEIVE_SONGS = "RECEIVE_SONGS";
+var RECEIVE_SONG = "RECEIVE_SONG";
 var RECEIVE_CURRENT_SONG = "RECEIVE_CURRENT_SONG";
 var receiveSongs = function receiveSongs(songs) {
   return {
     type: RECEIVE_SONGS,
     songs: songs
+  };
+};
+var receiveSong = function receiveSong(song) {
+  return {
+    type: RECEIVE_SONG,
+    song: song
   };
 };
 var receiveCurrentSong = function receiveCurrentSong(songId) {
@@ -256,6 +266,13 @@ var requestCurrentSong = function requestCurrentSong(songId) {
   return function (dispatch) {
     return _util_song_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchSong"](songId).then(function (song) {
       return dispatch(receiveCurrentSong(song));
+    });
+  };
+};
+var createSong = function createSong(song) {
+  return function (dispatch) {
+    return _util_song_api_util__WEBPACK_IMPORTED_MODULE_0__["createSong"](song).then(function (song) {
+      return dispatch(receiveSong(song));
     });
   };
 };
@@ -483,6 +500,8 @@ var Form = /*#__PURE__*/function (_React$Component) {
       var _this3 = this;
 
       return function (e) {
+        e.preventDefault();
+
         _this3.setState({
           track: e.target.files[0]
         });
@@ -500,16 +519,8 @@ var Form = /*#__PURE__*/function (_React$Component) {
         formData.append('song[track]', this.state.track);
       }
 
-      formData.append('song[cover]', this.state.cover); // $.ajax({
-      //     url: 'api/songs',
-      //     method: "POST",
-      //     data: formData,
-      //     contentType: false,
-      //     processData: false
-      // }).then(
-      //     x => console.log(x),
-      //     x => console.log(x)
-      // );
+      formData.append('song[cover]', this.state.cover);
+      this.props.createSong(formData);
     }
   }, {
     key: "render",
@@ -540,6 +551,40 @@ var Form = /*#__PURE__*/function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 
+
+/***/ }),
+
+/***/ "./frontend/components/form/form_container.js":
+/*!****************************************************!*\
+  !*** ./frontend/components/form/form_container.js ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_song_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/song_actions */ "./frontend/actions/song_actions.js");
+/* harmony import */ var _form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./form */ "./frontend/components/form/form.jsx");
+
+
+
+
+var mSTP = function mSTP(state) {
+  return {
+    currentUser: state.session.id
+  };
+};
+
+var mDTP = function mDTP(dispatch) {
+  return {
+    createSong: function createSong(song) {
+      return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_1__["createSong"])(song));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_form__WEBPACK_IMPORTED_MODULE_2__["default"]));
 
 /***/ }),
 
@@ -578,7 +623,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _session_form_login_form_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../session_form/login_form_container */ "./frontend/components/session_form/login_form_container.jsx");
 /* harmony import */ var _session_form_signup_form_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../session_form/signup_form_container */ "./frontend/components/session_form/signup_form_container.jsx");
-/* harmony import */ var _form_form__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../form/form */ "./frontend/components/form/form.jsx");
+/* harmony import */ var _form_form_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../form/form_container */ "./frontend/components/form/form_container.js");
 
 
 
@@ -606,7 +651,7 @@ function Modal(_ref) {
       break;
 
     case 'form':
-      component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_form_form__WEBPACK_IMPORTED_MODULE_5__["default"], null);
+      component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_form_form_container__WEBPACK_IMPORTED_MODULE_5__["default"], null);
       break;
 
     default:
@@ -1683,7 +1728,7 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "updateCurrentSong",
     value: function updateCurrentSong(e) {
-      this.props.receiveCurrentSong(e.target.id);
+      this.props.receiveCurrentSong(e);
     }
   }, {
     key: "render",
@@ -1701,10 +1746,14 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
           className: "item-left"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "d-cover",
-          onClick: _this2.updateCurrentSong
+          onClick: function onClick() {
+            return _this2.updateCurrentSong(song.id);
+          }
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_1__["FaPlayCircle"], {
           className: "play-circle",
-          onClick: _this2.updateCurrentSong
+          onClick: function onClick() {
+            return _this2.updateCurrentSong(song.id);
+          }
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           className: "cover-art",
           src: song.cover,
@@ -1717,7 +1766,12 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
         }, song.artist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: true ? 'like' : undefined
         }));
-      }));
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: function onClick() {
+          return _this2.props.openModal('form');
+        },
+        id: "form"
+      }, "upload"));
     }
   }]);
 
@@ -2440,6 +2494,9 @@ __webpack_require__.r(__webpack_exports__);
     case _actions_song_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SONGS"]:
       return action.songs;
 
+    case _actions_song_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SONG"]:
+      return Object.assign({}, state, action.song);
+
     default:
       return state;
   }
@@ -2651,13 +2708,14 @@ var fetchUsername = function fetchUsername(username) {
 /*!****************************************!*\
   !*** ./frontend/util/song_api_util.js ***!
   \****************************************/
-/*! exports provided: fetchSongs, fetchSong */
+/*! exports provided: fetchSongs, fetchSong, createSong */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchSongs", function() { return fetchSongs; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchSong", function() { return fetchSong; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createSong", function() { return createSong; });
 var fetchSongs = function fetchSongs() {
   return $.ajax({
     url: "/api/songs"
@@ -2666,6 +2724,15 @@ var fetchSongs = function fetchSongs() {
 var fetchSong = function fetchSong(id) {
   return $.ajax({
     url: "/api/songs/".concat(id)
+  });
+};
+var createSong = function createSong(song) {
+  return $.ajax({
+    url: 'api/songs',
+    method: "POST",
+    data: song,
+    contentType: false,
+    processData: false
   });
 };
 

@@ -12,7 +12,6 @@ class Api::SongsController < ApplicationController
     def create
         @song = Song.new(song_params)
         
-        debugger;
         if @song.save
             render json: {message: "noice"}
         else

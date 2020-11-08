@@ -15,7 +15,7 @@ export default class SongIndex extends React.Component {
     }
     
     updateCurrentSong (e) {
-        this.props.receiveCurrentSong(e.target.id)
+        this.props.receiveCurrentSong(e)
         
     }
 
@@ -34,10 +34,10 @@ export default class SongIndex extends React.Component {
 
                             
                             <div className="d-cover"
-                                onClick={this.updateCurrentSong}
+                                onClick={() => this.updateCurrentSong(song.id)}
                             >
                                 <FaPlayCircle className="play-circle"
-                                onClick={this.updateCurrentSong}
+                                onClick={() => this.updateCurrentSong(song.id)}
                                 />
                                 <img className="cover-art" src={song.cover} 
                                 id={song.id}
@@ -58,8 +58,8 @@ export default class SongIndex extends React.Component {
                          
                     )
                 })}
-                {/* <button onClick={() =>this.props.openModal('form')} id='form'>upload
-                </button> */}
+                <button onClick={() =>this.props.openModal('form')} id='form'>upload
+                </button>
 
             </div>
         )

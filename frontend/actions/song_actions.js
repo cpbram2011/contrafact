@@ -2,11 +2,17 @@ import * as SongAPI from '../util/song_api_util';
 
 
 export const RECEIVE_SONGS = "RECEIVE_SONGS";
+export const RECEIVE_SONG = "RECEIVE_SONG";
 export const RECEIVE_CURRENT_SONG = "RECEIVE_CURRENT_SONG";
 
 export const receiveSongs = songs => ({
     type: RECEIVE_SONGS,
     songs
+});
+
+export const receiveSong = song => ({
+    type: RECEIVE_SONG,
+    song
 });
 
 export const receiveCurrentSong = songId=> ({
@@ -25,4 +31,6 @@ export const requestCurrentSong = songId => dispatch => (
 )
 
 
-
+export const createSong = song => dispatch => (
+    SongAPI.createSong(song).then(song => dispatch(receiveSong(song)))
+)
