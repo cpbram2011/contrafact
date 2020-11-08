@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaPlayCircle, FaHeart } from 'react-icons/fa';
+import {Link} from 'react-router-dom';
 
 export default class SongIndex extends React.Component {
     constructor(props){
@@ -45,7 +46,9 @@ export default class SongIndex extends React.Component {
                             </div>
 
                             <p>{index + 1}</p>
+                            <Link to={`song/${song.id}`}>
                             <p className="title">{song.title}</p>-
+                            </Link>
                             <p className="artist">{song.artist}</p>
                             <p></p> 
                             </div> 

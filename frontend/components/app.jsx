@@ -7,6 +7,7 @@ import DiscoverContainer from './discover/discover'
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import NavBarContainer from './navbar/navbar_container'
 import PlayContainer from './play/play_container';
+import SongShow from './songShow/song_show_container.js'
 import Footer from './footer/footer';
 import Library from './library/library'
 
@@ -23,6 +24,7 @@ export default () => (
         
         <Switch>
             <ProtectedRoute path='/home' component={DiscoverContainer}/>
+            <ProtectedRoute path='/song/:id' component={SongShow}/>
             <AuthRoute exact path='/' component={SplashContainer}/>
             
         </Switch>
