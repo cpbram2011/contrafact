@@ -9,7 +9,8 @@ export default class Form extends React.Component {
             title: '',
             artist: '',
             track: null,
-            cover: new File(['cover'], "https://contrafact-seeds.s3.us-east-2.amazonaws.com/cover_plaeholder.png")
+            cover: null,
+            
         }
 
         this.updateMp3 = this.updateMp3.bind(this)
@@ -29,6 +30,7 @@ export default class Form extends React.Component {
         return e => {
             e.preventDefault();
             this.setState({track: e.target.files[0]})
+        
             
         }
     }
@@ -42,8 +44,17 @@ export default class Form extends React.Component {
         if (this.state.track) {
             formData.append('song[track]', this.state.track)
         } 
-        
-        formData.append('song[cover]', this.state.cover)
+        if (!this.state.cover) {
+            // const fileReader = new FileReader();
+            // fileReader.readAsDataURL("https://contrafact-seeds.s3.us-east-2.amazonaws.com/cover_plaeholder.png");
+            // fileReader.onloadend = () => {
+            //     formData.append('song[cover]', fileReader.result)
+            // };
+            let cover = new File(['cover'], "https://contrafact-seeds.s3.us-east-2.amazonaws.com/cover_plaeholder.png")
+            debugger
+            formData.append('song[cover]', cover)
+        }
+
         
         this.props.createSong(formData)
     }

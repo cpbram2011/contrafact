@@ -476,7 +476,7 @@ var Form = /*#__PURE__*/function (_React$Component) {
       title: '',
       artist: '',
       track: null,
-      cover: new File(['cover'], "https://contrafact-seeds.s3.us-east-2.amazonaws.com/cover_plaeholder.png")
+      cover: null
     };
     _this.updateMp3 = _this.updateMp3.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
@@ -519,7 +519,17 @@ var Form = /*#__PURE__*/function (_React$Component) {
         formData.append('song[track]', this.state.track);
       }
 
-      formData.append('song[cover]', this.state.cover);
+      if (!this.state.cover) {
+        // const fileReader = new FileReader();
+        // fileReader.readAsDataURL("https://contrafact-seeds.s3.us-east-2.amazonaws.com/cover_plaeholder.png");
+        // fileReader.onloadend = () => {
+        //     formData.append('song[cover]', fileReader.result)
+        // };
+        var cover = new File(['cover'], "https://contrafact-seeds.s3.us-east-2.amazonaws.com/cover_plaeholder.png");
+        debugger;
+        formData.append('song[cover]', cover);
+      }
+
       this.props.createSong(formData);
     }
   }, {
