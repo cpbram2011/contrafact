@@ -22,5 +22,13 @@ export const createSong = song => (
     })
 );
 
+export const deleteSong = songId => (
+
+    $.ajax({
+        url: `api/songs/${songId}`,
+        method: "DELETE",
+    })
+);
+
 
 

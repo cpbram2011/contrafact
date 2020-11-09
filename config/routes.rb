@@ -5,9 +5,12 @@
 #               api_session DELETE /api/session(.:format)                                                                   api/sessions#destroy {:format=>"json"}
 #                           POST   /api/session(.:format)                                                                   api/sessions#create {:format=>"json"}
 #                 api_songs GET    /api/songs(.:format)                                                                     api/songs#index {:format=>"json"}
+#                           POST   /api/songs(.:format)                                                                     api/songs#create {:format=>"json"}
 #                  api_song GET    /api/songs/:id(.:format)                                                                 api/songs#show {:format=>"json"}
+#                           DELETE /api/songs/:id(.:format)                                                                 api/songs#destroy {:format=>"json"}
 #    api_users_findusername GET    /api/users/findusername(.:format)                                                        api/users#findusername
 #       api_users_findemail GET    /api/users/findemail(.:format)                                                           api/users#findemail
+#                           GET    /api/users(.:format)                                                                     api/users#index
 #                      root GET    /                                                                                        static_pages#root
 #        rails_service_blob GET    /rails/active_storage/blobs/:signed_id/*filename(.:format)                               active_storage/blobs#show
 # rails_blob_representation GET    /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format) active_storage/representations#show
@@ -21,7 +24,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: "json"} do
     resources :users, only: [:create]
     resource :session, only: [:create, :destroy]
-    resources :songs, only: [:index, :show, :create]
+    resources :songs, only: [:index, :show, :create, :destroy]
   end
 
   get '/api/users/findusername', to: 'api/users#findusername'

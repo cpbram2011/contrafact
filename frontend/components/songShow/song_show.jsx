@@ -67,7 +67,13 @@ export default class SongShow extends React.Component {
                         <li>
                         <FaShare /> 189
                         </li>
-
+                        {this.props.currentUser === song.uploader_id ? (
+                            <button
+                            onClick={() => {
+                                this.props.history.push("/home")
+                                this.props.deleteSong(song.id)}}
+                            >Delete Song</button>
+                        ) : null}
                         </div>
                     </div>
                 </div>

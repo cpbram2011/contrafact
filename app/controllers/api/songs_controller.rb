@@ -8,11 +8,20 @@ class Api::SongsController < ApplicationController
     def show
         @song = Song.find(params[:id])
     end
-
+    
+    
     def create
         @song = Song.new(song_params)
-        
         if @song.save
+            render :show
+        else
+            render json: false
+        end
+    end
+    
+    def destroy
+        @song = Song.find(params[:id])
+        if @song.destroy
             render :show
         else
             render json: false
@@ -23,6 +32,6 @@ class Api::SongsController < ApplicationController
 
 
     def song_params
-        params.require(:song).permit(:title, :artist, :track, :cover)
+        params.require(:song).permit(:title, :artist, :track, :cover, :uploader_id)
     end
 end

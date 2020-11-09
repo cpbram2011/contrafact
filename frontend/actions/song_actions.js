@@ -3,6 +3,7 @@ import * as SongAPI from '../util/song_api_util';
 
 export const RECEIVE_SONGS = "RECEIVE_SONGS";
 export const RECEIVE_SONG = "RECEIVE_SONG";
+export const REMOVE_SONG = 'REMOVE_SONG';
 export const RECEIVE_CURRENT_SONG = "RECEIVE_CURRENT_SONG";
 
 export const receiveSongs = songs => ({
@@ -13,6 +14,11 @@ export const receiveSongs = songs => ({
 export const receiveSong = song => ({
     type: RECEIVE_SONG,
     song
+});
+
+export const removeSong = songId => ({
+    type: REMOVE_SONG,
+    songId
 });
 
 export const receiveCurrentSong = songId=> ({
@@ -38,4 +44,14 @@ export const requestCurrentSong = songId => dispatch => (
 
 export const createSong = song => dispatch => (
     SongAPI.createSong(song).then(song => dispatch(receiveSong(song)))
-)
+);
+
+
+export const deleteSong = songId => dispatch => (
+    SongAPI.deleteSong(songId).then(song => {
+        dispatch(removeSong(Object.keys(song)[0]))
+        }
+
+        )
+
+);
