@@ -37,6 +37,9 @@
   display: flex;
   align-items: center;
 
+  a {
+    text-decoration: none;
+  }
 }
 
 .cover-art {
@@ -77,14 +80,14 @@
   overflow-y: hidden;
   overflow-x: scroll;
   width: 925px;
-  height: 220px;
+  height: 260px;
   grid-row: 2;
   
 }
 
 [class *= 'song-tile']{
   display: block;
-  width: 125px;
+  width: 185px;
   height: 180px;
   margin: 10px 5px ;
   flex-shrink: 0;
@@ -98,8 +101,8 @@
   font-size: 12px;
 }
 .cover-tile {
-  height: 120px;
-  width: 120px;
+  height: 180px;
+  width: 180px;
 
   
 }

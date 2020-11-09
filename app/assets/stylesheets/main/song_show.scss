@@ -1,0 +1,107 @@
+
+
+.song-show {
+    width: 1300px;
+    height: 800px;
+    background-color: white;
+    margin: 50px auto 0;
+
+
+
+    .song-info {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+        background-color: black;
+        height: 400px;
+        h1, h3 {
+            color: white;
+            width: 400px;
+        }
+
+        img {
+            height: 340px;
+            width: 340px;
+            border: 2px solid gray;
+        }
+    }
+    
+    
+    .play-button {
+        padding-right: 15px;
+        height: 80px;
+        width: 80px;
+        color: rgb(128,26,26);
+        float: left;
+
+    }
+
+    
+}
+
+
+.comment-section {
+    margin: 20px;
+    .user-pic {
+        height: 50px;
+        width: 50px;
+        background-image: url("https://contrafact-seeds.s3.us-east-2.amazonaws.com/blank-profile-picture-973460_640.png");
+        background-size: cover;
+    }
+
+    .comment-container {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        height: 50px;
+        width: 880px;
+        background-color: rgb(216, 214, 214);
+        border-radius: 3px;
+    }
+
+    .comment-box {
+        height: 30px;
+        width: 810px;
+        margin-left: 10px;
+        border: 1px solid black;
+        border-radius: 3px;
+
+
+    }
+
+    .comment-buttons {
+        margin-top: 10px;
+        display: flex;
+        button {
+            padding: 0 4px;
+            min-width: 70px;
+            height: 30px;
+            border: 1px solid gray;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+        }
+    }
+
+    .stats {
+        width: 200px;
+        height: 40px;
+        display: flex;
+        margin-left: 120px;
+        justify-content: space-between;
+        align-items: center;
+        color: grey;
+
+        li {
+
+            list-style: none;
+            width: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+    }
+}
