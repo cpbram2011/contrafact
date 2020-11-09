@@ -14,6 +14,7 @@ export default class Form extends React.Component {
         }
 
         this.updateMp3 = this.updateMp3.bind(this)
+        this.updateCover = this.updateCover.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
         
     }
@@ -35,6 +36,13 @@ export default class Form extends React.Component {
         }
     }
 
+    updateCover () {
+        return e => {
+            e.preventDefault()
+            this.setState({cover: e.target.files[0]})
+        }
+    }
+
     handleSubmit (e) {
         e.preventDefault()
         
@@ -51,19 +59,21 @@ export default class Form extends React.Component {
             //     formData.append('song[cover]', fileReader.result)
             // };
             let cover = new File(['cover'], "https://contrafact-seeds.s3.us-east-2.amazonaws.com/cover_plaeholder.png")
-            debugger
+            
             formData.append('song[cover]', cover)
+        } else {
+            formData.append('song[cover]', this.state.cover)
+            
         }
-
-        
         this.props.createSong(formData)
+        this.props.closeModal()
     }
 
 
     render () {
         return (
             <div className='form-box'>
-                <h1>Do now submit yet!</h1>
+                <h1>Upload Song</h1>
 
                 <input type="text" 
                 value= {this.props.title}
@@ -82,6 +92,11 @@ export default class Form extends React.Component {
                 <input type="file"
                 onChange={this.updateMp3(this)}
                 accept="audio/mpeg"
+                />
+
+                <input type="file"
+                onChange={this.updateCover(this)}
+                accept="image/*"
                 />
 
                 <button onClick={this.handleSubmit}>Submit</button>

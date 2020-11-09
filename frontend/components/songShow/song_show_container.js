@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {requestSong} from '../../actions/song_actions';
+import {requestSong, receiveCurrentSong } from '../../actions/song_actions';
 import SongShow from './song_show';
 
 
@@ -9,7 +9,8 @@ const mSTP = (state, ownProps) => ({
 });
 
 const mDTP = dispatch => ({
-    requestSong: songId => dispatch(requestSong(songId))
+    requestSong: songId => dispatch(requestSong(songId)),
+    receiveCurrentSong: (song) => dispatch(receiveCurrentSong(song)),
 });
 
 export default connect(mSTP, mDTP)(SongShow)

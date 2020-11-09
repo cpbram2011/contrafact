@@ -492,6 +492,7 @@ var Form = /*#__PURE__*/function (_React$Component) {
       cover: null
     };
     _this.updateMp3 = _this.updateMp3.bind(_assertThisInitialized(_this));
+    _this.updateCover = _this.updateCover.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -521,6 +522,19 @@ var Form = /*#__PURE__*/function (_React$Component) {
       };
     }
   }, {
+    key: "updateCover",
+    value: function updateCover() {
+      var _this4 = this;
+
+      return function (e) {
+        e.preventDefault();
+
+        _this4.setState({
+          cover: e.target.files[0]
+        });
+      };
+    }
+  }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
@@ -539,18 +553,20 @@ var Form = /*#__PURE__*/function (_React$Component) {
         //     formData.append('song[cover]', fileReader.result)
         // };
         var cover = new File(['cover'], "https://contrafact-seeds.s3.us-east-2.amazonaws.com/cover_plaeholder.png");
-        debugger;
         formData.append('song[cover]', cover);
+      } else {
+        formData.append('song[cover]', this.state.cover);
       }
 
       this.props.createSong(formData);
+      this.props.closeModal();
     }
   }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-box"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Do now submit yet!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", _defineProperty({
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Upload Song"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", _defineProperty({
         type: "text",
         value: this.props.title,
         onChange: this.update('title'),
@@ -564,6 +580,10 @@ var Form = /*#__PURE__*/function (_React$Component) {
         type: "file",
         onChange: this.updateMp3(this),
         accept: "audio/mpeg"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "file",
+        onChange: this.updateCover(this),
+        accept: "image/*"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.handleSubmit
       }, "Submit"));
@@ -587,8 +607,10 @@ var Form = /*#__PURE__*/function (_React$Component) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_song_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/song_actions */ "./frontend/actions/song_actions.js");
-/* harmony import */ var _form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./form */ "./frontend/components/form/form.jsx");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+/* harmony import */ var _actions_song_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/song_actions */ "./frontend/actions/song_actions.js");
+/* harmony import */ var _form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./form */ "./frontend/components/form/form.jsx");
+
 
 
 
@@ -602,12 +624,15 @@ var mSTP = function mSTP(state) {
 var mDTP = function mDTP(dispatch) {
   return {
     createSong: function createSong(song) {
-      return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_1__["createSong"])(song));
+      return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_2__["createSong"])(song));
+    },
+    closeModal: function closeModal() {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_1__["closeModal"])());
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_form__WEBPACK_IMPORTED_MODULE_2__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_form__WEBPACK_IMPORTED_MODULE_3__["default"]));
 
 /***/ }),
 
@@ -1747,6 +1772,8 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this = this;
+
       var song = this.props.songs[this.props.id];
       if (Object.keys(this.props.songs).length === 0) return null;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1756,7 +1783,10 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "song-info-left"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_1__["FaPlayCircle"], {
-        className: "play-button"
+        className: "play-button",
+        onClick: function onClick() {
+          return _this.props.receiveCurrentSong(_this.props.id);
+        }
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, song.artist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, song.title)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: song.cover,
         alt: "",
@@ -1813,6 +1843,9 @@ var mDTP = function mDTP(dispatch) {
   return {
     requestSong: function requestSong(songId) {
       return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_1__["requestSong"])(songId));
+    },
+    receiveCurrentSong: function receiveCurrentSong(song) {
+      return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_1__["receiveCurrentSong"])(song));
     }
   };
 };

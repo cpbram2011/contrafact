@@ -1,4 +1,5 @@
 import {connect} from 'react-redux';
+import { closeModal } from '../../actions/modal_actions';
 import {createSong} from '../../actions/song_actions';
 import Form from './form';
 
@@ -7,7 +8,8 @@ const mSTP = state => ({
 });
 
 const mDTP = dispatch => ({
-    createSong: song => dispatch(createSong(song))
+    createSong: song => dispatch(createSong(song)),
+    closeModal: () => dispatch(closeModal())
 });
 
 

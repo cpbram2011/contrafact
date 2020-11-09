@@ -9,6 +9,8 @@
 
 User.destroy_all
 Song.destroy_all
+Playlist.destroy_all
+PlaylistSong.destroy_all
 
 
 usernames = ['coolguy57','radchad99','cannedCoffee','Stranger']
@@ -82,7 +84,15 @@ s8.save!
 
 
 
+p1 = Playlist.new(title: "Jazz Piano", author_id: users[0].id)
+p1.save!
 
+ps1 = PlaylistSong.new(song_id: s3.id, playlist_id: p1.id)
+ps2 = PlaylistSong.new(song_id: s6.id, playlist_id: p1.id)
+ps3 = PlaylistSong.new(song_id: s7.id, playlist_id: p1.id)
+ps1.save!
+ps2.save!
+ps3.save!
 
 
 

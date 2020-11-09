@@ -13,7 +13,7 @@ class Api::SongsController < ApplicationController
         @song = Song.new(song_params)
         
         if @song.save
-            render json: {message: "noice"}
+            render :show
         else
             render json: false
         end

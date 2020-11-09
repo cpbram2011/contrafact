@@ -14,7 +14,9 @@ export default class SongShow extends React.Component {
             <div className="song-show">
                 <div className="song-info">
                 <div className="song-info-left">
-                <FaPlayCircle className='play-button' />
+                <FaPlayCircle className='play-button'
+                onClick={() => this.props.receiveCurrentSong(this.props.id)}
+                />
                 <h3>{song.artist}</h3>
                 <h1>{song.title}</h1>
 
