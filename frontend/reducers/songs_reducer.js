@@ -1,16 +1,19 @@
 import {RECEIVE_SONGS, RECEIVE_SONG, REMOVE_SONG } from '../actions/song_actions';
 
-export default (state = {}, action) => {
+export default (state = {all: {}, recent: {}}, action) => {
     Object.freeze(state);
+    let newState = Object.assign({}, state)
     switch (action.type) {
         case RECEIVE_SONGS:
-            return action.songs;
+            newState[action.cat] = action.songs
+            return newState;
+            
         case REMOVE_SONG:
-            let newState = Object.assign({}, state)
-            delete newState[action.songId]
+            delete newState.all[action.songId]
             return newState;
         case RECEIVE_SONG:
-            return Object.assign({}, state, action.song);
+            newState['all'] = Object.assign({}, newState['all'], action.song)
+            return newState;
         default:
             return state;
     }

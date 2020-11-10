@@ -7,8 +7,9 @@ const mSTP = state => ({
     currentUser: state.entities.users[state.session.id]
 })
 
-// const mDTP = dispatch => ({
-//     logout: () => dispatch(logout())
-// });
+const mDTP = dispatch => ({
+    logout: () => dispatch(logout()),
+    openModal: modal => dispatch(openModal(modal))
+});
 
-export default connect(mSTP, {logout})(Navbar);
+export default connect(mSTP, mDTP)(Navbar);

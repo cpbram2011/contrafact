@@ -40,6 +40,11 @@ export default class NavBar extends React.Component {
                     />
                     <img src="https://a-v2.sndcdn.com/assets/images/search-dbfe5cbb.svg" alt=""/>
                 </div>
+                <div className="upload-container">
+                <button onClick={() =>this.props.openModal('form')} id='form'>upload
+                </button>
+
+                </div>
                     <div id='username-dropdown'>
                     <h2 id='username'
                     onMouseOver={this.handleDropdown}

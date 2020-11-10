@@ -4,7 +4,7 @@ import SongShow from './song_show';
 
 
 const mSTP = (state, ownProps) => ({
-    songs: state.entities.songs,
+    songs: state.entities.songs.all,
     id: ownProps.match.params.id,
     currentUser: state.session.id
 });

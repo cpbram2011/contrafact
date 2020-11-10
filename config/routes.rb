@@ -20,17 +20,17 @@
 
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  
+    get '/api/users/findusername', to: 'api/users#findusername'
+    get '/api/users/findemail', to: 'api/users#findemail'
+    get '/api/users', to: 'api/users#index'
+    get '/api/songs/recent', to: 'api/songs#recent'
 
   namespace :api, defaults: {format: "json"} do
     resources :users, only: [:create]
     resource :session, only: [:create, :destroy]
     resources :songs, only: [:index, :show, :create, :destroy]
   end
-
-  get '/api/users/findusername', to: 'api/users#findusername'
-  get '/api/users/findemail', to: 'api/users#findemail'
-  get '/api/users', to: 'api/users#index'
-  get '/api/songs/recent', to: 'api/songs#recent'
 
   root to: 'static_pages#root'
 end

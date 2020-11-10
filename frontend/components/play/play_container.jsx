@@ -8,7 +8,7 @@ const mSTP = state => {
     return({
     currentSong: state.session.currentSong, // 53
                 //: 
-    songs: Object.assign({}, state.entities.songs)  //
+    songs: Object.assign({}, state.entities.songs.all)  //
     
 })}
 

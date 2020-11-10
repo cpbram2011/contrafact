@@ -6,8 +6,9 @@ export const RECEIVE_SONG = "RECEIVE_SONG";
 export const REMOVE_SONG = 'REMOVE_SONG';
 export const RECEIVE_CURRENT_SONG = "RECEIVE_CURRENT_SONG";
 
-export const receiveSongs = songs => ({
+export const receiveSongs = (songs, cat) => ({
     type: RECEIVE_SONGS,
+    cat,
     songs
 });
 
@@ -21,17 +22,17 @@ export const removeSong = songId => ({
     songId
 });
 
-export const receiveCurrentSong = songId=> ({
+export const receiveCurrentSong = songId => ({
     type: RECEIVE_CURRENT_SONG,
     songId
 });
 
 export const requestSongs = () => dispatch => (
-    SongAPI.fetchSongs().then(songs => dispatch(receiveSongs(songs)))
+    SongAPI.fetchSongs().then(songs => dispatch(receiveSongs(songs, 'all')))
 );
 
 export const requestRecent = () => dispatch => (
-    SongAPI.fetchRecent().then(songs => dispatch(receiveSongs(songs)))
+    SongAPI.fetchRecent().then(songs => dispatch(receiveSongs(songs, 'recent')))
 );
 
 export const requestSong = songId => dispatch => (
