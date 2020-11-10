@@ -3,6 +3,12 @@ class Api::SongsController < ApplicationController
         @songs = Song.all
         render :index
     end
+
+    def recent
+        debugger
+        @songs = Song.order('created_at DESC').limit(10)
+        render :index
+    end
     
 
     def show

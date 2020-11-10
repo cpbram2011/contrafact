@@ -218,7 +218,7 @@ var logout = function logout() {
 /*!******************************************!*\
   !*** ./frontend/actions/song_actions.js ***!
   \******************************************/
-/*! exports provided: RECEIVE_SONGS, RECEIVE_SONG, REMOVE_SONG, RECEIVE_CURRENT_SONG, receiveSongs, receiveSong, removeSong, receiveCurrentSong, requestSongs, requestSong, requestCurrentSong, createSong, deleteSong */
+/*! exports provided: RECEIVE_SONGS, RECEIVE_SONG, REMOVE_SONG, RECEIVE_CURRENT_SONG, receiveSongs, receiveSong, removeSong, receiveCurrentSong, requestSongs, requestRecent, requestSong, requestCurrentSong, createSong, deleteSong */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -232,6 +232,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeSong", function() { return removeSong; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveCurrentSong", function() { return receiveCurrentSong; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "requestSongs", function() { return requestSongs; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "requestRecent", function() { return requestRecent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "requestSong", function() { return requestSong; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "requestCurrentSong", function() { return requestCurrentSong; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createSong", function() { return createSong; });
@@ -269,6 +270,13 @@ var receiveCurrentSong = function receiveCurrentSong(songId) {
 var requestSongs = function requestSongs() {
   return function (dispatch) {
     return _util_song_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchSongs"]().then(function (songs) {
+      return dispatch(receiveSongs(songs));
+    });
+  };
+};
+var requestRecent = function requestRecent() {
+  return function (dispatch) {
+    return _util_song_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchRecent"]().then(function (songs) {
       return dispatch(receiveSongs(songs));
     });
   };
@@ -418,6 +426,8 @@ __webpack_require__.r(__webpack_exports__);
     className: "tile-text-1"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "More of what you like"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Suggestions based on what you've liked or played"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_song_index_splash_index_container__WEBPACK_IMPORTED_MODULE_3__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "tile-text-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Recent Songs"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "New releases from your favorite artists"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_song_index_splash_index_container__WEBPACK_IMPORTED_MODULE_3__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "tile-text-3"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Contrafact Charts"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "The most played tracks on Contrafact this week"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_song_index_song_index_container__WEBPACK_IMPORTED_MODULE_2__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_sidebar_sidebar_container__WEBPACK_IMPORTED_MODULE_4__["default"], null));
 });
 
@@ -796,13 +806,28 @@ var NavBar = /*#__PURE__*/function (_React$Component) {
 
   var _super = _createSuper(NavBar);
 
-  function NavBar() {
+  function NavBar(props) {
+    var _this;
+
     _classCallCheck(this, NavBar);
 
-    return _super.apply(this, arguments);
+    _this = _super.call(this, props);
+    _this.state = {
+      dropdown: false
+    };
+    _this.handleDropdown = _this.handleDropdown.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(NavBar, [{
+    key: "handleDropdown",
+    value: function handleDropdown(e) {
+      e.preventDefault();
+      this.setState({
+        dropdown: !this.state.dropdown
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -829,13 +854,14 @@ var NavBar = /*#__PURE__*/function (_React$Component) {
         src: "https://a-v2.sndcdn.com/assets/images/search-dbfe5cbb.svg",
         alt: ""
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "session-buttons"
+        id: "username-dropdown"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
-        id: "username"
-      }, "Welcome, ".concat(this.props.currentUser.username)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        id: "username",
+        onMouseOver: this.handleDropdown
+      }, "Welcome, ".concat(this.props.currentUser.username)), this.state.dropdown ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         id: "logout",
         onClick: this.props.logout
-      }, "Logout")));
+      }, "Logout") : null));
     }
   }]);
 
@@ -2127,14 +2153,12 @@ var SplashIndex = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.updateCurrentSong = _this.updateCurrentSong.bind(_assertThisInitialized(_this));
     return _this;
-  }
+  } // componentDidMount () {
+  //     this.props.requestRecent()
+  // }
+
 
   _createClass(SplashIndex, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.props.requestSongs();
-    }
-  }, {
     key: "updateCurrentSong",
     value: function updateCurrentSong(target) {
       this.props.receiveCurrentSong(target);
@@ -2206,6 +2230,9 @@ var mDTP = function mDTP(dispatch) {
     },
     requestSongs: function requestSongs() {
       return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_2__["requestSongs"])());
+    },
+    requestRecent: function requestRecent() {
+      return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_2__["requestRecent"])());
     },
     openModal: function openModal(modal) {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["openModal"])(modal));
@@ -2964,18 +2991,24 @@ var fetchUsername = function fetchUsername(username) {
 /*!****************************************!*\
   !*** ./frontend/util/song_api_util.js ***!
   \****************************************/
-/*! exports provided: fetchSongs, fetchSong, createSong, deleteSong */
+/*! exports provided: fetchSongs, fetchRecent, fetchSong, createSong, deleteSong */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchSongs", function() { return fetchSongs; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchRecent", function() { return fetchRecent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchSong", function() { return fetchSong; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createSong", function() { return createSong; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteSong", function() { return deleteSong; });
 var fetchSongs = function fetchSongs() {
   return $.ajax({
     url: "/api/songs"
+  });
+};
+var fetchRecent = function fetchRecent() {
+  return $.ajax({
+    url: "/api/songs/recent"
   });
 };
 var fetchSong = function fetchSong(id) {

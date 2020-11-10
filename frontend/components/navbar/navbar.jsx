@@ -3,6 +3,19 @@ import {Link} from 'react-router-dom'
 
 
 export default class NavBar extends React.Component {
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            dropdown: false
+        }
+        this.handleDropdown = this.handleDropdown.bind(this)
+    }
+
+    handleDropdown (e) {
+        e.preventDefault()
+        this.setState({ dropdown: !this.state.dropdown })
+    }
     render () {
         
         
@@ -27,10 +40,15 @@ export default class NavBar extends React.Component {
                     />
                     <img src="https://a-v2.sndcdn.com/assets/images/search-dbfe5cbb.svg" alt=""/>
                 </div>
-                    <div id='session-buttons'>
-                    <h2 id='username'>{`Welcome, ${this.props.currentUser.username}`}</h2>
-                    <button id='logout' onClick={this.props.logout}>Logout</button>
+                    <div id='username-dropdown'>
+                    <h2 id='username'
+                    onMouseOver={this.handleDropdown}
+                    >{`Welcome, ${this.props.currentUser.username}`}</h2>
+                    {this.state.dropdown ? (
+                        <button id='logout' onClick={this.props.logout}>Logout</button>
+                    ) : null}
                     </div>
+
                     
             </div>
         )

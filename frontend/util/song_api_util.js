@@ -4,6 +4,12 @@ export const fetchSongs = () => (
     })
 );
 
+export const fetchRecent = () => (
+    $.ajax({
+        url: "/api/songs/recent"
+    })
+);
+
 export const fetchSong = id => (
     $.ajax({
         url: `/api/songs/${id}`

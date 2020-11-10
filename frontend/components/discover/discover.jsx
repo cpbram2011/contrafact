@@ -17,6 +17,11 @@ export default () => {
         <SplashIndexContainer />
         </div>
         <div className="tile-text-2">
+        <h2>Recent Songs</h2>
+        <h3>New releases from your favorite artists</h3>
+        <SplashIndexContainer />
+        </div>
+        <div className="tile-text-3">
         <h2>Contrafact Charts</h2>
         <h3>The most played tracks on Contrafact this week</h3>
         <SongIndexContainer />
