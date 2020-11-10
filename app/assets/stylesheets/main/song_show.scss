@@ -74,7 +74,7 @@
         margin-top: 10px;
         display: flex;
         button {
-            padding: 0 4px;
+            padding: 0 5px;
             min-width: 70px;
             height: 30px;
             border: 1px solid gray;
@@ -82,15 +82,44 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-
         }
+
+        button:hover {
+            background-color: rgb(224, 224, 224);
+        }
+
+    }
+
+    .dropdown-parent {
+        width: 120px;
+    }
+    .dropdown-child {
+        width: 120px;
+        
+        display: flex;
+        justify-content: center;
+        
+        border: 1px solid rgb(179, 179, 179);
+        border-radius: 2px;
+        p {
+            width: 120px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        p:hover {
+            
+            background-color: rgb(224, 224, 224);
+        }
+
+
     }
 
     .stats {
         width: 200px;
         height: 40px;
         display: flex;
-        margin-left: 120px;
+        margin-left: 98px;
         justify-content: space-between;
         align-items: center;
         color: grey;

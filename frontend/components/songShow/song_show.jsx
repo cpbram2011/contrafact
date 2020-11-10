@@ -2,11 +2,33 @@ import React from 'react';
 import { FaPlayCircle, FaHeart, FaRetweet, FaShare, FaBars, FaEllipsisH, FaPlay } from 'react-icons/fa';
 export default class SongShow extends React.Component {
 
+    constructor(props){
+        super(props);
+        this.state = {
+            dropdown: false
+        };
+
+        this.handleDropdown = this.handleDropdown.bind(this)
+        this.closeDropdown = this.closeDropdown.bind(this)
+
+    }
 
     componentDidMount () {
 
         this.props.requestSong(this.props.id)
     }
+
+    handleDropdown (e) {
+        e.preventDefault()
+        this.setState({dropdown: !this.state.dropdown})
+    }
+
+    closeDropdown (e) {
+        e.preventDefault()
+        this.setState({dropdown: false})
+        console.log('blurgh')
+    }
+
     render () {
         const song = this.props.songs[this.props.id]
         if (Object.keys(this.props.songs).length === 0 ) return null;
@@ -52,11 +74,31 @@ export default class SongShow extends React.Component {
                             <hr/> <hr/>
                             Add to Next up
                         </button>
-                        <button>
+                        <div className="dropdown-parent"
+                            
+                            >
+
+                        <button
+                        className='more'
+                        onMouseEnter={this.handleDropdown}>
                             <FaEllipsisH />
                             <hr/> <hr/>
                             More
                         </button>
+                        {this.state.dropdown ? (
+                        <div className="dropdown-child">
+                        {this.props.currentUser === song.uploader_id ? (
+                            <p
+                            onClick={() => {
+                                this.props.history.push("/home")
+                                this.props.deleteSong(song.id)}}
+                                >Delete Song</p>
+                                ) : null}
+                            
+                        </div>
+                        ) : null}
+                        </div>
+
                         <div className="stats">
                         <li>
                         <FaPlay /> 437
@@ -67,15 +109,10 @@ export default class SongShow extends React.Component {
                         <li>
                         <FaShare /> 189
                         </li>
-                        {this.props.currentUser === song.uploader_id ? (
-                            <button
-                            onClick={() => {
-                                this.props.history.push("/home")
-                                this.props.deleteSong(song.id)}}
-                            >Delete Song</button>
-                        ) : null}
                         </div>
                     </div>
+                    
+
                 </div>
             </div>
         )
