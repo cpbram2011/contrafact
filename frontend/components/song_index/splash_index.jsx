@@ -10,9 +10,9 @@ export default class SplashIndex extends React.Component {
     }
 
 
-    // componentDidMount () {
-    //     this.props.requestRecent()
-    // }
+    componentDidMount () {
+        this.props.requestRecent()
+    }
     
     updateCurrentSong (target) {
         this.props.receiveCurrentSong(target)

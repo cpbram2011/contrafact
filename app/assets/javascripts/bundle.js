@@ -2010,14 +2010,12 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.updateCurrentSong = _this.updateCurrentSong.bind(_assertThisInitialized(_this));
     return _this;
-  }
+  } // componentDidMount() {
+  //     this.props.requestSongs();
+  // }
+
 
   _createClass(SongIndex, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.props.requestSongs();
-    }
-  }, {
     key: "updateCurrentSong",
     value: function updateCurrentSong(e) {
       this.props.receiveCurrentSong(e);
@@ -2170,12 +2168,14 @@ var SplashIndex = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.updateCurrentSong = _this.updateCurrentSong.bind(_assertThisInitialized(_this));
     return _this;
-  } // componentDidMount () {
-  //     this.props.requestRecent()
-  // }
-
+  }
 
   _createClass(SplashIndex, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.requestRecent();
+    }
+  }, {
     key: "updateCurrentSong",
     value: function updateCurrentSong(target) {
       this.props.receiveCurrentSong(target);

@@ -5,7 +5,7 @@ class Api::SongsController < ApplicationController
     end
 
     def recent
-        debugger
+        
         @songs = Song.order('created_at DESC').limit(10)
         render :index
     end
