@@ -9,7 +9,8 @@ export default () => {
  
     
     return (
-    
+    <div className="discover-parent">
+
     <div id='discover'>
         <div className="tile-text-1">
         <h2>More of what you like</h2>
@@ -26,7 +27,9 @@ export default () => {
         <h3>The most played tracks on Contrafact this week</h3>
         <SongIndexContainer />
         </div>
+    </div>
         <Sidebar />
+            
     </div>
 
 

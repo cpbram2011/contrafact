@@ -17,21 +17,21 @@
 }
 
 .like {
+    float: right;
     background-image: url(https://contrafact-seeds.s3.us-east-2.amazonaws.com/emptyheart.PNG);
     background-size: cover;
     display: block;
     width: 20px;
+    margin: 0 10px;
     height: 20px;
     cursor: pointer;
+    -webkit-filter: invert(100%);
 }
 
 .like:hover {
     background-image: url(https://contrafact-seeds.s3.us-east-2.amazonaws.com/fullheart.PNG);
-    background-size: cover;
-    display: block;
-    width: 20px;
-    height: 20px;
-    
+    width: 22px;    
+    margin: 0 9px;
 }
 #audio {
     height: 100px;
@@ -46,10 +46,14 @@ button {
 }
 
 .title {
-    color: grey;
+    color: rgb(224, 224, 224) !important;
     cursor: pointer;
     
     
+}
+
+.artist {
+    color: white;
 }
 
 .play-circle {
@@ -129,7 +133,6 @@ button {
 #progress-bar {
     width: 500px;
     margin-left: 35px;
-    -webkit-appearance: none; 
     appearance: none;
     background: #bdbcbc; 
     outline: none; 

@@ -24,7 +24,7 @@ export default class SongIndex extends React.Component {
         return (
             <div className='song-index'>
                 
-                
+                <img className='city' src="https://contrafact-seeds.s3.us-east-2.amazonaws.com/city-skyline.jpg" alt="" srcset=""/>
                 {this.props.songs.map((song, index )=> {
                     let like = true
                     
@@ -62,9 +62,7 @@ export default class SongIndex extends React.Component {
                          
                     )
                 })}
-                <button onClick={() =>this.props.openModal('form')} id='form'>upload
-                </button>
-
+                
             </div>
         )
     }
