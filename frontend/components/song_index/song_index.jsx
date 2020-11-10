@@ -10,10 +10,10 @@ export default class SongIndex extends React.Component {
     }
 
 
-    // componentDidMount() {
-    //     this.props.requestSongs();
-        
-    // }
+    componentDidMount() {
+        this.props.requestSongs();
+        this.props.requestRecent();
+    }
     
     updateCurrentSong (e) {
         this.props.receiveCurrentSong(e)

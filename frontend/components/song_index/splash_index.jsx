@@ -10,9 +10,6 @@ export default class SplashIndex extends React.Component {
     }
 
 
-    componentDidMount () {
-        this.props.requestRecent()
-    }
     
     updateCurrentSong (target) {
         this.props.receiveCurrentSong(target)
@@ -20,10 +17,18 @@ export default class SplashIndex extends React.Component {
     }
 
     render () {
+
+        let songs;
+        if (this.props.index === 'recent') {
+            songs = Object.values(this.props.songs).reverse()
+        } else {
+            
+            songs = Object.values(this.props.songs)
+        }
         return (
             <div className='splash-index'>
                 
-                {this.props.songs.map(song => {
+                {songs.map(song => {
                     
                     return (
 

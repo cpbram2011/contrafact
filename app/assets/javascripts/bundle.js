@@ -243,9 +243,10 @@ var RECEIVE_SONGS = "RECEIVE_SONGS";
 var RECEIVE_SONG = "RECEIVE_SONG";
 var REMOVE_SONG = 'REMOVE_SONG';
 var RECEIVE_CURRENT_SONG = "RECEIVE_CURRENT_SONG";
-var receiveSongs = function receiveSongs(songs) {
+var receiveSongs = function receiveSongs(songs, cat) {
   return {
     type: RECEIVE_SONGS,
+    cat: cat,
     songs: songs
   };
 };
@@ -270,14 +271,14 @@ var receiveCurrentSong = function receiveCurrentSong(songId) {
 var requestSongs = function requestSongs() {
   return function (dispatch) {
     return _util_song_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchSongs"]().then(function (songs) {
-      return dispatch(receiveSongs(songs));
+      return dispatch(receiveSongs(songs, 'all'));
     });
   };
 };
 var requestRecent = function requestRecent() {
   return function (dispatch) {
     return _util_song_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchRecent"]().then(function (songs) {
-      return dispatch(receiveSongs(songs));
+      return dispatch(receiveSongs(songs, 'recent'));
     });
   };
 };
@@ -426,9 +427,13 @@ __webpack_require__.r(__webpack_exports__);
     id: "discover"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "tile-text-1"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "More of what you like"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Suggestions based on what you've liked or played"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_song_index_splash_index_container__WEBPACK_IMPORTED_MODULE_3__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "More of what you like"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Suggestions based on what you've liked or played"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_song_index_splash_index_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    index: "all"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "tile-text-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Recent Songs"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "New releases from your favorite artists"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_song_index_splash_index_container__WEBPACK_IMPORTED_MODULE_3__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Recent Songs"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "New releases from your favorite artists"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_song_index_splash_index_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    index: "recent"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "tile-text-3"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Contrafact Charts"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "The most played tracks on Contrafact this week"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_song_index_song_index_container__WEBPACK_IMPORTED_MODULE_2__["default"], null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_sidebar_sidebar_container__WEBPACK_IMPORTED_MODULE_4__["default"], null));
 });
@@ -1168,7 +1173,7 @@ var mSTP = function mSTP(state) {
     currentSong: state.session.currentSong,
     // 53
     //: 
-    songs: Object.assign({}, state.entities.songs) //
+    songs: Object.assign({}, state.entities.songs.all) //
 
   };
 };
@@ -1933,7 +1938,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var mSTP = function mSTP(state, ownProps) {
   return {
-    songs: state.entities.songs,
+    songs: state.entities.songs.all,
     id: ownProps.match.params.id,
     currentUser: state.session.id
   };
@@ -2010,12 +2015,15 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.updateCurrentSong = _this.updateCurrentSong.bind(_assertThisInitialized(_this));
     return _this;
-  } // componentDidMount() {
-  //     this.props.requestSongs();
-  // }
-
+  }
 
   _createClass(SongIndex, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.requestSongs();
+      this.props.requestRecent();
+    }
+  }, {
     key: "updateCurrentSong",
     value: function updateCurrentSong(e) {
       this.props.receiveCurrentSong(e);
@@ -2095,7 +2103,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var mSTP = function mSTP(state) {
   return {
-    songs: Object.values(state.entities.songs)
+    songs: Object.values(state.entities.songs.all)
   };
 };
 
@@ -2106,6 +2114,9 @@ var mDTP = function mDTP(dispatch) {
     },
     requestSongs: function requestSongs() {
       return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_1__["requestSongs"])());
+    },
+    requestRecent: function requestRecent() {
+      return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_1__["requestRecent"])());
     },
     openModal: function openModal(modal) {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__["openModal"])(modal));
@@ -2171,11 +2182,6 @@ var SplashIndex = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(SplashIndex, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.props.requestRecent();
-    }
-  }, {
     key: "updateCurrentSong",
     value: function updateCurrentSong(target) {
       this.props.receiveCurrentSong(target);
@@ -2185,9 +2191,17 @@ var SplashIndex = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
+      var songs;
+
+      if (this.props.index === 'recent') {
+        songs = Object.values(this.props.songs).reverse();
+      } else {
+        songs = Object.values(this.props.songs);
+      }
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "splash-index"
-      }, this.props.songs.map(function (song) {
+      }, songs.map(function (song) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "song-tile-".concat(song.id)
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2234,9 +2248,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var mSTP = function mSTP(state) {
+var mSTP = function mSTP(state, ownProps) {
   return {
-    songs: Object.values(state.entities.songs)
+    songs: state.entities.songs[ownProps.index]
   };
 };
 
@@ -2247,9 +2261,6 @@ var mDTP = function mDTP(dispatch) {
     },
     requestSongs: function requestSongs() {
       return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_2__["requestSongs"])());
-    },
-    requestRecent: function requestRecent() {
-      return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_2__["requestRecent"])());
     },
     openModal: function openModal(modal) {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["openModal"])(modal));
@@ -2781,21 +2792,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_song_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/song_actions */ "./frontend/actions/song_actions.js");
 
 /* harmony default export */ __webpack_exports__["default"] = (function () {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+    all: {},
+    recent: {}
+  };
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
+  var newState = Object.assign({}, state);
 
   switch (action.type) {
     case _actions_song_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SONGS"]:
-      return action.songs;
+      newState[action.cat] = action.songs;
+      return newState;
 
     case _actions_song_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_SONG"]:
-      var newState = Object.assign({}, state);
-      delete newState[action.songId];
+      delete newState.all[action.songId];
       return newState;
 
     case _actions_song_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SONG"]:
-      return Object.assign({}, state, action.song);
+      newState['all'] = Object.assign({}, newState['all'], action.song);
+      return newState;
 
     default:
       return state;
