@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
-
+import { FaChevronDown} from 'react-icons/fa';
 
 export default class NavBar extends React.Component {
 
@@ -41,14 +41,23 @@ export default class NavBar extends React.Component {
                     <img src="https://a-v2.sndcdn.com/assets/images/search-dbfe5cbb.svg" alt=""/>
                 </div>
                 <div className="upload-container">
-                <button onClick={() =>this.props.openModal('form')} id='form'>upload
+                <button onClick={() =>this.props.openModal('form')} id='form'>Upload
                 </button>
 
                 </div>
-                    <div id='username-dropdown'>
-                    <h2 id='username'
+                    <div className='username-dropdown'>
+                    <div>
+                    <p className="user-pic"></p>
+                    <h3 className='username'
                     onMouseOver={this.handleDropdown}
-                    >{`Welcome, ${this.props.currentUser.username}`}</h2>
+                    onClick={this.handleDropdown}
+                    >{this.props.currentUser.username}</h3>
+                    <FaChevronDown classname='chevron'
+                    onClick={this.handleDropdown}
+                    />
+                    </div>
+
+
                     {this.state.dropdown ? (
                         <button id='logout' onClick={this.props.logout}>Logout</button>
                     ) : null}

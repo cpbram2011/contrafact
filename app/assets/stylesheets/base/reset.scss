@@ -55,11 +55,12 @@ button {
   text-decoration: none;
   font-size: 1rem;
   cursor: pointer;
+  
+  -webkit-appearance: none;
 }
 
 /* Make images easier to work with */
 img {
-  max-width: 100%;
   display: block;
 }
 
