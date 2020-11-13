@@ -57,12 +57,11 @@ export default class Form extends React.Component {
             }
             return null;
         } 
-        if (this.state.progress === 1){
-            if (this.state.artist.length === 0  || this.state.artist.length === 0){
-                this.setState({errors: ['More info required']});
-                return null;
-            }
+        if (this.state.artist.length === 0  || this.state.artist.length === 0){
+            this.setState({errors: ['More info required']});
+            return null;
         }
+        
         
         const formData = new FormData();
         formData.append('song[title]', this.state.title)
@@ -71,18 +70,13 @@ export default class Form extends React.Component {
         if (this.state.track) {
             formData.append('song[track]', this.state.track)
         } 
+        
         if (!this.state.cover) {
-            // const fileReader = new FileReader();
-            // fileReader.readAsDataURL("https://contrafact-seeds.s3.us-east-2.amazonaws.com/cover_plaeholder.png");
-            // fileReader.onloadend = () => {
-            //     formData.append('song[cover]', fileReader.result)
-            // };
+            //TODO why did this stop workingggg??
             let cover = new File(['cover'], "https://contrafact-seeds.s3.us-east-2.amazonaws.com/cover_plaeholder.png")
-            
-            formData.append('song[cover]', cover)
+            formData.append('song[cover]', cover);
         } else {
             formData.append('song[cover]', this.state.cover)
-            
         }
         this.props.createSong(formData)
         this.props.closeModal()
@@ -97,7 +91,7 @@ export default class Form extends React.Component {
                 accept="audio/mpeg"
                 />
             
-        } else { //TODO
+        } else {
             
             formStuff = 
             <div>

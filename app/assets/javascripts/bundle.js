@@ -596,13 +596,11 @@ var Form = /*#__PURE__*/function (_React$Component) {
         return null;
       }
 
-      if (this.state.progress === 1) {
-        if (this.state.artist.length === 0 || this.state.artist.length === 0) {
-          this.setState({
-            errors: ['More info required']
-          });
-          return null;
-        }
+      if (this.state.artist.length === 0 || this.state.artist.length === 0) {
+        this.setState({
+          errors: ['More info required']
+        });
+        return null;
       }
 
       var formData = new FormData();
@@ -615,11 +613,7 @@ var Form = /*#__PURE__*/function (_React$Component) {
       }
 
       if (!this.state.cover) {
-        // const fileReader = new FileReader();
-        // fileReader.readAsDataURL("https://contrafact-seeds.s3.us-east-2.amazonaws.com/cover_plaeholder.png");
-        // fileReader.onloadend = () => {
-        //     formData.append('song[cover]', fileReader.result)
-        // };
+        //TODO why did this stop workingggg??
         var cover = new File(['cover'], "https://contrafact-seeds.s3.us-east-2.amazonaws.com/cover_plaeholder.png");
         formData.append('song[cover]', cover);
       } else {
@@ -641,7 +635,6 @@ var Form = /*#__PURE__*/function (_React$Component) {
           accept: "audio/mpeg"
         });
       } else {
-        //TODO
         formStuff = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           type: "text",
           value: this.state.title,
