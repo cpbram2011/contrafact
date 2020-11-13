@@ -1033,9 +1033,7 @@ var Play = /*#__PURE__*/function (_React$Component) {
       isPlaying: false,
       volume: 50,
       volumeShow: false,
-      currentTime: 0,
-      currentSongTitle: 'this thing' //this.props.curren
-
+      currentTime: 0
     };
     _this.reff = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef();
     _this.pause = _this.pause.bind(_assertThisInitialized(_this));
@@ -1139,6 +1137,17 @@ var Play = /*#__PURE__*/function (_React$Component) {
       this.props.receiveCurrentSong(nextTrack.id);
     }
   }, {
+    key: "formatTime",
+    value: function formatTime(time) {
+      time = Math.floor(time);
+      var sec = time % 60;
+      var min = (time - sec) / 60;
+      if (sec < 10) sec = '0' + sec;
+      if (min < 10) min = '0' + min;
+      if (Number.isNaN(min) || Number.isNaN(sec)) return null;
+      return "".concat(min, " : ").concat(sec);
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this6 = this;
@@ -1155,6 +1164,8 @@ var Play = /*#__PURE__*/function (_React$Component) {
         };
       }
 
+      var currentTime = this.formatTime(this.reff.currentTime);
+      var duration = this.formatTime(this.reff.duration);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "player".concat(this.props.currentSong ? '' : '-hidden')
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -1170,16 +1181,18 @@ var Play = /*#__PURE__*/function (_React$Component) {
         ref: function ref(input) {
           _this6.reff = input;
         }
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "playing-song"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, load.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "-"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, load.artist)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "currentTime"
+      }, currentTime), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         id: "progress-bar",
         type: "range",
         step: "1",
         min: "1",
         max: "1000",
         onClick: this.scrub()
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "duration"
+      }, duration), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "volume-parent"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_1__["FaVolumeUp"], {
         id: "vol-icon",
@@ -1193,7 +1206,9 @@ var Play = /*#__PURE__*/function (_React$Component) {
         max: "100",
         defaultValue: this.state.volume,
         onChange: this.volumeSlide()
-      })));
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "playing-song"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, load.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "-"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, load.artist)));
     }
   }]);
 
