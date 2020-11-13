@@ -523,7 +523,9 @@ var Form = /*#__PURE__*/function (_React$Component) {
       title: '',
       artist: '',
       track: null,
-      cover: null
+      cover: null,
+      progress: 0,
+      errors: []
     };
     _this.updateMp3 = _this.updateMp3.bind(_assertThisInitialized(_this));
     _this.updateCover = _this.updateCover.bind(_assertThisInitialized(_this));
@@ -549,9 +551,15 @@ var Form = /*#__PURE__*/function (_React$Component) {
 
       return function (e) {
         e.preventDefault();
+        var track = e.target.files[0];
+        console.log(track.name.split(".")[0]);
 
         _this3.setState({
-          track: e.target.files[0]
+          title: track.name.split(".")[0]
+        });
+
+        _this3.setState({
+          track: track
         });
       };
     }
@@ -572,6 +580,31 @@ var Form = /*#__PURE__*/function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
+
+      if (this.state.progress === 0) {
+        if (this.state.track === null) {
+          this.setState({
+            errors: ['Choose an audio file to upload']
+          });
+        } else {
+          this.setState({
+            progress: 1,
+            errors: []
+          });
+        }
+
+        return null;
+      }
+
+      if (this.state.progress === 1) {
+        if (this.state.artist.length === 0 || this.state.artist.length === 0) {
+          this.setState({
+            errors: ['More info required']
+          });
+          return null;
+        }
+      }
+
       var formData = new FormData();
       formData.append('song[title]', this.state.title);
       formData.append('song[artist]', this.state.artist);
@@ -599,27 +632,39 @@ var Form = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var formStuff;
+
+      if (this.state.progress === 0) {
+        formStuff = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          type: "file",
+          onChange: this.updateMp3(this),
+          accept: "audio/mpeg"
+        });
+      } else {
+        //TODO
+        formStuff = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          type: "text",
+          value: this.state.title,
+          onChange: this.update('title')
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          type: "text",
+          value: this.state.artist,
+          onChange: this.update('artist'),
+          placeholder: "Artist*"
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "* required field"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          type: "file",
+          onChange: this.updateCover(this),
+          accept: "image/*"
+        }));
+      }
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-box"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Upload Song"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", _defineProperty({
-        type: "text",
-        value: this.props.title,
-        onChange: this.update('title'),
-        placeholder: "Track Title"
-      }, "onChange", this.update('title'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", _defineProperty({
-        type: "text",
-        value: this.props.artist,
-        onChange: this.update('artist'),
-        placeholder: "Artist"
-      }, "onChange", this.update('artist'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "file",
-        onChange: this.updateMp3(this),
-        accept: "audio/mpeg"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "file",
-        onChange: this.updateCover(this),
-        accept: "image/*"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Upload Song"), this.state.errors.map(function (e) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          className: "errors"
+        }, e);
+      }), formStuff, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.handleSubmit
       }, "Submit"));
     }

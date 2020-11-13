@@ -10,6 +10,8 @@ export default class Form extends React.Component {
             artist: '',
             track: null,
             cover: null,
+            progress: 0,
+            errors: []
             
         }
 
@@ -30,8 +32,10 @@ export default class Form extends React.Component {
     updateMp3 () {
         return e => {
             e.preventDefault();
-            this.setState({track: e.target.files[0]})
-        
+            const track = e.target.files[0]
+            console.log(track.name.split(".")[0])
+            this.setState({title: track.name.split(".")[0]})
+            this.setState({track: track})
             
         }
     }
@@ -45,6 +49,20 @@ export default class Form extends React.Component {
 
     handleSubmit (e) {
         e.preventDefault()
+        if (this.state.progress === 0){
+            if (this.state.track === null){
+                this.setState({errors: ['Choose an audio file to upload']})
+            } else {
+                this.setState({progress: 1, errors: []})
+            }
+            return null;
+        } 
+        if (this.state.progress === 1){
+            if (this.state.artist.length === 0  || this.state.artist.length === 0){
+                this.setState({errors: ['More info required']});
+                return null;
+            }
+        }
         
         const formData = new FormData();
         formData.append('song[title]', this.state.title)
@@ -72,33 +90,46 @@ export default class Form extends React.Component {
 
 
     render () {
-        return (
-            <div className='form-box'>
-                <h1>Upload Song</h1>
-
-                <input type="text" 
-                value= {this.props.title}
-                onChange={this.update('title')}            
-                placeholder="Track Title"
-                onChange={this.update('title')}
-                />
-
-                <input type="text" 
-                value= {this.props.artist}
-                onChange={this.update('artist')}           
-                placeholder="Artist"
-                onChange={this.update('artist')}
-                />
-
-                <input type="file"
+        let formStuff;
+        if (this.state.progress === 0) {
+            formStuff = <input type="file"
                 onChange={this.updateMp3(this)}
                 accept="audio/mpeg"
                 />
+            
+        } else { //TODO
+            
+            formStuff = 
+            <div>
 
-                <input type="file"
-                onChange={this.updateCover(this)}
-                accept="image/*"
-                />
+            <input type="text" 
+            value= {this.state.title}
+            onChange={this.update('title')} 
+            />
+            
+            <input type="text" 
+            value= {this.state.artist}
+            onChange={this.update('artist')}           
+            placeholder="Artist*"
+            />
+            <p>* required field</p>
+            <input type="file"
+            onChange={this.updateCover(this)}
+            accept="image/*"
+            />
+            </div>
+        }
+        return (
+            <div className='form-box'>
+                <h1>Upload Song</h1>
+                {this.state.errors.map(e => {
+                    return (
+                        <li className="errors">
+                            {e}
+                        </li>
+                    )
+                })}
+                {formStuff}
 
                 <button onClick={this.handleSubmit}>Submit</button>
             </div>
