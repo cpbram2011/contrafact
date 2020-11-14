@@ -41,7 +41,7 @@ export default class SongIndex extends React.Component {
                                 <FaPlayCircle className="play-circle"
                                 onClick={() => this.updateCurrentSong(song.id)}
                                 />
-                                <img className="cover-art" src={song.cover} 
+                                <img className="cover-art"  src={song.cover} 
                                 id={song.id}
                                 alt=""/>
                             </div>

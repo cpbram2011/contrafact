@@ -5,6 +5,8 @@ import React from 'react';
 export default class Form extends React.Component {
     constructor(props) {
         super(props)
+        // const cover = new File(['cover'], "https://contrafact-seeds.s3.us-east-2.amazonaws.com/cover_plaeholder.png");
+        
         this.state = {
             title: '',
             artist: '',
@@ -72,12 +74,14 @@ export default class Form extends React.Component {
         } 
         
         if (!this.state.cover) {
-            //TODO why did this stop workingggg??
+            // TODO why did this stop workingggg??
             let cover = new File(['cover'], "https://contrafact-seeds.s3.us-east-2.amazonaws.com/cover_plaeholder.png")
-            formData.append('song[cover]', cover);
+            formData.append('song[cover]', cover)
         } else {
             formData.append('song[cover]', this.state.cover)
+            
         }
+        
         this.props.createSong(formData)
         this.props.closeModal()
     }
@@ -100,7 +104,7 @@ export default class Form extends React.Component {
             value= {this.state.title}
             onChange={this.update('title')} 
             />
-            
+            {/* <img src={this.state.cover.name} alt="" srcset=""/> */}
             <input type="text" 
             value= {this.state.artist}
             onChange={this.update('artist')}           

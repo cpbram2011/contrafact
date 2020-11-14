@@ -59,7 +59,13 @@ export default class NavBar extends React.Component {
 
 
                     {this.state.dropdown ? (
-                        <button id='logout' onClick={this.props.logout}>Logout</button>
+                        <div>
+                            <Link to={`user/${this.props.currentUser.id}`}>
+
+                            <button id='logout'>Profile</button>
+                            </Link>
+                            <button id='logout' onClick={this.props.logout}>Logout</button>
+                        </div>
                     ) : null}
                     </div>
 
