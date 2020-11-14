@@ -45,29 +45,28 @@ export default class NavBar extends React.Component {
                 </button>
 
                 </div>
-                    <div className='username-dropdown'>
+                <div className='username-dropdown'>
                     <div>
-                    <p className="user-pic"></p>
-                    <h3 className='username'
-                    onMouseOver={this.handleDropdown}
-                    onClick={this.handleDropdown}
-                    >{this.props.currentUser.username}</h3>
-                    <FaChevronDown classname='chevron'
-                    onClick={this.handleDropdown}
-                    />
+                        <p className="user-pic"></p>
+                        <h3 className='username'
+                        onMouseOver={this.handleDropdown}
+                        onClick={this.handleDropdown}
+                        >{this.props.currentUser.username}</h3>
+                        <FaChevronDown classname='chevron'
+                        onClick={this.handleDropdown}
+                        />
                     </div>
 
 
                     {this.state.dropdown ? (
-                        <div>
+                        <ul>
                             <Link to={`user/${this.props.currentUser.id}`}>
-
                             <button id='logout'>Profile</button>
                             </Link>
                             <button id='logout' onClick={this.props.logout}>Logout</button>
-                        </div>
+                        </ul>
                     ) : null}
-                    </div>
+                </div>
 
                     
             </div>
