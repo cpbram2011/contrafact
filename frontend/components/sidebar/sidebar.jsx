@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaUserFriends, FaHeart, FaComment } from 'react-icons/fa';
-
+import {Link} from 'react-router-dom';
 export default class Sidebar extends React.Component {
     
     componentDidMount () {
@@ -13,7 +13,9 @@ export default class Sidebar extends React.Component {
             return (
                 <li className={`users-${user.id}`}>
                     <p className={`users-pic-${user.id}`}/>
+                    <Link to={`user/${user.id}`} >
                     <h3>{user.username}</h3>
+                    </Link>
                     <FaHeart className='fa'/>
                     <t>714</t>
                     <FaComment className='fa'/>

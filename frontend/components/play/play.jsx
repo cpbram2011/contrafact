@@ -12,7 +12,7 @@ export default class Play extends React.Component {
             volume: 50,
             volumeShow: false,
             currentTime: 0,
-            currentSongTitle: 'this thing' //this.props.curren
+
         }
         this.reff = React.createRef();
         this.pause = this.pause.bind(this)
@@ -91,7 +91,15 @@ export default class Play extends React.Component {
         this.props.receiveCurrentSong(nextTrack.id)
     }
 
-
+    formatTime(time){
+        time = Math.floor(time);
+        let sec = time % 60;
+        let min = (time - sec) / 60;
+        if (sec < 10) sec = '0' + sec
+        if (min < 10) min = '0' + min
+        if (Number.isNaN(min) || Number.isNaN(sec)) return null;
+        return `${min} : ${sec}`
+    }
     
     render () {
         let load;
@@ -100,8 +108,8 @@ export default class Play extends React.Component {
         } else {
             load = {title: '', artist: '', track: ''}
         }
-
-        
+        const currentTime = this.formatTime(this.reff.currentTime)
+        const duration = this.formatTime(this.reff.duration)
         return (
             <div className={`player${this.props.currentSong ? '' : '-hidden'}`}>
                 
@@ -113,12 +121,7 @@ export default class Play extends React.Component {
                 src={load.track}
                 ref={(input) => {this.reff = input}}
                 ></audio>
-                <div className='playing-song'>                   
-               <p>{load.title}</p>
-                <p>-</p>
-                <p>{load.artist}</p>
-                </div>
-                
+                <p className="currentTime">{currentTime}</p>
                 <input id='progress-bar'
                 type="range" 
                 step='1' 
@@ -126,7 +129,7 @@ export default class Play extends React.Component {
                 max="1000" 
                 onClick={this.scrub()}
                 ></input>
-
+                <p className="duration">{duration}</p>
                 <div className="volume-parent">
                 <FaVolumeUp id='vol-icon'
                 onMouseEnter={this.volumeShow()}
@@ -141,6 +144,11 @@ export default class Play extends React.Component {
                 defaultValue={this.state.volume}
                 onChange={this.volumeSlide()}
                 ></input>
+                </div>
+                <div className='playing-song'>                   
+                <p>{load.title}</p>
+                <p>-</p>
+                <p>{load.artist}</p>
                 </div>
                 
             </div>

@@ -10,6 +10,7 @@ body{
 
 
 .nav-bar {
+    padding-left: 113.5px;
     background-color: rgb(44, 44, 44);
     position: fixed;
     z-index: 10;
@@ -21,7 +22,7 @@ body{
     height: 40px;
     display: flex;  
     align-items: flex-end;
-    justify-content: space-around;
+
     padding-bottom: 5px;
 }
 
@@ -32,10 +33,6 @@ body{
 #session-buttons {
     display: block;
     z-index: 1;
-}
-
-#username:hover #session-buttons {
-    display: block;
 }
 
 #session-buttons button {
@@ -64,15 +61,16 @@ body{
 #contrafact {
     transform: rotate(270deg);
     
-
     margin-bottom: -5px;
     
-    width: 40px;
     transition: ease-in-out;
     transition-timing-function: ease-in-out;
     opacity: 0.4;
     background-color: red;
     
+    img {
+        width: 40px;
+    }
 }
 
 #contrafact:hover {
@@ -97,6 +95,25 @@ body{
     padding:(2px 3px 2px 3px);
     margin: (2px 1px 2px 1px);
     cursor:pointer;
+}
+
+.upload-container {
+    margin-left: 10px;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    button {
+        color: #b1b1b1;
+
+    }
+
+    button:hover{
+        color: white
+    }
 }
 
 .nav-links {

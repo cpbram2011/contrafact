@@ -18,6 +18,10 @@ class Api::SongsController < ApplicationController
     
     def create
         @song = Song.new(song_params)
+        # if !@song.cover.attached?  #TODO keep?
+        #     cover = open("https://contrafact-seeds.s3.us-east-2.amazonaws.com/cover_plaeholder.png")
+        #     @song.cover.attach(io: cover, filename: "cover.jpg")
+        # end
         if @song.save
             render :show
         else
