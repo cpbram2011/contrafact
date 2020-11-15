@@ -257,7 +257,7 @@ var logout = function logout() {
 /*!******************************************!*\
   !*** ./frontend/actions/song_actions.js ***!
   \******************************************/
-/*! exports provided: RECEIVE_SONGS, RECEIVE_SONG, REMOVE_SONG, RECEIVE_CURRENT_SONG, receiveSongs, receiveSong, removeSong, receiveCurrentSong, requestSongs, requestRecent, requestSong, requestCurrentSong, createSong, deleteSong */
+/*! exports provided: RECEIVE_SONGS, RECEIVE_SONG, REMOVE_SONG, RECEIVE_CURRENT_SONG, receiveSongs, receiveSong, removeSong, receiveCurrentSong, requestSongs, requestRecent, requestSong, requestCurrentSong, createSong, deleteSong, requestPlaylist */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -276,7 +276,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "requestCurrentSong", function() { return requestCurrentSong; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createSong", function() { return createSong; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteSong", function() { return deleteSong; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "requestPlaylist", function() { return requestPlaylist; });
 /* harmony import */ var _util_song_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/song_api_util */ "./frontend/util/song_api_util.js");
+/* harmony import */ var _util_playlist_api_util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/playlist_api_util */ "./frontend/util/playlist_api_util.js");
+
 
 var RECEIVE_SONGS = "RECEIVE_SONGS";
 var RECEIVE_SONG = "RECEIVE_SONG";
@@ -346,6 +349,13 @@ var deleteSong = function deleteSong(songId) {
   return function (dispatch) {
     return _util_song_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteSong"](songId).then(function (song) {
       dispatch(removeSong(Object.keys(song)[0]));
+    });
+  };
+};
+var requestPlaylist = function requestPlaylist(playlistId) {
+  return function (dispatch) {
+    return _util_playlist_api_util__WEBPACK_IMPORTED_MODULE_1__["fetchPlaylist"](playlistId).then(function (songs) {
+      dispatch(receiveSongs(songs, playlistId));
     });
   };
 };
@@ -1454,7 +1464,7 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
       e.preventDefault();
       this.props.guest({
         username: 'Stranger',
-        email: 'strange',
+        email: 'email@website.com',
         password: 'stranger'
       }).then(this.props.closeModal);
     }
@@ -1680,7 +1690,7 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
       e.preventDefault();
       this.props.guest({
         username: 'Stranger',
-        email: 'strange',
+        email: 'email@website.com',
         password: 'stranger'
       }).then(this.props.closeModal);
     }

@@ -14,7 +14,7 @@ PlaylistSong.destroy_all
 
 
 usernames = ['coolguy57','radchad99','cannedCoffee','Stranger']
-emails = ['no@thanks.com','jazzrulez68@gmail.com','starbucks@caribou.com','strange']
+emails = ['no@thanks.com','jazzrulez68@gmail.com','starbucks@caribou.com','email@website.com']
 passwords = ['asdfjkl','password','abcd1234','stranger']
 users = 4.times.map {|i| User.create!({
     username: usernames[i],
@@ -86,13 +86,23 @@ s8.save!
 
 p1 = Playlist.new(title: "Jazz Piano", author_id: users[0].id)
 p1.save!
-
 ps1 = PlaylistSong.new(song_id: s3.id, playlist_id: p1.id)
 ps2 = PlaylistSong.new(song_id: s6.id, playlist_id: p1.id)
 ps3 = PlaylistSong.new(song_id: s7.id, playlist_id: p1.id)
 ps1.save!
 ps2.save!
 ps3.save!
+
+p2 = Playlist.new(title: "My Favorites", author_id: users[3].id)
+p2.save!
+ps4 = PlaylistSong.new(song_id: s1.id, playlist_id: p2.id)
+ps5 = PlaylistSong.new(song_id: s4.id, playlist_id: p2.id)
+ps6 = PlaylistSong.new(song_id: s8.id, playlist_id: p2.id)
+ps4.save!
+ps5.save!
+ps6.save!
+
+
 
 
 
