@@ -12,3 +12,13 @@ export const fetchPlaylists = userId => (
     })
 );
 
+
+export const createPlaylist = playlist => (
+    $.ajax({
+        url: 'api/playlists',
+        method: "POST",
+        data: playlist,
+        contentType: false,
+        processData: false
+    })
+)

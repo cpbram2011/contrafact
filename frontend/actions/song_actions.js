@@ -1,4 +1,6 @@
 import * as SongAPI from '../util/song_api_util';
+import * as PlaylistAPI from '../util/playlist_api_util';
+
 
 
 export const RECEIVE_SONGS = "RECEIVE_SONGS";
@@ -41,9 +43,7 @@ export const requestSong = songId => dispatch => (
 
 
 export const requestCurrentSong = songId => dispatch => (
-    SongAPI.fetchSong(songId).then(
-        
-        song => dispatch(receiveCurrentSong(song)))
+    SongAPI.fetchSong(songId).then(song => dispatch(receiveCurrentSong(song)))
 )
 
 
@@ -55,8 +55,13 @@ export const createSong = song => dispatch => (
 export const deleteSong = songId => dispatch => (
     SongAPI.deleteSong(songId).then(song => {
         dispatch(removeSong(Object.keys(song)[0]))
-        }
-
-        )
-
+        })
 );
+
+
+
+export const requestPlaylist = playlistId => dispatch => (
+    PlaylistAPI.fetchPlaylist(playlistId).then(songs => {
+        dispatch(receiveSongs(songs, playlistId))
+    })
+)

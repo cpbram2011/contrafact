@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     get '/api/users/:id/playlists', to: 'api/playlists#index'
   namespace :api, defaults: {format: "json"} do
     resources :users, only: [:create, :show]
+    resources :playlists, only: [:create, :update, :destroy]
     resource :session, only: [:create, :destroy]
     resources :songs, only: [:index, :show, :create, :destroy]
   end

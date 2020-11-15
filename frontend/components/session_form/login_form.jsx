@@ -56,7 +56,7 @@ export default class SessionForm extends React.Component {
         
         this.props.guest ({
             username: 'Stranger',
-            email: 'strange',
+            email: 'email@website.com',
             password: 'stranger'
         }).then(this.props.closeModal);
     }

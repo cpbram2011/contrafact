@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import LoginFormContainer from '../session_form/login_form_container';
 import SignupFormContainer from '../session_form/signup_form_container';
 import Form from '../form/form_container'
+import PlaylistForm from '../form/playlist_container';
 
 
 
@@ -21,6 +22,9 @@ function Modal({modal, closeModal}) {
       break;
     case 'form':
       component = <Form />;
+      break;
+    case 'playlistForm':
+      component = <PlaylistForm />;
       break;
     default:
       return null;

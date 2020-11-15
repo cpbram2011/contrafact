@@ -10,7 +10,7 @@ import PlayContainer from './play/play_container';
 import SongShow from './songShow/song_show_container.js'
 import UserShow from './user/show_container';
 import Footer from './footer/footer';
-import Library from './library/library'
+import Library from './library/library_container'
 
 export default () => (
     <div>
