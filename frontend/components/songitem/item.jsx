@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaPlayCircle, FaHeart } from 'react-icons/fa';
 
 
 export default class SongItem extends React.Component {

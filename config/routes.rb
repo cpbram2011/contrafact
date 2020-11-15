@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     get '/api/users/findemail', to: 'api/users#findemail'
     get '/api/users', to: 'api/users#index'
     get '/api/songs/recent', to: 'api/songs#recent'
-
+    get '/api/users/:id/playlists', to: 'api/playlists#index'
   namespace :api, defaults: {format: "json"} do
     resources :users, only: [:create, :show]
     resource :session, only: [:create, :destroy]
