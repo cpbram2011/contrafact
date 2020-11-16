@@ -5,7 +5,11 @@ export default class Playlist extends React.Component {
 
 
     componentDidMount(){
-        this.props.requestPlaylist(this.props.tag)
+        if (this.props.tag) {
+            this.props.requestPlaylist(this.props.tag);
+        } else {
+            this.props.requestPlaylist(this.props.match.params.id)
+        }
     }
     render () {
 

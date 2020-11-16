@@ -11,6 +11,8 @@ import SongShow from './songShow/song_show_container.js'
 import UserShow from './user/show_container';
 import Footer from './footer/footer';
 import Library from './library/library_container'
+import Playlist from './playlist/playlist_container';
+
 
 export default () => (
     <div>
@@ -27,6 +29,7 @@ export default () => (
             <ProtectedRoute path='/home' component={DiscoverContainer}/>
             <ProtectedRoute path='/song/:id' component={SongShow}/>
             <ProtectedRoute path='/user/:id' component={UserShow}/>
+            <ProtectedRoute path='/playlist/:id' component={Playlist}/>
             <AuthRoute exact path='/' component={SplashContainer}/>
             
         </Switch>

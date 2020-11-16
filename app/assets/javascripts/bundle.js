@@ -476,6 +476,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _user_show_container__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./user/show_container */ "./frontend/components/user/show_container.js");
 /* harmony import */ var _footer_footer__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./footer/footer */ "./frontend/components/footer/footer.jsx");
 /* harmony import */ var _library_library_container__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./library/library_container */ "./frontend/components/library/library_container.js");
+/* harmony import */ var _playlist_playlist_container__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./playlist/playlist_container */ "./frontend/components/playlist/playlist_container.js");
+
 
 
 
@@ -506,6 +508,9 @@ __webpack_require__.r(__webpack_exports__);
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_5__["ProtectedRoute"], {
     path: "/user/:id",
     component: _user_show_container__WEBPACK_IMPORTED_MODULE_9__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_5__["ProtectedRoute"], {
+    path: "/playlist/:id",
+    component: _playlist_playlist_container__WEBPACK_IMPORTED_MODULE_12__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_5__["AuthRoute"], {
     exact: true,
     path: "/",
@@ -1787,7 +1792,11 @@ var Playlist = /*#__PURE__*/function (_React$Component) {
   _createClass(Playlist, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.requestPlaylist(this.props.tag);
+      if (this.props.tag) {
+        this.props.requestPlaylist(this.props.tag);
+      } else {
+        this.props.requestPlaylist(this.props.match.params.id);
+      }
     }
   }, {
     key: "render",
@@ -1833,9 +1842,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
+  var index = ownProps.tag || ownProps.match.params.id;
   return {
-    playlist: state.entities.playlists[ownProps.tag],
-    songs: state.entities.songs[ownProps.tag]
+    playlist: state.entities.playlists[index],
+    songs: state.entities.songs[index]
   };
 };
 
@@ -3172,6 +3182,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _songitem_item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../songitem/item */ "./frontend/components/songitem/item.jsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -3193,6 +3204,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -3248,7 +3260,9 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
           });
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "playlist-".concat(playlist.id)
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, playlist.title), songs.length === 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+            to: "/playlist/".concat(playlist.id)
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, playlist.title)), songs.length === 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
             className: "playlist-empty"
           }, "empty") : songs);
         });
@@ -3258,7 +3272,7 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
           src: "https://contrafact-seeds.s3.us-east-2.amazonaws.com/emptytab.PNG",
           alt: "",
           srcset: ""
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Its a bit quiet over here"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "This user has no playlists"));
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "It's a bit quiet over here"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "This user has no playlists"));
       } else if (this.state.tab === 'tracks') {
         if (Object.values(this.props.songs).length === 0) {
           tab = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3267,7 +3281,7 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
             src: "https://contrafact-seeds.s3.us-east-2.amazonaws.com/emptytab.PNG",
             alt: "",
             srcset: ""
-          }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Its a bit quiet over here"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "This user has no uploaded tracks"));
+          }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "It's a bit quiet over here"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "This user has no uploaded tracks"));
         } else {
           tab = Object.values(this.props.songs).map(function (song, i) {
             return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_songitem_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -3283,7 +3297,7 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
           src: "https://contrafact-seeds.s3.us-east-2.amazonaws.com/emptytab.PNG",
           alt: "",
           srcset: ""
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Its a bit quiet over here"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Album functionality coming soon!"));
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "It's a bit quiet over here"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Album functionality coming soon!"));
       }
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

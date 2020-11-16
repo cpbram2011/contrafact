@@ -1,6 +1,6 @@
 import React from 'react';
 import SongItem from '../songitem/item';
-
+import {Link} from 'react-router-dom';
 export default class UserShow extends React.Component{
 
     constructor(props){
@@ -32,7 +32,9 @@ export default class UserShow extends React.Component{
                     ))
                     return (
                         <div className={`playlist-${playlist.id}`}>
+                            <Link to={`/playlist/${playlist.id}`} >
                             <h2>{playlist.title}</h2>
+                            </Link>
                                 {songs.length === 0 ? (
                                     <p className='playlist-empty'>empty</p>
                                 ) : songs}
@@ -42,7 +44,7 @@ export default class UserShow extends React.Component{
             if (tab.length === 0) tab = (
                 <div className='empty'>
                 <img src="https://contrafact-seeds.s3.us-east-2.amazonaws.com/emptytab.PNG" alt="" srcset=""/>
-                <h3>Its a bit quiet over here</h3>
+                <h3>It's a bit quiet over here</h3>
                 <h4>This user has no playlists</h4>
                 </div>
             )
@@ -53,7 +55,7 @@ export default class UserShow extends React.Component{
             if (Object.values(this.props.songs).length === 0 ) {tab = (
                 <div className='empty'>
                 <img src="https://contrafact-seeds.s3.us-east-2.amazonaws.com/emptytab.PNG" alt="" srcset=""/>
-                <h3>Its a bit quiet over here</h3>
+                <h3>It's a bit quiet over here</h3>
                 <h4>This user has no uploaded tracks</h4>
                 </div>
             )} else {
@@ -68,7 +70,7 @@ export default class UserShow extends React.Component{
             tab = (
                 <div className='empty'>
                 <img src="https://contrafact-seeds.s3.us-east-2.amazonaws.com/emptytab.PNG" alt="" srcset=""/>
-                <h3>Its a bit quiet over here</h3>
+                <h3>It's a bit quiet over here</h3>
                 <h4>Album functionality coming soon!</h4>
                 </div>
             )
