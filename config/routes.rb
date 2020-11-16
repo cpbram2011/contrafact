@@ -26,9 +26,11 @@ Rails.application.routes.draw do
     get '/api/users', to: 'api/users#index'
     get '/api/songs/recent', to: 'api/songs#recent'
     get '/api/users/:id/playlists', to: 'api/playlists#index'
+    post 'api/playlists/:id/add', to: 'api/playlists#addSong'
+
   namespace :api, defaults: {format: "json"} do
     resources :users, only: [:create, :show]
-    resources :playlists, only: [:create, :update, :destroy]
+    resources :playlists, only: [:create, :show, :update, :destroy]
     resource :session, only: [:create, :destroy]
     resources :songs, only: [:index, :show, :create, :destroy]
   end

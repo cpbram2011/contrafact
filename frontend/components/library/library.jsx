@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Playlist from '../playlist/playlist_container';
 export default class Library extends React.Component {
 
     componentDidMount() {
@@ -8,20 +8,7 @@ export default class Library extends React.Component {
     render () {
         let playlists = Object.values(this.props.playlists).map(playlist => {
             if (playlist.author_id != this.props.currentUser) return null;
-            let songs = playlist.songs.map(song => {
-                return (
-                    <li>
-                        <p>{song.title}</p>
-                        <p>{song.artist}</p>
-                    </li>
-                )
-            })
-            return (
-                <li className="playlistcontainer">
-                    <h2>{playlist.title}</h2>
-                    {songs}
-                </li>
-            )
+            return (<Playlist tag={playlist.id} />)
         })
         return (
             <div className="library">
@@ -34,3 +21,5 @@ export default class Library extends React.Component {
         )
     }
 }
+
+

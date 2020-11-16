@@ -5,6 +5,7 @@ import LoginFormContainer from '../session_form/login_form_container';
 import SignupFormContainer from '../session_form/signup_form_container';
 import Form from '../form/form_container'
 import PlaylistForm from '../form/playlist_container';
+import AddPlaylist from '../form/add_playlist_container';
 
 
 
@@ -25,6 +26,9 @@ function Modal({modal, closeModal}) {
       break;
     case 'playlistForm':
       component = <PlaylistForm />;
+      break;
+    case 'addSong':
+      component = <AddPlaylist />;
       break;
     default:
       return null;

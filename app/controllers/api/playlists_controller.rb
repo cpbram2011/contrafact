@@ -22,6 +22,13 @@ class Api::PlaylistsController < ApplicationController
         end
 
     end
+
+    def addSong
+
+
+    end
+
+
     private
 
     def playlist_params

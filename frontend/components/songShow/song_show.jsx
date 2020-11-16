@@ -87,14 +87,20 @@ export default class SongShow extends React.Component {
                         </button>
                         {this.state.dropdown ? (
                         <div className="dropdown-child">
-                        {this.props.currentUser === song.uploader_id ? (
                             <p
-                            onClick={() => {
+                            onClick={ () => {this.props.openModal('addSong') }}
+                            >Add to playlist</p>
+
+
+                            {this.props.currentUser === song.uploader_id ? (
+                                <p
+                                onClick={() => {
                                 this.props.history.push("/home")
                                 this.props.deleteSong(song.id)}}
                                 >Delete Song</p>
-                                ) : null}
-                            
+                                ) : null
+                            }
+
                         </div>
                         ) : null}
                         </div>
