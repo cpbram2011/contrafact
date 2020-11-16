@@ -33,6 +33,10 @@ export const requestSongs = () => dispatch => (
     SongAPI.fetchSongs().then(songs => dispatch(receiveSongs(songs, 'all')))
 );
 
+export const requestUploaderSongs = (userId) => dispatch => (
+    SongAPI.fetchUploaderSongs(userId).then(songs => dispatch(receiveSongs(songs, userId)))
+);
+
 export const requestRecent = () => dispatch => (
     SongAPI.fetchRecent().then(songs => dispatch(receiveSongs(songs, 'recent')))
 );

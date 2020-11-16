@@ -36,5 +36,11 @@ export const deleteSong = songId => (
     })
 );
 
+export const fetchUploaderSongs = userId => (
+    $.ajax({
+        url: `api/users/${userId}/songs`
+    })
+);
+
 
 

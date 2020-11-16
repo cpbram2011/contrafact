@@ -1,0 +1,72 @@
+
+.user-show {
+    background-color: white;
+    width: 1300px;
+    margin: 0 auto;
+    margin-top: 50px;
+
+    .user-deets {
+        background-color: black;
+        height: 380px;
+
+        color: white;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+    
+        
+
+        p {
+            background-image: url("https://contrafact-seeds.s3.us-east-2.amazonaws.com/blank-profile-picture-973460_640.png");
+            background-size: cover;
+            border-radius: 2px solid grey;
+            height: 340px;
+            width: 340px;
+        }
+    }
+
+    .tab-bar {
+        margin: 10px 0;
+        t {
+            display: inline;
+            cursor: pointer;
+            width: 120px;
+            margin: 10px;
+            font-size: 1.1em;
+            border-bottom: 1px solid black;
+
+        }
+        .selected {
+            border-bottom: 1px solid rgb(160, 33, 33);
+            color: rgb(160, 33, 33);
+        }
+    }
+}
+
+.tab {
+    .empty {
+        width: 600px;
+        margin: auto;
+        text-align: center;
+        padding-bottom: 20px;
+    }
+    [class*= 'playlist-'] {
+        margin-bottom: 20px;
+        .playlist-empty {
+            color: rgb(196, 196, 196);
+            margin-left: 20px;
+        }
+    }
+    padding: 15px;
+    [class*= 'item-'] {
+
+        margin: 0 10px;
+        .left {
+            display: flex;
+            p {
+                margin: 0 5px;
+            }
+        }
+    }
+}
+

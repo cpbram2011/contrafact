@@ -1,4 +1,4 @@
-import {RECEIVE_PLAYLISTS} from '../actions/playlist_actions'
+import {RECEIVE_PLAYLISTS, REMOVE_PLAYLIST} from '../actions/playlist_actions'
 
 
 export default (state = {}, action) => {
@@ -6,6 +6,10 @@ export default (state = {}, action) => {
         case RECEIVE_PLAYLISTS:
             return Object.assign({}, state, action.playlists)
     
+        case REMOVE_PLAYLIST:
+            let newState = Object.assign({}, state);
+            delete newState[action.playlist.id]
+            return newState
         default:
             return state
     }

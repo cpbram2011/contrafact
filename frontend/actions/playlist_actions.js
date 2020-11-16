@@ -3,6 +3,13 @@ import {receiveSongs, RECEIVE_SONGS} from './song_actions';
 
 export const RECEIVE_PLAYLISTS = "RECEIVE_PLAYLISTS";
 export const RECEIVE_PLAYLIST = "RECEIVE_PLAYLIST";
+export const REMOVE_PLAYLIST = "REMOVE_PLAYLIST";
+
+
+export const removePlaylist = playlist => ({
+    type: REMOVE_PLAYLIST,
+    playlist
+});
 
 export const receivePlaylists = playlists => ({
     type: RECEIVE_PLAYLISTS,
@@ -27,5 +34,10 @@ export const requestPlaylists = userId => dispatch => (
 
 export const createPlaylist = playlist => dispatch => (
     PlaylistAPI.createPlaylist(playlist).then(playlist => receivePlaylist(playlist))
-)
+);
+
+export const deletePlaylist = playlist_id => dispatch => (
+    PlaylistAPI.deletePlaylist(playlist_id).then(playlist => dispatch(removePlaylist(playlist)))
+);
+
 
