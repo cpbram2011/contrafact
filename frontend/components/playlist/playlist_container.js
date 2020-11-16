@@ -7,7 +7,7 @@ import {requestPlaylist, requestPlaylists} from '../../actions/playlist_actions'
 
 const mSTP = (state, ownProps) => ({
     playlist: state.entities.playlists[ownProps.tag],
-    songs: state.entities.songs,
+    songs: state.entities.songs[ownProps.tag],
 })
 
 const mDTP = dispatch => ({

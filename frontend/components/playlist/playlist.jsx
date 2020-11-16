@@ -1,4 +1,5 @@
 import React from 'react';
+import SongItem from '../songitem/item'
 
 export default class Playlist extends React.Component {
 
@@ -9,14 +10,19 @@ export default class Playlist extends React.Component {
     render () {
 
         if (!this.props.playlist) return null;
+        if (!this.props.songs) return null;
+        let {playlist, songs} = this.props;
 
-        
-        let {playlist} = this.props.playlist
-        debugger
-        //TODO BIG
+        let songMap = Object.values(songs).map((song, i) => {
+            return (
+            <SongItem song={song} index={i} />
+        )})
         return (
 
             <div className="playlist">
+
+                <h3>{playlist.title}</h3>
+                {songMap}
             </div>
         )
     }

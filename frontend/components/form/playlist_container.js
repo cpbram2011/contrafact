@@ -2,6 +2,7 @@ import {connect} from 'react-redux';
 import PlaylistForm from './playlist';
 import {createPlaylist} from '../../actions/playlist_actions';
 import {closeModal} from '../../actions/modal_actions'
+
 const mSTP = state => ({
     currentUser: state.session.id
 });
