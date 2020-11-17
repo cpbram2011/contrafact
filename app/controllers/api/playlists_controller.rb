@@ -9,6 +9,11 @@ class Api::PlaylistsController < ApplicationController
         render template: 'api/songs/index'
     end
 
+    def name 
+        @playlist = Playlist.find(params[:id])
+        render :show
+    end
+
     def index
         @playlists = Playlist.where(author_id: params[:id])
         render :index

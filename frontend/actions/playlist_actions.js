@@ -40,4 +40,6 @@ export const deletePlaylist = playlist_id => dispatch => (
     PlaylistAPI.deletePlaylist(playlist_id).then(playlist => dispatch(removePlaylist(playlist)))
 );
 
-
+export const requestPlaylistName = playlistId => dispatch => (
+    PlaylistAPI.fetchName(playlistId).then(playlist => dispatch(receivePlaylists(playlist)))
+)

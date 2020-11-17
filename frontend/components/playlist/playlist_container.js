@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import Playlist from './playlist';
-import {requestPlaylist, requestPlaylists} from '../../actions/playlist_actions';
+import {requestPlaylist, requestPlaylistName} from '../../actions/playlist_actions';
 
 
 
@@ -13,7 +13,8 @@ const mSTP = (state, ownProps) => {
 })}
 
 const mDTP = dispatch => ({
-    requestPlaylist: id => dispatch(requestPlaylist(id))
+    requestPlaylist: id => dispatch(requestPlaylist(id)),
+    requestPlaylistName: id => dispatch(requestPlaylistName(id))
 })
 
 export default connect(mSTP, mDTP)(Playlist);

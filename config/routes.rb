@@ -37,6 +37,7 @@ Rails.application.routes.draw do
     get '/api/songs/recent', to: 'api/songs#recent'
     get '/api/users/:id/songs', to: 'api/songs#indexByUploader'
     get '/api/users/:id/playlists', to: 'api/playlists#index'
+    get 'api/playlists/:id/name', to: 'api/playlists#name'
     post 'api/playlists/:id/add', to: 'api/playlists#addSong'
 
   namespace :api, defaults: {format: "json"} do

@@ -46,7 +46,7 @@ export default class UserShow extends React.Component{
                 });
             if (tab.length === 0) tab = (
                 <div className='empty'>
-                <img src="https://contrafact-seeds.s3.us-east-2.amazonaws.com/emptytab.PNG" alt="" srcset=""/>
+                <img src="https://contrafact-seeds.s3.us-east-2.amazonaws.com/emptytab.PNG" alt="" />
                 <h3>It's a bit quiet over here</h3>
                 <h4>This user has no playlists</h4>
                 </div>
@@ -57,7 +57,7 @@ export default class UserShow extends React.Component{
             
             if (Object.values(this.props.songs).length === 0 ) {tab = (
                 <div className='empty'>
-                <img src="https://contrafact-seeds.s3.us-east-2.amazonaws.com/emptytab.PNG" alt="" srcset=""/>
+                <img src="https://contrafact-seeds.s3.us-east-2.amazonaws.com/emptytab.PNG" alt="" />
                 <h3>It's a bit quiet over here</h3>
                 <h4>This user has no uploaded tracks</h4>
                 </div>
@@ -72,7 +72,7 @@ export default class UserShow extends React.Component{
         } else {
             tab = (
                 <div className='empty'>
-                <img src="https://contrafact-seeds.s3.us-east-2.amazonaws.com/emptytab.PNG" alt="" srcset=""/>
+                <img src="https://contrafact-seeds.s3.us-east-2.amazonaws.com/emptytab.PNG" alt="" />
                 <h3>It's a bit quiet over here</h3>
                 <h4>Album functionality coming soon!</h4>
                 </div>

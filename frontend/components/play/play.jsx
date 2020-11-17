@@ -167,7 +167,7 @@ export default class Play extends React.Component {
                 ></input>
                 </div>
                 <div className='playing-song'>    
-                <img src={load.cover} alt="" srcset=""/>               
+                <img src={load.cover} alt="" />               
                 <p>{load.title}</p>
                 <p>-</p>
                 <p>{load.artist}</p>

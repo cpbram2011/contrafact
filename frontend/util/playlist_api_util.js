@@ -39,3 +39,9 @@ export const addToPlaylist = (playlist, song) => (
         processData: false
     })
 );
+
+export const fetchName = playlistId => (
+    $.ajax({
+        url: `api/playlists/${playlistId}/name`
+    })
+);

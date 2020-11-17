@@ -17,12 +17,16 @@
     [class*='song-item-'] {
         width: 1000px;
         justify-content: flex-start;
-
+        .play-circle {
+            margin: 4px;
+            width: 42px;
+            height: 38px;
+        }
 
         
     }
 
-    .item-left * {
+    .item-left p {
         color: black;
     }
 
@@ -34,4 +38,18 @@
         background: #c2c2c2; 
     }
     
+}
+
+.playlist {
+    background-color: white;
+    width: 1300px;
+    padding-bottom: 20px;
+    margin: 0 auto;
+
+    .playlist-deets {
+        margin: 50px 0 20px;
+        height: 400px;
+        padding: 20px;
+        background-color: black;
+    }
 }

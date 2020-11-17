@@ -28,7 +28,7 @@ export default class NavBar extends React.Component {
                 
                 <div className='nav-links'>
                     <Link to="/home" >Home</Link>
-                    <Link>Stream</Link>
+                    <Link to="/home">Stream</Link>
                     <Link to="/library">Library</Link>
                 
                 </div>
@@ -52,7 +52,7 @@ export default class NavBar extends React.Component {
                         onMouseOver={this.handleDropdown}
                         onClick={this.handleDropdown}
                         >{this.props.currentUser.username}</h3>
-                        <FaChevronDown classname='chevron'
+                        <FaChevronDown className='chevron'
                         onClick={this.handleDropdown}
                         />
                     </div>

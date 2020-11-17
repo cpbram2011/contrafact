@@ -117,7 +117,7 @@ export default class Form extends React.Component {
             onChange={this.update('title')} 
             />
 
-            {/* <img src={this.state.cover.name} alt="" srcset=""/> */}
+            {/* <img src={this.state.cover.name} alt="" */}
             <label >Artist *
                 
                 </label>

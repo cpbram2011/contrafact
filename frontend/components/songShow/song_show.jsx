@@ -43,7 +43,7 @@ export default class SongShow extends React.Component {
                 <h1>{song.title}</h1>
 
                 </div>
-                <img src={song.cover} alt="" srcset=""/>
+                <img src={song.cover} alt="" />
                 </div>
 
 
