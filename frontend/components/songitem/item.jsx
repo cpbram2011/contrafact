@@ -30,7 +30,7 @@ export default class SongItem extends React.Component {
                         <FaPlayCircle className="play-circle"
                         onClick={this.props.updateCurrentSong}
                         />
-                        <img className="art" src={song.cover} 
+                        <img className="cover-art" src={song.cover} 
                         id={song.id}
                         alt=""/>
                     </div>

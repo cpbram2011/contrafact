@@ -1,0 +1,33 @@
+[class*='playlist-']{
+
+
+    .playlist-title {
+        padding-left: 20px;
+        display: inline-block
+    }
+
+    div.song-index{
+        background-image: none;
+        background-color: white;
+        
+        .city {
+            margin-top: 0;
+        }
+    }
+    [class*='song-item-'] {
+        width: 1000px;
+        justify-content: flex-start;
+
+
+        
+    }
+
+    .item-left * {
+        color: black;
+    }
+
+    .like {
+        display: none;
+    }
+    
+}

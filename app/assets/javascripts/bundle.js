@@ -1814,7 +1814,9 @@ var Playlist = /*#__PURE__*/function (_React$Component) {
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "playlist"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, playlist.title), songMap);
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+        className: "title"
+      }, playlist.title), songMap);
     }
   }]);
 
@@ -2397,7 +2399,7 @@ var Sidebar = /*#__PURE__*/function (_React$Component) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
           className: "users-pic-".concat(user.id)
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-          to: "user/".concat(user.id)
+          to: "/user/".concat(user.id)
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, user.username)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_1__["FaHeart"], {
           className: "fa"
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("t", null, "714"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_1__["FaComment"], {
@@ -2704,8 +2706,12 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
   _createClass(SongIndex, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.requestSongs();
-      this.props.requestRecent();
+      if (this.props.index === 'all') {
+        this.props.requestSongs();
+        this.props.requestRecent();
+      } else {
+        this.props.requestPlaylist(this.props.index);
+      }
     }
   }, {
     key: "updateCurrentSong",
@@ -2747,7 +2753,7 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
           id: song.id,
           alt: ""
         })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, index + 1), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-          to: "song/".concat(song.id)
+          to: "/song/".concat(song.id)
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
           className: "title"
         }, song.title)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "-"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
@@ -2777,17 +2783,21 @@ var SongIndex = /*#__PURE__*/function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_song_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/song_actions */ "./frontend/actions/song_actions.js");
-/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
-/* harmony import */ var _song_index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./song_index */ "./frontend/components/song_index/song_index.jsx");
+/* harmony import */ var _actions_playlist_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/playlist_actions */ "./frontend/actions/playlist_actions.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+/* harmony import */ var _song_index__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./song_index */ "./frontend/components/song_index/song_index.jsx");
  // import SplashIndex from './splash_index';
 
 
 
 
 
-var mSTP = function mSTP(state) {
+
+var mSTP = function mSTP(state, ownProps) {
+  var index = ownProps.index || 'all';
   return {
-    songs: Object.values(state.entities.songs.all)
+    songs: Object.values(state.entities.songs[index] || {}),
+    index: index
   };
 };
 
@@ -2799,16 +2809,19 @@ var mDTP = function mDTP(dispatch) {
     requestSongs: function requestSongs() {
       return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_1__["requestSongs"])());
     },
+    requestPlaylist: function requestPlaylist(id) {
+      return dispatch(Object(_actions_playlist_actions__WEBPACK_IMPORTED_MODULE_2__["requestPlaylist"])(id));
+    },
     requestRecent: function requestRecent() {
       return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_1__["requestRecent"])());
     },
     openModal: function openModal(modal) {
-      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__["openModal"])(modal));
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["openModal"])(modal));
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_song_index__WEBPACK_IMPORTED_MODULE_3__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_song_index__WEBPACK_IMPORTED_MODULE_4__["default"]));
 
 /***/ }),
 
@@ -3029,7 +3042,7 @@ var SongItem = /*#__PURE__*/function (_React$Component) {
         className: "play-circle",
         onClick: this.props.updateCurrentSong
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        className: "art",
+        className: "cover-art",
         src: song.cover,
         id: song.id,
         alt: ""
@@ -3182,7 +3195,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _songitem_item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../songitem/item */ "./frontend/components/songitem/item.jsx");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _song_index_song_index_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../song_index/song_index_container */ "./frontend/components/song_index/song_index_container.jsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -3204,6 +3218,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -3251,20 +3266,19 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
 
       if (this.state.tab === 'playlists') {
         tab = Object.values(this.props.playlists).map(function (playlist) {
-          if (playlist.author_id != _this2.props.id) return null;
-          var songs = playlist.songs.map(function (song, i) {
-            return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_songitem_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
-              song: song,
-              index: i
-            });
-          });
+          if (playlist.author_id != _this2.props.id) return null; // let songs = playlist.songs.map((song, i) => (
+          //     <SongItem song={song} index={i} />
+          // ))
+
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "playlist-".concat(playlist.id)
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
             to: "/playlist/".concat(playlist.id)
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, playlist.title)), songs.length === 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-            className: "playlist-empty"
-          }, "empty") : songs);
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+            className: "playlist-title"
+          }, playlist.title)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_song_index_song_index_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
+            index: playlist.id
+          }));
         });
         if (tab.length === 0) tab = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "empty"

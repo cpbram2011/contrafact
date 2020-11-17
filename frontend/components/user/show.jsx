@@ -1,5 +1,7 @@
 import React from 'react';
 import SongItem from '../songitem/item';
+import SongIndex from '../song_index/song_index_container';
+
 import {Link} from 'react-router-dom';
 export default class UserShow extends React.Component{
 
@@ -27,17 +29,18 @@ export default class UserShow extends React.Component{
         if (this.state.tab === 'playlists') {
                 tab = Object.values(this.props.playlists).map(playlist => {
                     if (playlist.author_id != this.props.id) return null;
-                    let songs = playlist.songs.map((song, i) => (
-                        <SongItem song={song} index={i} />
-                    ))
+                    // let songs = playlist.songs.map((song, i) => (
+                    //     <SongItem song={song} index={i} />
+                    // ))
                     return (
                         <div className={`playlist-${playlist.id}`}>
                             <Link to={`/playlist/${playlist.id}`} >
-                            <h2>{playlist.title}</h2>
+                            <h2 className='playlist-title'>{playlist.title}</h2>
                             </Link>
-                                {songs.length === 0 ? (
+                                {/* {songs.length === 0 ? (
                                     <p className='playlist-empty'>empty</p>
-                                ) : songs}
+                                ) : songs} */}
+                                <SongIndex index={playlist.id} />
                         </div>
                     )
                 });
