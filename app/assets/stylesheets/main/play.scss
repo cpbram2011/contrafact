@@ -3,13 +3,20 @@
     border-top: 1px solid rgb(212, 212, 212);
     background-color: rgb(239,239,239);
     display: flex;
-    padding-left: 20px;
-    justify-content: flex-start;
+    padding-left: 120px;
     align-items: center;
     height: 40px;
     position: fixed;
     bottom: 0;
     animation: rise 0.7s linear 0s 1 forwards;
+
+    * {
+        flex-shrink: 0;
+    }
+    .timestamps {
+        width: 60px;
+        font-size: 0.9em;
+    }
 }
 
 .player-hidden {
@@ -90,10 +97,22 @@ button {
     width: 400px;
     height: 30px;
     display: flex;
+    img {
+        width: 30px;
+        height: 30px;
+        margin: 0 10px;
+    }
+
+    p{ 
+        padding-top: 4px;
+        text-align: center;
+        display: inline-block;
+        margin-right: 3px;
+    }
 }
 .volume-parent {
     
-    margin-left: 10px;
+    margin-left: 5px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -105,12 +124,14 @@ button {
 #vol-icon {
     position: absolute;
     bottom: 12px;
+    cursor: pointer;
 }
 
 
 
 .vol-slider {
     height: 80px;
+    width: 2px;
     position: absolute;
     bottom: 30px;
     background-color: rgba($color: white, $alpha: 0.5);
@@ -136,7 +157,8 @@ button {
 
 #progress-bar {
     width: 500px;
-    margin-left: 35px;
+    height: 1px;
+    margin-right: 10px;
     appearance: none;
     background: #bdbcbc; 
     outline: none; 
@@ -147,10 +169,10 @@ button {
 
 #progress-bar::-webkit-slider-thumb {
 
-    -webkit-appearance: none;
+    // -webkit-appearance: none;
     appearance: none;
-    width: 15px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%; 
     background:rgb(128,26,26);
     cursor: pointer;

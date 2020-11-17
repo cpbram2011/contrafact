@@ -29,5 +29,9 @@
     .like {
         display: none;
     }
+
+    .song-index::-webkit-scrollbar-track {
+        background: #c2c2c2; 
+    }
     
 }

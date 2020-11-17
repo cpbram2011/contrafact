@@ -1566,7 +1566,8 @@ var Play = /*#__PURE__*/function (_React$Component) {
       isPlaying: false,
       volume: 50,
       volumeShow: false,
-      currentTime: 0
+      currentTime: 0,
+      muted: false
     };
     _this.reff = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef();
     _this.pause = _this.pause.bind(_assertThisInitialized(_this));
@@ -1597,6 +1598,7 @@ var Play = /*#__PURE__*/function (_React$Component) {
 
           var progressbar = document.getElementById("progress-bar");
           progressbar.value = _this2.state.currentTime * 1000;
+          _this2.reff.volume = _this2.state.muted ? 0 : _this2.state.volume / 100;
         }, 500);
       }
     }
@@ -1635,18 +1637,30 @@ var Play = /*#__PURE__*/function (_React$Component) {
         _this4.reff.volume = e.target.value / 100;
 
         _this4.setState({
-          volume: e.target.value
+          volume: e.target.value,
+          muted: false
+        });
+      };
+    }
+  }, {
+    key: "volumeMute",
+    value: function volumeMute() {
+      var _this5 = this;
+
+      return function (e) {
+        _this5.setState({
+          muted: !_this5.state.muted
         });
       };
     }
   }, {
     key: "scrub",
     value: function scrub() {
-      var _this5 = this;
+      var _this6 = this;
 
       return function (e) {
         var newTime = e.target.value / 1000;
-        _this5.reff.currentTime = newTime * _this5.reff.duration;
+        _this6.reff.currentTime = newTime * _this6.reff.duration;
       };
     }
   }, {
@@ -1683,7 +1697,7 @@ var Play = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this6 = this;
+      var _this7 = this;
 
       var load;
 
@@ -1693,7 +1707,8 @@ var Play = /*#__PURE__*/function (_React$Component) {
         load = {
           title: '',
           artist: '',
-          track: ''
+          track: '',
+          cover: ''
         };
       }
 
@@ -1703,33 +1718,39 @@ var Play = /*#__PURE__*/function (_React$Component) {
         className: "player".concat(this.props.currentSong ? '' : '-hidden')
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.prevSong.bind(this)
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_1__["FaChevronLeft"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_1__["FaAngleDoubleLeft"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "play-pause",
         onClick: this.pause
       }, this.state.isPlaying ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_1__["FaPause"], null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_1__["FaPlay"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.nextSong.bind(this)
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_1__["FaChevronRight"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("audio", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_1__["FaAngleDoubleRight"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("audio", {
         id: "audio",
         src: load.track,
         ref: function ref(input) {
-          _this6.reff = input;
+          _this7.reff = input;
         }
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "currentTime"
+        className: "timestamps"
       }, currentTime), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         id: "progress-bar",
         type: "range",
         step: "1",
         min: "1",
         max: "1000",
+        defaultValue: "0",
         onClick: this.scrub()
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "duration"
+        className: "timestamps"
       }, duration), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "volume-parent"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_1__["FaVolumeUp"], {
+      }, this.state.muted ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_1__["FaVolumeMute"], {
         id: "vol-icon",
-        onMouseEnter: this.volumeShow()
+        onMouseEnter: this.volumeShow(),
+        onClick: this.volumeMute()
+      }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_1__["FaVolumeUp"], {
+        id: "vol-icon",
+        onMouseEnter: this.volumeShow(),
+        onClick: this.volumeMute()
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         id: "vol-slider",
         className: this.state.volumeShow ? 'vol-slider' : 'vol-slider-hidden',
@@ -1737,11 +1758,15 @@ var Play = /*#__PURE__*/function (_React$Component) {
         step: "1",
         min: "1",
         max: "100",
-        defaultValue: this.state.volume,
+        defaultValue: this.state.muted ? 0 : this.state.volume,
         onChange: this.volumeSlide()
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "playing-song"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, load.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "-"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, load.artist)));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: load.cover,
+        alt: "",
+        srcset: ""
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, load.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "-"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, load.artist)));
     }
   }]);
 
