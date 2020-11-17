@@ -57,12 +57,16 @@ button {
 }
 
 .play-circle {
-    width: 20px;
+    width: 42px;
+    height: 42px;
     position: absolute;
     opacity: 0;
-    top: 25%;
-    left: 25%;
-    color:rgb(128,26,26);
+    top: 5%;
+    left: 0%;
+    color:rgb(177, 31, 31);
+    padding: 10px;
+    background-color: rgba($color: #000000, $alpha: 0.3);
+    cursor: pointer;
 }
 
 
@@ -75,11 +79,11 @@ button {
 
 }
 
-.d-cover:hover .cover-art {
-    opacity: .4;
+.d-cover:hover {
 }
 .d-cover:hover .play-circle {
     opacity: 1;
+
 }
 
 .playing-song {
