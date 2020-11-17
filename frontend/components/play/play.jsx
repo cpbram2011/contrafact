@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-import { FaPlay, FaPause, FaVolumeUp, FaChevronRight, FaChevronLeft } from 'react-icons/fa';
+import { FaPlay, FaPause, FaVolumeUp, FaVolumeMute, FaAngleDoubleRight, FaAngleDoubleLeft } from 'react-icons/fa';
 
 export default class Play extends React.Component {
 
@@ -12,6 +12,7 @@ export default class Play extends React.Component {
             volume: 50,
             volumeShow: false,
             currentTime: 0,
+            muted: false
 
         }
         this.reff = React.createRef();
@@ -29,10 +30,13 @@ export default class Play extends React.Component {
                 if (newTime > .98) {
                     this.nextSong()
                 }
-                this.setState({currentTime: newTime})
-                const progressbar = document.getElementById("progress-bar")
-                progressbar.value = this.state.currentTime * 1000
+                this.setState({currentTime: newTime});
+                const progressbar = document.getElementById("progress-bar");
+                progressbar.value = this.state.currentTime * 1000;
+                this.reff.volume = this.state.muted ? 0 : this.state.volume / 100
+
                 }, 500);
+
 
         }
     }
@@ -62,7 +66,14 @@ export default class Play extends React.Component {
     volumeSlide () {
         return (e) => {
             this.reff.volume = (e.target.value / 100)
-            this.setState({volume: e.target.value})
+            this.setState({volume: e.target.value, muted: false})
+        }
+    }
+
+    volumeMute () {
+        return e => {
+            this.setState({muted: !this.state.muted})
+            
         }
     }
 
@@ -106,34 +117,44 @@ export default class Play extends React.Component {
         if (this.props.currentSong) {
             load = this.props.songs[this.props.currentSong]
         } else {
-            load = {title: '', artist: '', track: ''}
+            load = {title: '', artist: '', track: '', cover: ''}
         }
         const currentTime = this.formatTime(this.reff.currentTime)
         const duration = this.formatTime(this.reff.duration)
         return (
             <div className={`player${this.props.currentSong ? '' : '-hidden'}`}>
                 
-                <button onClick={this.prevSong.bind(this)}><FaChevronLeft /></button>
+                <button onClick={this.prevSong.bind(this)}><FaAngleDoubleLeft /></button>
                 <button className='play-pause' onClick={this.pause}>{this.state.isPlaying ? <FaPause/> : <FaPlay/>}</button>
-                <button onClick={this.nextSong.bind(this)}><FaChevronRight /></button>
+                <button onClick={this.nextSong.bind(this)}><FaAngleDoubleRight /></button>
                 <audio 
                 id="audio"
                 src={load.track}
                 ref={(input) => {this.reff = input}}
                 ></audio>
-                <p className="currentTime">{currentTime}</p>
+                <p className="timestamps">{currentTime}</p>
                 <input id='progress-bar'
                 type="range" 
                 step='1' 
                 min="1" 
                 max="1000" 
+                defaultValue ="0"
                 onClick={this.scrub()}
                 ></input>
-                <p className="duration">{duration}</p>
+                <p className="timestamps">{duration}</p>
                 <div className="volume-parent">
-                <FaVolumeUp id='vol-icon'
-                onMouseEnter={this.volumeShow()}
-                />
+                    {this.state.muted ? (
+                        <FaVolumeMute id='vol-icon'
+                        onMouseEnter={this.volumeShow()}
+                        onClick={this.volumeMute()}
+                        />
+                        ):(
+                        <FaVolumeUp id='vol-icon'
+                        onMouseEnter={this.volumeShow()}
+                        onClick={this.volumeMute()}
+                        />
+
+                    )}
                 <input 
                 id='vol-slider'
                 className={this.state.volumeShow ? 'vol-slider' : 'vol-slider-hidden'} 
@@ -141,11 +162,12 @@ export default class Play extends React.Component {
                 step='1' 
                 min="1" 
                 max="100" 
-                defaultValue={this.state.volume}
+                defaultValue={this.state.muted ? 0 : this.state.volume}
                 onChange={this.volumeSlide()}
                 ></input>
                 </div>
-                <div className='playing-song'>                   
+                <div className='playing-song'>    
+                <img src={load.cover} alt="" srcset=""/>               
                 <p>{load.title}</p>
                 <p>-</p>
                 <p>{load.artist}</p>

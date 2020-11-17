@@ -17,6 +17,16 @@ a:active {
   text-decoration: none;
 }
 
+button:focus {
+  text-decoration: none;
+  border: none;
+  outline: none;
+}
+button:active {
+  outline: none;
+  border: none;
+}
+
 /* Box sizing rules */
 *,
 *::before,
