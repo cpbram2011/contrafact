@@ -9,12 +9,12 @@ import AddPlaylist from '../form/add_playlist_container';
 
 
 
-function Modal({modal, closeModal}) {
+function Modal({modal, closeModal, ownProps}) {
   if (!modal) {
     return null;
   }
   let component;
-  switch (modal) {
+  switch (modal.type) {
     case 'login':
       component = <LoginFormContainer />;
       break;
@@ -28,7 +28,7 @@ function Modal({modal, closeModal}) {
       component = <PlaylistForm />;
       break;
     case 'addSong':
-      component = <AddPlaylist />;
+      component = <AddPlaylist songId={modal.id}/>;
       break;
     default:
       return null;
@@ -42,9 +42,9 @@ function Modal({modal, closeModal}) {
   );
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    modal: state.ui.modal
+    modal: state.ui.modal,
   };
 };
 

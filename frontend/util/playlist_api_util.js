@@ -29,3 +29,13 @@ export const deletePlaylist = playlistId => (
         method: "DELETE"
     })
 )
+
+export const addToPlaylist = (playlist, song) => (
+    $.ajax({
+        url: `api/playlists/${playlist}/add`,
+        method: "POST",
+        data: song,
+        contentType: false,
+        processData: false
+    })
+);

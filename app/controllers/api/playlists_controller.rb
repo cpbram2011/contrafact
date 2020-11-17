@@ -25,8 +25,17 @@ class Api::PlaylistsController < ApplicationController
     end
 
     def addSong
-
-
+        # @playlist = Playlist.find(params[:id])
+        # @song = Song.find(song_params)
+        new_entry = PlaylistSong.new({
+            playlist_id: params[:id],
+            song_id: params['song'][:id]
+        })
+        if new_entry.save
+            render json: true
+        else
+            render json: false
+        end
     end
 
     def destroy
@@ -41,4 +50,5 @@ class Api::PlaylistsController < ApplicationController
     def playlist_params
         params.require(:playlist).permit(:title, :author_id)
     end
+
 end

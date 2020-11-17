@@ -14,7 +14,7 @@ const mDTP = dispatch => ({
     requestSong: songId => dispatch(requestSong(songId)),
     receiveCurrentSong: (song) => dispatch(receiveCurrentSong(song)),
     deleteSong: songId => dispatch(deleteSong(songId)),
-    openModal: modal => dispatch(openModal(modal)),
+    openModal: (modal, id) => dispatch(openModal(modal, id)),
 });
 
 export default connect(mSTP, mDTP)(SongShow)

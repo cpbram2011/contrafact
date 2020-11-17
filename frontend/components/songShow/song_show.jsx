@@ -88,7 +88,7 @@ export default class SongShow extends React.Component {
                         {this.state.dropdown ? (
                         <div className="dropdown-child">
                             <p
-                            onClick={ () => {this.props.openModal('addSong') }}
+                            onClick={ () => {this.props.openModal('addSong', song.id) }}
                             >Add to playlist</p>
 
 
