@@ -5,7 +5,11 @@ export default class Playlist extends React.Component {
 
 
     componentDidMount(){
-        this.props.requestPlaylist(this.props.tag)
+        if (this.props.tag) {
+            this.props.requestPlaylist(this.props.tag);
+        } else {
+            this.props.requestPlaylist(this.props.match.params.id)
+        }
     }
     render () {
 
@@ -21,7 +25,7 @@ export default class Playlist extends React.Component {
 
             <div className="playlist">
 
-                <h3>{playlist.title}</h3>
+                <h3 className='title'>{playlist.title}</h3>
                 {songMap}
             </div>
         )

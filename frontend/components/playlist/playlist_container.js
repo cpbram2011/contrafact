@@ -5,10 +5,12 @@ import {requestPlaylist, requestPlaylists} from '../../actions/playlist_actions'
 
 
 
-const mSTP = (state, ownProps) => ({
-    playlist: state.entities.playlists[ownProps.tag],
-    songs: state.entities.songs[ownProps.tag],
-})
+const mSTP = (state, ownProps) => {
+    let index = ownProps.tag || ownProps.match.params.id
+    return ({
+    playlist: state.entities.playlists[index],
+    songs: state.entities.songs[index],
+})}
 
 const mDTP = dispatch => ({
     requestPlaylist: id => dispatch(requestPlaylist(id))

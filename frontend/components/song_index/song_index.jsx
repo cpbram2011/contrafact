@@ -11,8 +11,12 @@ export default class SongIndex extends React.Component {
 
 
     componentDidMount() {
-        this.props.requestSongs();
-        this.props.requestRecent();
+        if (this.props.index === 'all'){
+            this.props.requestSongs();
+            this.props.requestRecent();
+        } else {
+            this.props.requestPlaylist(this.props.index)
+        }
     }
     
     updateCurrentSong (e) {
@@ -47,7 +51,7 @@ export default class SongIndex extends React.Component {
                             </div>
 
                             <p>{index + 1}</p>
-                            <Link to={`song/${song.id}`}>
+                            <Link to={`/song/${song.id}`}>
                             <p className="title">{song.title}</p>
                             </Link>
                             <p>-</p>

@@ -22,3 +22,10 @@ export const createPlaylist = playlist => (
         processData: false
     })
 )
+
+export const deletePlaylist = playlistId => (
+    $.ajax({
+        url: `api/playlists/${playlistId}`,
+        method: "DELETE"
+    })
+)

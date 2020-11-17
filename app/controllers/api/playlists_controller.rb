@@ -5,6 +5,7 @@ class Api::PlaylistsController < ApplicationController
     def show
         playlist = Playlist.find(params[:id])
         @songs = playlist.songs
+        
         render template: 'api/songs/index'
     end
 
@@ -26,6 +27,12 @@ class Api::PlaylistsController < ApplicationController
     def addSong
 
 
+    end
+
+    def destroy
+        @playlist = Playlist.find(params[:id])
+        @playlist.destroy
+        render :show
     end
 
 

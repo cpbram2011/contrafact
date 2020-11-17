@@ -4,8 +4,12 @@ class Api::SongsController < ApplicationController
         render :index
     end
 
+    def indexByUploader 
+        @songs = Song.where(uploader_id: params[:id])
+        render :index
+    end
+
     def recent
-        
         @songs = Song.order('created_at DESC').limit(10)
         render :index
     end
