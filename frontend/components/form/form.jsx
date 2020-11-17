@@ -38,6 +38,7 @@ export default class Form extends React.Component {
             console.log(track.name.split(".")[0])
             this.setState({title: track.name.split(".")[0]})
             this.setState({track: track})
+            this.handleSubmit();
             
         }
     }
@@ -49,14 +50,13 @@ export default class Form extends React.Component {
         }
     }
 
-    handleSubmit (e) {
-        e.preventDefault()
+    handleSubmit () {
         if (this.state.progress === 0){
-            if (this.state.track === null){
-                this.setState({errors: ['Choose an audio file to upload']})
-            } else {
+            // if (this.state.track === null){
+            //     this.setState({errors: ['Choose an audio file to upload']})
+            // } else {
                 this.setState({progress: 1, errors: []})
-            }
+            // }
             return null;
         } 
         if (this.state.artist.length === 0  || this.state.artist.length === 0){
@@ -91,36 +91,58 @@ export default class Form extends React.Component {
     render () {
         let formStuff;
         if (this.state.progress === 0) {
-            formStuff = <input type="file"
-                onChange={this.updateMp3(this)}
-                accept="audio/mpeg"
-                />
+            formStuff = 
+            <div>
+
+                <label className='cover'>Select audio file
+
+                <input type="file"
+                    onChange={this.updateMp3(this)}
+                    accept="audio/mpeg"
+                    className='track-selector'
+                    id='cover'
+                    />
+                </label>
+
+            </div>
             
         } else {
             
             formStuff = 
             <div>
-
+            <label> Title *
+                </label>
             <input type="text" 
             value= {this.state.title}
             onChange={this.update('title')} 
             />
+
             {/* <img src={this.state.cover.name} alt="" srcset=""/> */}
+            <label >Artist *
+                
+                </label>
+
             <input type="text" 
             value= {this.state.artist}
-            onChange={this.update('artist')}           
-            placeholder="Artist*"
+            onChange={this.update('artist')}    
             />
-            <p>* required field</p>
+            <p>* required fields</p>
+            <label  className='cover'>Select cover art
             <input type="file"
+            id='cover'
             onChange={this.updateCover(this)}
             accept="image/*"
             />
+            </label>
+
+            <button onClick={this.handleSubmit}>Submit</button>
+
             </div>
         }
         return (
             <div className='form-box'>
                 <h1>Upload Song</h1>
+                {formStuff}
                 {this.state.errors.map(e => {
                     return (
                         <li className="errors">
@@ -128,9 +150,7 @@ export default class Form extends React.Component {
                         </li>
                     )
                 })}
-                {formStuff}
-
-                <button onClick={this.handleSubmit}>Submit</button>
+                
             </div>
 
         )

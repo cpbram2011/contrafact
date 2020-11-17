@@ -1,0 +1,59 @@
+.form-box {
+    margin: 20px;
+    
+    div {
+        height: 300px;
+        width: 400px;
+        background-color: rgba(243, 243, 243, 0.4);
+        border: 1px solid rgb(189, 189, 189);
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        input {
+            width: 350px;
+        }
+
+        p {
+            margin-left: 200px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            margin-top: 20px;
+            margin-right: 290px;
+        }
+
+        label.cover {
+            display: inline-block;
+            width: 140px;
+            height: 25px;
+            border: 1px solid black;
+            border-radius: 3px;
+            text-align: center;
+            margin-right: 0;
+            cursor: pointer;
+            margin-top: 0;
+        }
+        #cover {
+            visibility: hidden;
+        }
+
+        button {
+            margin-top: 20px;
+            margin-right: 0;
+            border: 1px solid black;
+            border-radius: 3px;
+            padding: 0 7px;
+        }
+    }
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+
+}
+

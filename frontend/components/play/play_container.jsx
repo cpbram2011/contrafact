@@ -4,12 +4,9 @@ import Play from './play';
 import {receiveCurrentSong} from '../../actions/song_actions'
 
 const mSTP = state => {
-    // const song = state.en
     return({
-    currentSong: state.session.currentSong, // 53
-                //: 
-    songs: Object.assign({}, state.entities.songs.all)  //
-    
+    currentSong: state.session.currentSong, 
+    songs: Object.assign({}, state.entities.songs.all)
 })}
 
 const mDTP = dispatch => ({

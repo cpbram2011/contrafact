@@ -843,6 +843,8 @@ var Form = /*#__PURE__*/function (_React$Component) {
         _this3.setState({
           track: track
         });
+
+        _this3.handleSubmit();
       };
     }
   }, {
@@ -860,20 +862,15 @@ var Form = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "handleSubmit",
-    value: function handleSubmit(e) {
-      e.preventDefault();
-
+    value: function handleSubmit() {
       if (this.state.progress === 0) {
-        if (this.state.track === null) {
-          this.setState({
-            errors: ['Choose an audio file to upload']
-          });
-        } else {
-          this.setState({
-            progress: 1,
-            errors: []
-          });
-        }
+        // if (this.state.track === null){
+        //     this.setState({errors: ['Choose an audio file to upload']})
+        // } else {
+        this.setState({
+          progress: 1,
+          errors: []
+        }); // }
 
         return null;
       }
@@ -911,37 +908,43 @@ var Form = /*#__PURE__*/function (_React$Component) {
       var formStuff;
 
       if (this.state.progress === 0) {
-        formStuff = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        formStuff = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          className: "cover"
+        }, "Select audio file", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           type: "file",
           onChange: this.updateMp3(this),
-          accept: "audio/mpeg"
-        });
+          accept: "audio/mpeg",
+          className: "track-selector",
+          id: "cover"
+        })));
       } else {
-        formStuff = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        formStuff = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, " Title *"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           type: "text",
           value: this.state.title,
           onChange: this.update('title')
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Artist *"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           type: "text",
           value: this.state.artist,
-          onChange: this.update('artist'),
-          placeholder: "Artist*"
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "* required field"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          onChange: this.update('artist')
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "* required fields"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          className: "cover"
+        }, "Select cover art", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           type: "file",
+          id: "cover",
           onChange: this.updateCover(this),
           accept: "image/*"
-        }));
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: this.handleSubmit
+        }, "Submit"));
       }
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-box"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Upload Song"), this.state.errors.map(function (e) {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Upload Song"), formStuff, this.state.errors.map(function (e) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           className: "errors"
         }, e);
-      }), formStuff, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        onClick: this.handleSubmit
-      }, "Submit"));
+      }));
     }
   }]);
 
@@ -1794,13 +1797,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state) {
-  // const song = state.en
   return {
     currentSong: state.session.currentSong,
-    // 53
-    //: 
-    songs: Object.assign({}, state.entities.songs.all) //
-
+    songs: Object.assign({}, state.entities.songs.all)
   };
 };
 
