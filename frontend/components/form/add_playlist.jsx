@@ -38,9 +38,9 @@ export default class AddPlaylist extends React.Component {
         let radios = Object.values(this.props.playlists).map(playlist => {
             if (playlist.author_id != this.props.currentUser) return null;
             return (
-                <label>{playlist.title}
+                <label>
                     <input type="radio" name="playlist" id="" value={playlist.id} onChange={this.updatePlaylist()}/>
-                </label>
+                    {playlist.title}</label>
 
             )
         })

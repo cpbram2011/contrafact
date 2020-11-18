@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaPlayCircle, FaHeart } from 'react-icons/fa';
-
+import {Link} from 'react-router-dom';
 
 export default class SplashIndex extends React.Component {
     constructor(props){
@@ -44,7 +44,10 @@ export default class SplashIndex extends React.Component {
                     <img src={song.cover} className={`cover-tile`}
                         />
                     </div>
+                    <Link to={`/song/${song.id}`}>
+
                     <p className='tile-title'>{song.title}</p>
+                    </Link>
                     <p className='tile-artist'>{song.artist}</p>
                     </div>
                         

@@ -27,7 +27,7 @@ export default class Playlist extends React.Component {
             <div className="playlist">
                 <div className="playlist-deets">
                 <h2 className='title'>{playlist.title}</h2>
-
+                    <img src="https://contrafact-seeds.s3.us-east-2.amazonaws.com/vinyl.jpg" alt=""/>
                 </div>
                 {songMap}
             </div>

@@ -1,5 +1,7 @@
 import React from 'react';
 import { FaPlayCircle, FaHeart } from 'react-icons/fa';
+import {Link} from 'react-router-dom';
+
 
 
 export default class SongItem extends React.Component {
@@ -9,10 +11,8 @@ export default class SongItem extends React.Component {
     super(props)
     this.state = {
         like: true
-
+        }
     }
-    
-}
 
 
 
@@ -36,9 +36,12 @@ export default class SongItem extends React.Component {
                     </div>
 
                     <p>{index + 1}</p>
-                    <p className="title">{song.title}</p>-
+                    <Link to={`/song/${song.id}`}>
+                        <p className="title">{song.title}</p>
+                    </Link>
+                    <p>-</p>
                     <p className="">{song.artist}</p>
-                    <p></p> 
+                     
                 </div> 
                 <div 
                     className={ false ? 'like' : 'like-hidden'}>              

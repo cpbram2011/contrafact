@@ -51,5 +51,30 @@
         height: 400px;
         padding: 20px;
         background-color: black;
+
+        .title {
+            display: inline-block;
+        }
+
+        img {
+            height: 340px;
+            width: 340px;
+            float: right;
+            margin: 5px;
+            color: red;
+        }
+    }
+}
+
+.addplaylist {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+
+
+    label {
+        input {
+            margin-right: 10px;
+        }
     }
 }

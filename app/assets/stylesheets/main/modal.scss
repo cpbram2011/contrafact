@@ -18,15 +18,13 @@ left: 50%;
 transform: translate(-50%, -50%);
 background-color: rgb(255, 255, 255);
 border-radius: 5px;
-padding: (0px 100px 0px 100px);
+padding: 40px;
 width: 500px;
-height: 500px;
 animation: modalAnimation 1.1s ease-in-out -0.5s 1 forwards;
 }
 
 .session-form {
-    height: 250px;
-margin-top: 100px;
+   
 display: flex;
 flex-direction: column;
 justify-content: space-around;
@@ -36,7 +34,6 @@ align-items: center;
 .session-form form {
     
     display: flex;
-    height: 200px;
     flex-direction: column;
 
     align-items: space-around;
