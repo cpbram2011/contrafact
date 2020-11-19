@@ -28,8 +28,9 @@ export default class NavBar extends React.Component {
                 
                 <div className='nav-links'>
                     <Link to="/home" >Home</Link>
-                    <Link to="/home">Stream</Link>
-                    <Link to="/library">Library</Link>
+                    <a href="https://www.linkedin.com/in/chris-bram-522a661b9/" target="_blank">LinkedIn</a>
+                    <a href="https://github.com/cpbram2011/contrafact" target="_blank">Github</a>
+                    
                 
                 </div>
                 <div className='search-bar'>
