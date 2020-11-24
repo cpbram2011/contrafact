@@ -1,7 +1,6 @@
 
 import React from 'react';
 
-
 export default class Form extends React.Component {
     constructor(props) {
         super(props)
@@ -27,7 +26,6 @@ export default class Form extends React.Component {
     update(field){
         return e => {
             this.setState({[field]: e.currentTarget.value})
-            console.log(this.state)
         }
     }
     
@@ -35,11 +33,9 @@ export default class Form extends React.Component {
         return e => {
             e.preventDefault();
             const track = e.target.files[0]
-            console.log(track.name.split(".")[0])
             this.setState({title: track.name.split(".")[0]})
             this.setState({track: track})
             this.handleSubmit();
-            
         }
     }
 
@@ -73,16 +69,28 @@ export default class Form extends React.Component {
         if (this.state.track) {
             formData.append('song[track]', this.state.track)
         } 
-        
         if (!this.state.cover) {
-            // TODO why did this stop workingggg??
-            let cover = new File(['cover'], "https://contrafact-seeds.s3.us-east-2.amazonaws.com/cover_plaeholder.png")
-            formData.append('song[cover]', cover)
+            
+            // let defaultCover = new File(
+            //     ["https://contrafact-seeds.s3.us-east-2.amazonaws.com/cover_plaeholder.png"],
+            //  '  defaultCover.png', 
+            //     {
+            //         type: "audio/mpeg"
+            //     })
+            const defaultCover = new File([], "https://contrafact-seeds.s3.us-east-2.amazonaws.com/cover_plaeholder.png")
+            const fileReader = new FileReader();
+            // fileReader.readAsDataURL(defaultCover);
+            // fileReader.onloadend = () => {
+            //     this.setState({
+            //     cover: fileReader.result
+            //     });
+            // }; 
+            formData.append('song[cover]', defaultCover)
+                
         } else {
             formData.append('song[cover]', this.state.cover)
-            
         }
-        
+        debugger
         this.props.createSong(formData)
         this.props.closeModal()
     }
@@ -150,7 +158,6 @@ export default class Form extends React.Component {
                         </li>
                     )
                 })}
-                
             </div>
 
         )

@@ -836,8 +836,6 @@ var Form = /*#__PURE__*/function (_React$Component) {
 
       return function (e) {
         _this2.setState(_defineProperty({}, field, e.currentTarget.value));
-
-        console.log(_this2.state);
       };
     }
   }, {
@@ -848,7 +846,6 @@ var Form = /*#__PURE__*/function (_React$Component) {
       return function (e) {
         e.preventDefault();
         var track = e.target.files[0];
-        console.log(track.name.split(".")[0]);
 
         _this3.setState({
           title: track.name.split(".")[0]
@@ -906,13 +903,26 @@ var Form = /*#__PURE__*/function (_React$Component) {
       }
 
       if (!this.state.cover) {
-        // TODO why did this stop workingggg??
-        var cover = new File(['cover'], "https://contrafact-seeds.s3.us-east-2.amazonaws.com/cover_plaeholder.png");
-        formData.append('song[cover]', cover);
+        // let defaultCover = new File(
+        //     ["https://contrafact-seeds.s3.us-east-2.amazonaws.com/cover_plaeholder.png"],
+        //  '  defaultCover.png', 
+        //     {
+        //         type: "audio/mpeg"
+        //     })
+        var defaultCover = new File([], "https://contrafact-seeds.s3.us-east-2.amazonaws.com/cover_plaeholder.png");
+        var fileReader = new FileReader(); // fileReader.readAsDataURL(defaultCover);
+        // fileReader.onloadend = () => {
+        //     this.setState({
+        //     cover: fileReader.result
+        //     });
+        // }; 
+
+        formData.append('song[cover]', defaultCover);
       } else {
         formData.append('song[cover]', this.state.cover);
       }
 
+      debugger;
       this.props.createSong(formData);
       this.props.closeModal();
     }
