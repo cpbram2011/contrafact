@@ -13,7 +13,6 @@ export default class PlaylistForm extends React.Component {
 
     updateTitle (e) {
         this.setState({title: e.target.value})
-        console.log(this.state.title)
     }
 
     handleSubmit (e) {

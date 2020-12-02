@@ -902,27 +902,26 @@ var Form = /*#__PURE__*/function (_React$Component) {
         formData.append('song[track]', this.state.track);
       }
 
-      if (!this.state.cover) {
-        // let defaultCover = new File(
-        //     ["https://contrafact-seeds.s3.us-east-2.amazonaws.com/cover_plaeholder.png"],
-        //  '  defaultCover.png', 
-        //     {
-        //         type: "audio/mpeg"
-        //     })
-        var defaultCover = new File([], "https://contrafact-seeds.s3.us-east-2.amazonaws.com/cover_plaeholder.png");
-        var fileReader = new FileReader(); // fileReader.readAsDataURL(defaultCover);
-        // fileReader.onloadend = () => {
-        //     this.setState({
-        //     cover: fileReader.result
-        //     });
-        // }; 
-
-        formData.append('song[cover]', defaultCover);
+      if (!this.state.cover) {// // let defaultCover = new File(
+        // //     ["https://contrafact-seeds.s3.us-east-2.amazonaws.com/cover_plaeholder.png"],
+        // //  '  defaultCover.png', 
+        // //     {
+        // //         type: "audio/mpeg"
+        // //     })
+        // const defaultCover = new File([], "https://contrafact-seeds.s3.us-east-2.amazonaws.com/cover_plaeholder.png")
+        // const fileReader = new FileReader();
+        // // fileReader.readAsDataURL(defaultCover);
+        // // fileReader.onloadend = () => {
+        // //     this.setState({
+        // //     cover: fileReader.result
+        // //     });
+        // // // }; 
+        // formData.append('song[cover]', defaultCover)
+        // formData.append('song[cover]', null)
       } else {
         formData.append('song[cover]', this.state.cover);
       }
 
-      debugger;
       this.props.createSong(formData);
       this.props.closeModal();
     }
@@ -1079,7 +1078,6 @@ var PlaylistForm = /*#__PURE__*/function (_React$Component) {
       this.setState({
         title: e.target.value
       });
-      console.log(this.state.title);
     }
   }, {
     key: "handleSubmit",
@@ -2647,7 +2645,6 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
       this.setState({
         dropdown: false
       });
-      console.log('blurgh');
     }
   }, {
     key: "render",

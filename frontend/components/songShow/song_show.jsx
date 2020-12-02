@@ -26,7 +26,6 @@ export default class SongShow extends React.Component {
     closeDropdown (e) {
         e.preventDefault()
         this.setState({dropdown: false})
-        console.log('blurgh')
     }
 
     render () {
