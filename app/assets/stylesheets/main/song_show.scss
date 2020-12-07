@@ -2,7 +2,7 @@
 
 .song-show {
     width: 1300px;
-    height: 800px;
+    min-height: 800px;
     background-color: white;
     margin: 50px auto 0;
 
@@ -14,7 +14,7 @@
         padding: 20px;
         background-color: black;
         height: 400px;
-        h1, h3 {
+        h1, h3, h4 {
             color: white;
             width: 400px;
         }
@@ -103,7 +103,7 @@
         
         display: flex;
         flex-direction: column;
-        
+        position: absolute;
         border: 1px solid rgb(179, 179, 179);
         border-radius: 2px;
         p {
@@ -136,6 +136,37 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+        }
+
+    }
+}
+
+.comments {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    li {
+        
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        min-height: 70px;
+
+
+        img {
+            position: absolute;
+            height: 50px;
+            width: 50px;
+            border-radius: 100%;
+        }
+
+        p {
+            margin-left: 60px;
+        }
+
+        .author {
+            color: rgb(65, 65, 65);
+            cursor: pointer;
         }
 
     }

@@ -2640,6 +2640,7 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
 
       return function (e) {
         e.preventDefault();
+        e.target.querySelector('input').value = '';
         var formData = new FormData();
         formData.append('comment[body]', _this2.state.comment);
         formData.append('comment[author]', _this2.props.currentUserName);
@@ -2667,11 +2668,25 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
 
       var song = this.props.songs[this.props.id];
       var comments;
-      if (song) comments = Object.values(song.comments).map(function (comment, i) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          className: "comment-".concat(i)
-        }, comment.author, comment.body);
-      });
+      var createdAt;
+
+      if (song) {
+        song.comments || (song.comments = {});
+        comments = Object.values(song.comments).reverse().map(function (comment, i) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+            className: "comment-".concat(i),
+            key: "comment-".concat(i)
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+            src: "https://contrafact-seeds.s3.us-east-2.amazonaws.com/blank-profile-picture-973460_640.png",
+            alt: ""
+          }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+            className: "author"
+          }, comment.author), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, comment.body));
+        });
+        var currentDate = new Date();
+        createdAt = Math.floor((currentDate - new Date(song.created_at)) / (1000 * 60 * 60 * 24));
+      }
+
       if (Object.keys(this.props.songs).length === 0) return null;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "song-show"
@@ -2684,7 +2699,7 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
         onClick: function onClick() {
           return _this4.props.receiveCurrentSong(_this4.props.id);
         }
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, song.artist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, song.title)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, song.artist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, song.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "uploaded ", createdAt, " days ago")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: song.cover,
         alt: ""
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2722,7 +2737,7 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
       }, "Delete Song") : null) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "stats"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_2__["FaPlay"], null), " 437"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_2__["FaHeart"], null), " 212"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_2__["FaShare"], null), " 189"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "comment-container"
+        className: "comments"
       }, comments)));
     }
   }]);

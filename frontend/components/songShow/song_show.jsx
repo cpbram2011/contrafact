@@ -33,6 +33,7 @@ export default class SongShow extends React.Component {
     handleSubmit () {
         return e => {
             e.preventDefault()
+            e.target.querySelector('input').value = '';
             let formData = new FormData();
             formData.append('comment[body]', this.state.comment)
             formData.append('comment[author]', this.props.currentUserName)
@@ -49,18 +50,25 @@ export default class SongShow extends React.Component {
     }
 
     render () {
+
         const song = this.props.songs[this.props.id]
         let comments;
-        if (song) comments = Object.values(song.comments).map((comment, i) => {
+        let createdAt;
+        if (song) 
+        {song.comments ||= {};
+        comments = Object.values(song.comments).reverse().map((comment, i) => {
            
             return(
-                <li className={`comment-${i}`}>
-                    {comment.author}
-                    {comment.body}
+                <li className={`comment-${i}`}  key={`comment-${i}`}>
+                    <img src="https://contrafact-seeds.s3.us-east-2.amazonaws.com/blank-profile-picture-973460_640.png" alt=""/>
+                    <p className='author'>{comment.author}</p>
+                    <p>{comment.body}</p>
                 </li>
             )
         })
-
+        const currentDate = new Date();
+        createdAt = Math.floor((currentDate - new Date(song.created_at))/(1000 * 60 *60 * 24))
+        }
         if (Object.keys(this.props.songs).length === 0 ) return null;
         return (
             <div className="song-show">
@@ -71,7 +79,7 @@ export default class SongShow extends React.Component {
                 />
                 <h3>{song.artist}</h3>
                 <h1>{song.title}</h1>
-
+                <h4>uploaded {createdAt} days ago</h4>
                 </div>
                 <img src={song.cover} alt="" />
                 </div>
@@ -150,7 +158,7 @@ export default class SongShow extends React.Component {
                         </li>
                         </div>
                     </div>
-                    <div className="comment-container">
+                    <div className="comments">
                         {comments}
                     </div>
 
