@@ -28,6 +28,17 @@ export const createSong = song => (
     })
 );
 
+export const createComment = comment => (
+
+    $.ajax({
+        url: 'api/comments',
+        method: "POST",
+        data: comment,
+        contentType: false,
+        processData: false
+    })
+);
+
 export const deleteSong = songId => (
 
     $.ajax({

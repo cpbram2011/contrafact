@@ -19,6 +19,11 @@ class Song < ApplicationRecord
     has_one_attached :track
     has_one_attached :cover
 
+    has_many :comments,
+        primary_key: :id,
+        foreign_key: :song_id,
+        class_name: :Comment
+
 
     def ensure_track
         unless self.track.attached?

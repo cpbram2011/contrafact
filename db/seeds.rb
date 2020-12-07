@@ -11,6 +11,7 @@ User.destroy_all
 Song.destroy_all
 Playlist.destroy_all
 PlaylistSong.destroy_all
+Comment.destroy_all
 
 
 usernames = ['coolguy57','radchad99','cannedCoffee','Stranger']
@@ -112,8 +113,8 @@ ps6.save!
 
 
 
-
-
+c1 = Comment.new(body: 'cool tune, thanks for uploading!', author: 'coolguy57', song_id: s1.id)
+c1.save!
 
 # s2 = Song.create(title: 'Sniff', artist: 'DOMi & JD Beck')
 # s2_cover = open("")

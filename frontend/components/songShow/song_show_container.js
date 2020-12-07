@@ -7,7 +7,8 @@ import {openModal} from '../../actions/modal_actions';
 const mSTP = (state, ownProps) => ({
     songs: state.entities.songs.all,
     id: ownProps.match.params.id,
-    currentUser: state.session.id
+    currentUser: state.session.id,
+    currentUserName: state.entities.users[state.session.id].username
 });
 
 const mDTP = dispatch => ({
