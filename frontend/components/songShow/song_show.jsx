@@ -7,7 +7,8 @@ export default class SongShow extends React.Component {
         super(props);
         this.state = {
             dropdown: false,
-            comment: ''
+            comment: '',
+            liked: false
         };
 
         this.handleDropdown = this.handleDropdown.bind(this)
@@ -94,22 +95,12 @@ export default class SongShow extends React.Component {
                     </form>
                     </div>
                     <div className="comment-buttons">
-                        <button>
+                        <button onClick={() => this.setState({liked: !this.state.liked})}>
                             <FaHeart />
                             <hr/>
-                            
-                            Like
+                            {this.state.liked ? 'Liked' : 'Like'}
                         </button>
-                        <button>
-                            <FaRetweet />
-                            <hr/> <hr/>
-                            Repost
-                        </button>
-                        <button>
-                            <FaShare />
-                            <hr/> <hr/>
-                            Share
-                        </button>
+                        
                         <button>
                             <FaBars />
                             <hr/> <hr/>
