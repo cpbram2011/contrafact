@@ -80,7 +80,7 @@ export default class SongShow extends React.Component {
                 />
                 <h3>{song.artist}</h3>
                 <h1>{song.title}</h1>
-                <h4>uploaded {createdAt} days ago</h4>
+                {/* <h4>uploaded {createdAt} days ago</h4> */}
                 </div>
                 <img src={song.cover} alt="" />
                 </div>
