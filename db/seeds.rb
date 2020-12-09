@@ -113,7 +113,7 @@ Comment.destroy_all
 
 
 
-c1 = Comment.new(body: 'cool tune, thanks for uploading!', author: 'coolguy57', song_id: s1.id)
+c1 = Comment.new(body: 'cool tune, thanks for uploading!', author: 'coolguy57', song_id: Song.first.id)
 c1.save!
 
 # s2 = Song.create(title: 'Sniff', artist: 'DOMi & JD Beck')
