@@ -84,10 +84,7 @@ export default class SongShow extends React.Component {
                 </div>
                 <img src={song.cover} alt="" />
                 </div>
-
-
-
-
+                
                 <div className="comment-section">
                     <div className="comment-container">
                     <p className='user-pic'></p>
