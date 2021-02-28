@@ -2,6 +2,17 @@
 <html>
   <head>
     <title>Contrafact</title>
+    
+    <meta property="og:title" content="Contrafact" />
+    <meta property="og:image" content='<%= image_url('ContrafactLogo.PNG') %>'/>
+    <meta property="og:description"
+      content="A SoundCloud inspired app for music sharing and discovery"
+    />
+    <meta name="author" content="Chris Bram">
+    <meta property="og:url"
+      content="http://contrafact.herokuapp.com/#/"
+    />
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
