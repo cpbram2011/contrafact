@@ -13,18 +13,17 @@ import Footer from './footer/footer';
 import Library from './library/library_container'
 import Playlist from './playlist/playlist_container';
 
-
 export default () => (
+
+
     <div>
         <Modal />
         <header className='bar'>
-            
             <ProtectedRoute path='/' component={NavBarContainer}/>
             <ProtectedRoute path='/library' component={Library}/>
-           
-
         </header>
         
+
         <Switch>
             <ProtectedRoute path='/home' component={DiscoverContainer}/>
             <ProtectedRoute path='/song/:id' component={SongShow}/>
